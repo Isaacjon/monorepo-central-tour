@@ -1,0 +1,22 @@
+{
+  "home": {
+    "badge": "Central Tour B2B",
+    "title": "Central Tour hamkorlar konsoli.",
+    "description": "B2C bilan bir xil umumiy UI, lekin `--primary` faqat CSS o'zgaruvchilari orqali qayta belgilangan.",
+    "ctaPrimary": "Asosiy amal",
+    "ctaSecondary": "Ikkilamchi kulrang",
+    "ctaPrimaryButton": "CTA tugmasi",
+    "toastSection": "Tostlar (Sonner)",
+    "toastShowSuccess": "Muvaffaqiyat tostini ko‘rsatish",
+    "toastShowError": "Xato tostini ko‘rsatish",
+    "toastSuccessTitle": "Tayyor",
+    "toastSuccessDescription": "Namuna muvaffaqiyat bildirishnomasi.",
+    "toastErrorTitle": "Xato yuz berdi",
+    "toastErrorDescription": "Namuna xato bildirishnomasi."
+  },
+  "profile": {
+    "badge": "B2B Profil",
+    "title": "Mijoz profili",
+    "description": "Profil sahifasi marshruti Figma maketi asosida tayyorlandi. Keyingi qadam — to'liq layout va forma bo'limlarini joriy qilish."
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "name": "@central-tour/config",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./eslint/next": "./eslint/next.mjs",
+    "./prettier": "./prettier/index.js",
+    "./postcss": "./postcss/index.js",
+    "./styles/globals.css": "./styles/globals.css",
+    "./next/svgr": {
+      "types": "./next/svgr.d.ts",
+      "import": "./next/svgr.mjs",
+      "default": "./next/svgr.mjs"
+    },
+    "./i18n/routing": "./i18n/routing.ts",
+    "./i18n/locale": "./i18n/locale.ts",
+    "./i18n/navigation": "./i18n/navigation.ts"
+  },
+  "files": [
+    "eslint",
+    "prettier",
+    "postcss",
+    "styles",
+    "next",
+    "i18n"
+  ],
+  "scripts": {
+    "type-check": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4",
+    "eslint-config-next": "16.2.3",
+    "eslint-config-prettier": "^10.1.8",
+    "next-intl": "^4.9.1",
+    "prettier-plugin-tailwindcss": "^0.7.2"
+  },
+  "peerDependencies": {
+    "eslint": "^9",
+    "prettier": "^3",
+    "tailwindcss": "^4"
+  },
+  "devDependencies": {
+    "next": "16.2.3",
+    "typescript": "^5"
+  }
+}

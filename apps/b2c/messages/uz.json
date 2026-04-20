@@ -1,0 +1,118 @@
+{
+  "auth": {
+    "metaTitle": "Kirish · Central Tour",
+    "registerMetaTitle": "Ro'yxatdan o'tish · Central Tour",
+    "logoWordmark": "CENTBED",
+    "logoTagline": "B2B TRAVEL BOOKING SYSTEM",
+    "loginTitle": "Hisobingizga kiring",
+    "loginSubtitle": "Mehmonxonalar, parvozlar va ekskursiyalarni bir joyda bron qilish uchun kiring.",
+    "tabPhone": "Telefon raqami",
+    "tabEmail": "Elektron pochta",
+    "phoneLabel": "Telefon raqami",
+    "countryDialPreview": "+998",
+    "phonePlaceholder": "+998(90) 123-45-67",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "submit": "Kirish",
+    "register": "Ro'yxatdan o'tish",
+    "registerTitle": "Ro'yxatdan o'tish",
+    "registerSubtitle": "Mehmonxonalar, parvozlar va ekskursiyalarni bir joyda bron qilish uchun ro'yxatdan o'ting.",
+    "lastNameLabel": "Familiya",
+    "lastNamePlaceholder": "Familiyangizni kiriting",
+    "firstNameLabel": "Ism",
+    "firstNamePlaceholder": "Ismingizni kiriting",
+    "middleNameLabel": "Otasining ismi",
+    "middleNamePlaceholder": "Otasining ismini kiriting",
+    "continueLabel": "Davom etish",
+    "registerBack": "Orqaga",
+    "orDivider": "yoki",
+    "google": "Google",
+    "apple": "Apple",
+    "localeLabels": {
+      "uz": "O'zbek",
+      "ru": "Русский",
+      "en": "English"
+    },
+    "localeFlags": {
+      "uz": "🇺🇿",
+      "ru": "🇷🇺",
+      "en": "🇺🇸"
+    },
+    "hero": {
+      "prev": "Oldingi slayd",
+      "next": "Keyingi slayd",
+      "slides": [
+        {
+          "quote": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec molestie.",
+          "roleLabel": "Mijoz",
+          "name": "Dauletmuratov Axmet"
+        },
+        {
+          "quote": "Bu iqtibosni dizayn yoki marketing matni bilan almashtiring.",
+          "roleLabel": "Mijoz",
+          "name": "Central Tour mehmoni"
+        },
+        {
+          "quote": "Fon rasmini modules/auth/assets/login-hero.png faylida yangilang.",
+          "roleLabel": "Mijoz",
+          "name": "Mahsulot jamoasi"
+        },
+        {
+          "quote": "Strelkalar slaydlarni almashtiradi; matnlar lug'atdan keladi.",
+          "roleLabel": "Mijoz",
+          "name": "UX"
+        }
+      ]
+    },
+    "validation": {
+      "emailInvalid": "To'g'ri email kiriting.",
+      "phoneInvalid": "To'g'ri telefon raqamini kiriting.",
+      "nameRequired": "Bu maydonni to'ldiring."
+    },
+    "otpTitle": "Hisobni tasdiqlash",
+    "otpSubtitlePhone": "OTP kodini __DESTINATION__ raqamiga yubordik",
+    "otpSubtitleEmail": "OTP kodini __DESTINATION__ manziliga yubordik",
+    "otpConfirm": "Tasdiqlash",
+    "otpBack": "Orqaga",
+    "otpResendIn": "Kodni qayta yuborish: __TIME__",
+    "otpResend": "Kodni qayta yuborish",
+    "welcomeBackToast": "Xush kelibsiz!"
+  },
+  "authPlaceholder": {
+    "registerTitle": "Hisob yaratish",
+    "registerBody": "Roʻyxatdan oʻtish tez orada ochiladi.",
+    "forgotTitle": "Parolni tiklash",
+    "forgotBody": "Parolni tiklash tez orada ochiladi.",
+    "backToLogin": "Kirish sahifasiga qaytish"
+  },
+  "home": {
+    "badge": "Central Tour B2C",
+    "title": "Boshlash uchun modullaringizni tahrirlang.",
+    "description": "Bu ilova `ui` workspace'idan umumiy UI va `@central-tour/config` dan tema tokenlaridan foydalanadi.",
+    "ctaPrimary": "Asosiy amal",
+    "ctaSecondary": "Ikkilamchi kulrang",
+    "ctaPrimaryButton": "CTA tugmasi",
+    "toastSection": "Tostlar (Sonner)",
+    "toastShowSuccess": "Muvaffaqiyat tostini ko‘rsatish",
+    "toastShowError": "Xato tostini ko‘rsatish",
+    "toastSuccessTitle": "Tayyor",
+    "toastSuccessDescription": "Namuna muvaffaqiyat bildirishnomasi.",
+    "toastErrorTitle": "Xato yuz berdi",
+    "toastErrorDescription": "Namuna xato bildirishnomasi."
+  },
+  "profile": {
+    "title": "Mijoz profili",
+    "description": "Header qismi Figma maketi asosida joriy qilindi. Keyingi qadam — forma kontenti.",
+    "language": "Rus tili",
+    "languageDropdownTitle": "Tillar",
+    "currency": "USD",
+    "authLabel": "Kirish",
+    "navFlights": "Aviachiptalar",
+    "navHotels": "Mehmonxonalar",
+    "navTransfers": "Transferlar",
+    "navExcursions": "Ekskursiyalar",
+    "navCarRental": "Avto ijara",
+    "navTourPackages": "Tur paketlar",
+    "navAdditionalServices": "Qo'shimcha xizmatlar"
+  }
+}

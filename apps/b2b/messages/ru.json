@@ -1,0 +1,22 @@
+{
+  "home": {
+    "badge": "Central Tour B2B",
+    "title": "Партнёрская консоль Central Tour.",
+    "description": "Тот же общий UI, но `--primary` переопределён только через CSS-переменные.",
+    "ctaPrimary": "Основное действие",
+    "ctaSecondary": "Вторичная серая",
+    "ctaPrimaryButton": "Кнопка CTA",
+    "toastSection": "Тосты (Sonner)",
+    "toastShowSuccess": "Показать успех",
+    "toastShowError": "Показать ошибку",
+    "toastSuccessTitle": "Готово",
+    "toastSuccessDescription": "Пример уведомления об успехе.",
+    "toastErrorTitle": "Что-то пошло не так",
+    "toastErrorDescription": "Пример уведомления об ошибке."
+  },
+  "profile": {
+    "badge": "B2B Профиль",
+    "title": "Профиль клиента",
+    "description": "Маршрут экрана профиля создан по макету Figma. Следующий шаг — реализовать полный лейаут и секции формы."
+  }
+}

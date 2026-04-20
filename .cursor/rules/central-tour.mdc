@@ -1,0 +1,100 @@
+---
+description: Central Tour monorepo — STRICT architecture rules (apply to every app in apps/*)
+alwaysApply: true
+---
+
+# Central Tour Monorepo Rules (ENFORCED)
+
+These rules apply **equally and identically** to every app under `apps/*` (today: `apps/b2c`, `apps/b2b`; tomorrow: any new `apps/<name>`). If a rule names a path with `apps/*/...`, read it as "this rule is the same in every app."
+
+The two apps share a product model. Differences are **scale and content**, not architecture:
+
+- b2c and b2b share the **same folder shape**, **same module contract**, and **same boundaries**.
+- An app may have **fewer or more pages** in a given module (e.g. `profile` with 2–3 pages in b2c vs 10+ pages in b2b) — that is expected and fine.
+- A module may exist in one app and not the other — still fine.
+- **What must stay the same:** where code lives, how modules are shaped, how API/state/routing is organized, how shared UI is consumed.
+
+## Core architecture (every app)
+
+- `apps/*/src/app/` = routing ONLY
+- DO NOT place UI, hooks, or business logic inside `apps/*/src/app/`
+- Pages MUST only compose modules
+
+- ALL features MUST live in `apps/*/src/modules/*`
+- Each product domain (flights, hotels, transfers, auth, home, profile, …) is an independent module
+
+- `apps/*/src/shared/` = generic ONLY (app-local utilities, base API client, i18n, app-wide constants)
+- `packages/*` = generic ONLY (monorepo-wide: shared UI, shared configs)
+- DO NOT put product-specific logic in `shared/` or `packages/`
+
+## Forbidden (never do this, in any app)
+
+- UI inside `apps/*/src/app/`
+- Business logic inside `apps/*/src/app/`
+- API calls inside React components
+- Feature logic inside `apps/*/src/shared/` or `packages/*`
+- Cross-module leakage without clear structure
+- Forking a UI component per app (override via CSS variables in `apps/*/src/app/globals.css` instead)
+
+## Required patterns (every app)
+
+- Use `apps/*/src/modules/<product>/` for UI, logic, services, types, hooks, pages
+- Use `apps/*/src/shared/api` for the base API client
+- Use `apps/*/src/modules/*/services` for feature-level API logic
+- Prefer server components; use client components ONLY when necessary
+- Keep `packages/ui/src/components/ui/*` (shadcn base) as stable primitives
+- Build feature variants by composing primitives in `apps/*/src/modules/*`, `apps/*/src/shared/components/common`, or `packages/ui/src/common`
+- Pass `className`, props, wrappers, or create a new variant instead of editing root shadcn primitives
+- Consume shared UI via `import { … } from "ui"` (same in b2c, b2b, and any future app)
+
+## Per-app divergence (what can differ)
+
+Allowed to differ between `apps/b2c` and `apps/b2b`:
+
+- Number of modules present
+- Number of pages inside a module (e.g. `profile/pages/*`)
+- Route groups and URL structure (e.g. one app may use `(protected)`, the other may not)
+- `src/app/globals.css` CSS variable overrides (e.g. `--primary`)
+- Copy/translations in `messages/*.json`
+- next-intl `locales` list if a product truly needs different language coverage
+
+NOT allowed to differ:
+
+- Folder shape (`src/app`, `src/modules`, `src/shared`)
+- Module contract (`components`, `hooks`, `services`, `types`, `pages`)
+- Where API calls live (never in components; always in `src/shared/api` + `src/modules/*/services`)
+- Shared primitive source (always `packages/ui`)
+- ESLint/Prettier/TypeScript base config (always from `packages/config` + `tsconfig.base.json`)
+
+## Rendering & state (every app)
+
+- Default to server components
+- SEO pages MUST NOT be client-only
+- Prefer URL-driven state for filters/search
+- Do NOT store server data in global client state without strong reason
+
+## Adding a page (quick reference, any app in `apps/*`)
+
+1. Create the page at `apps/<app>/src/modules/<product>/pages/<page-name>.tsx` (not in `src/app/`).
+2. Supporting code stays in the same module: `components/`, `hooks/`, `services/`, `types/`.
+3. New API calls live in `src/modules/<product>/services/*` and use the base client from `src/shared/api`. Never in a component.
+4. Wire the route as a one-liner at `apps/<app>/src/app/[lang]/<segment>/page.tsx` that imports the page component.
+5. Add translations to every locale in `apps/<app>/messages/<locale>.json`.
+
+Anti-patterns (reject if seen):
+- Page UI inside `apps/*/src/app/...`
+- `fetch(...)` inside a React component
+- Forking a `packages/ui` component per app
+- Business logic placed in `src/shared/` instead of `src/modules/<product>/`
+
+---
+
+## Behavior rules
+
+If a task conflicts with these rules:
+→ FOLLOW THESE RULES over the task
+→ Refactor structure if needed
+→ DO NOT take shortcuts
+
+If structure is unclear:
+→ Ask instead of guessing

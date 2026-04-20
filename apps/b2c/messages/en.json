@@ -1,0 +1,118 @@
+{
+  "auth": {
+    "metaTitle": "Log in · Central Tour",
+    "registerMetaTitle": "Sign up · Central Tour",
+    "logoWordmark": "CENTBED",
+    "logoTagline": "B2B TRAVEL BOOKING SYSTEM",
+    "loginTitle": "Log in to your account",
+    "loginSubtitle": "Sign in to book hotels, flights, and excursions in one place.",
+    "tabPhone": "Phone number",
+    "tabEmail": "Email address",
+    "phoneLabel": "Phone number",
+    "countryDialPreview": "+998",
+    "phonePlaceholder": "+998(90) 123-45-67",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "submit": "Log in",
+    "register": "Registration",
+    "registerTitle": "Create an account",
+    "registerSubtitle": "Register to book hotels, flights, and excursions in one place.",
+    "lastNameLabel": "Last name",
+    "lastNamePlaceholder": "Enter your last name",
+    "firstNameLabel": "First name",
+    "firstNamePlaceholder": "Enter your first name",
+    "middleNameLabel": "Middle name",
+    "middleNamePlaceholder": "Enter your middle name",
+    "continueLabel": "Continue",
+    "registerBack": "Back",
+    "orDivider": "or",
+    "google": "Google",
+    "apple": "Apple",
+    "localeLabels": {
+      "uz": "O'zbek",
+      "ru": "Русский",
+      "en": "English"
+    },
+    "localeFlags": {
+      "uz": "🇺🇿",
+      "ru": "🇷🇺",
+      "en": "🇺🇸"
+    },
+    "hero": {
+      "prev": "Previous slide",
+      "next": "Next slide",
+      "slides": [
+        {
+          "quote": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec molestie.",
+          "roleLabel": "Client",
+          "name": "Dauletmuratov Akhmet"
+        },
+        {
+          "quote": "Replace this quote with copy from your design system or marketing team.",
+          "roleLabel": "Client",
+          "name": "Central Tour guest"
+        },
+        {
+          "quote": "Swap hero photography in modules/auth/assets/login-hero.png when ready.",
+          "roleLabel": "Client",
+          "name": "Product team"
+        },
+        {
+          "quote": "Use the carousel arrows to cycle testimonials; content is dictionary-driven.",
+          "roleLabel": "Client",
+          "name": "UX notes"
+        }
+      ]
+    },
+    "validation": {
+      "emailInvalid": "Enter a valid email address.",
+      "phoneInvalid": "Enter a valid phone number.",
+      "nameRequired": "This field is required."
+    },
+    "otpTitle": "Account verification",
+    "otpSubtitlePhone": "We sent an OTP code to __DESTINATION__",
+    "otpSubtitleEmail": "We sent an OTP code to __DESTINATION__",
+    "otpConfirm": "Confirm",
+    "otpBack": "Back",
+    "otpResendIn": "Resend code in __TIME__",
+    "otpResend": "Resend code",
+    "welcomeBackToast": "Welcome back!"
+  },
+  "authPlaceholder": {
+    "registerTitle": "Create an account",
+    "registerBody": "Registration will be available soon.",
+    "forgotTitle": "Reset password",
+    "forgotBody": "Password recovery will be available soon.",
+    "backToLogin": "Back to sign in"
+  },
+  "home": {
+    "badge": "Central Tour B2C",
+    "title": "To get started, edit your modules.",
+    "description": "This app shares UI from the `ui` workspace and theme tokens from `@central-tour/config`.",
+    "ctaPrimary": "Primary action",
+    "ctaSecondary": "Secondary gray",
+    "ctaPrimaryButton": "Button CTA",
+    "toastSection": "Toasts (Sonner)",
+    "toastShowSuccess": "Show success toast",
+    "toastShowError": "Show error toast",
+    "toastSuccessTitle": "All set",
+    "toastSuccessDescription": "This is a sample success notification.",
+    "toastErrorTitle": "Something failed",
+    "toastErrorDescription": "This is a sample error notification."
+  },
+  "profile": {
+    "title": "Client profile",
+    "description": "Header section is implemented from Figma. The form content section is next.",
+    "language": "Russian",
+    "languageDropdownTitle": "Languages",
+    "currency": "USD",
+    "authLabel": "Sign in",
+    "navFlights": "Flights",
+    "navHotels": "Hotels",
+    "navTransfers": "Transfers",
+    "navExcursions": "Excursions",
+    "navCarRental": "Car rental",
+    "navTourPackages": "Tour packages",
+    "navAdditionalServices": "Additional services"
+  }
+}

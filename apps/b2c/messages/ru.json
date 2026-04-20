@@ -1,0 +1,118 @@
+{
+  "auth": {
+    "metaTitle": "Вход · Central Tour",
+    "registerMetaTitle": "Регистрация · Central Tour",
+    "logoWordmark": "CENTBED",
+    "logoTagline": "B2B TRAVEL BOOKING SYSTEM",
+    "loginTitle": "Вход в аккаунт",
+    "loginSubtitle": "Войдите, чтобы бронировать отели, авиабилеты, экскурсии в одном месте.",
+    "tabPhone": "Телефон номер",
+    "tabEmail": "Электронный адрес",
+    "phoneLabel": "Телефон номер",
+    "countryDialPreview": "+998",
+    "phonePlaceholder": "+998(90) 123-45-67",
+    "emailLabel": "Электронный адрес",
+    "emailPlaceholder": "you@example.com",
+    "submit": "Войти",
+    "register": "Регистрация",
+    "registerTitle": "Регистрация",
+    "registerSubtitle": "Регистрируйтесь, чтобы бронировать отели, авиабилеты, экскурсии в одном месте.",
+    "lastNameLabel": "Фамилия",
+    "lastNamePlaceholder": "Введите фамилию",
+    "firstNameLabel": "Имя",
+    "firstNamePlaceholder": "Введите имя",
+    "middleNameLabel": "Отчество",
+    "middleNamePlaceholder": "Введите отчество",
+    "continueLabel": "Продолжить",
+    "registerBack": "Назад",
+    "orDivider": "или",
+    "google": "Google",
+    "apple": "Apple",
+    "localeLabels": {
+      "uz": "O'zbek",
+      "ru": "Русский",
+      "en": "English"
+    },
+    "localeFlags": {
+      "uz": "🇺🇿",
+      "ru": "🇷🇺",
+      "en": "🇺🇸"
+    },
+    "hero": {
+      "prev": "Предыдущий слайд",
+      "next": "Следующий слайд",
+      "slides": [
+        {
+          "quote": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec molestie.",
+          "roleLabel": "Клиент",
+          "name": "Даулетмуратов Ахмет"
+        },
+        {
+          "quote": "Замените этот текст на официальный отзыв из макета или CRM.",
+          "roleLabel": "Клиент",
+          "name": "Гость Central Tour"
+        },
+        {
+          "quote": "Обновите фоновое фото в modules/auth/assets/login-hero.png при необходимости.",
+          "roleLabel": "Клиент",
+          "name": "Команда продукта"
+        },
+        {
+          "quote": "Стрелки переключают слайды; тексты задаются в словарях локализации.",
+          "roleLabel": "Клиент",
+          "name": "UX"
+        }
+      ]
+    },
+    "validation": {
+      "emailInvalid": "Введите корректный email.",
+      "phoneInvalid": "Введите корректный номер телефона.",
+      "nameRequired": "Заполните это поле."
+    },
+    "otpTitle": "Верификация аккаунта",
+    "otpSubtitlePhone": "Мы отправили код OTP на номер __DESTINATION__",
+    "otpSubtitleEmail": "Мы отправили код OTP на адрес __DESTINATION__",
+    "otpConfirm": "Подтвердить",
+    "otpBack": "Назад",
+    "otpResendIn": "Отправить код заново через __TIME__",
+    "otpResend": "Отправить код заново",
+    "welcomeBackToast": "С возвращением!"
+  },
+  "authPlaceholder": {
+    "registerTitle": "Создание аккаунта",
+    "registerBody": "Регистрация скоро будет доступна.",
+    "forgotTitle": "Восстановление пароля",
+    "forgotBody": "Восстановление пароля скоро будет доступно.",
+    "backToLogin": "Назад ко входу"
+  },
+  "home": {
+    "badge": "Central Tour B2C",
+    "title": "Для начала, отредактируйте ваши модули.",
+    "description": "Это приложение использует общий UI из workspace `ui` и токены темы из `@central-tour/config`.",
+    "ctaPrimary": "Основное действие",
+    "ctaSecondary": "Вторичная серая",
+    "ctaPrimaryButton": "Кнопка CTA",
+    "toastSection": "Тосты (Sonner)",
+    "toastShowSuccess": "Показать успех",
+    "toastShowError": "Показать ошибку",
+    "toastSuccessTitle": "Готово",
+    "toastSuccessDescription": "Пример уведомления об успехе.",
+    "toastErrorTitle": "Что-то пошло не так",
+    "toastErrorDescription": "Пример уведомления об ошибке."
+  },
+  "profile": {
+    "title": "Профиль клиента",
+    "description": "Секция хедера реализована по макету Figma. Далее — контент формы.",
+    "language": "Русский язык",
+    "languageDropdownTitle": "Языки",
+    "currency": "USD",
+    "authLabel": "Войти",
+    "navFlights": "Авиабилеты",
+    "navHotels": "Отели",
+    "navTransfers": "Трансферы",
+    "navExcursions": "Экскурсии",
+    "navCarRental": "Аренда авто",
+    "navTourPackages": "Турпакеты",
+    "navAdditionalServices": "Дополнительные услуги"
+  }
+}

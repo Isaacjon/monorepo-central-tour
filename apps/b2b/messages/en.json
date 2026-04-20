@@ -1,0 +1,22 @@
+{
+  "home": {
+    "badge": "Central Tour B2B",
+    "title": "Partner console for Central Tour.",
+    "description": "Same shared UI as B2C, but this app overrides `--primary` via CSS variables only.",
+    "ctaPrimary": "Primary action",
+    "ctaSecondary": "Secondary gray",
+    "ctaPrimaryButton": "Button CTA",
+    "toastSection": "Toasts (Sonner)",
+    "toastShowSuccess": "Show success toast",
+    "toastShowError": "Show error toast",
+    "toastSuccessTitle": "All set",
+    "toastSuccessDescription": "This is a sample success notification.",
+    "toastErrorTitle": "Something failed",
+    "toastErrorDescription": "This is a sample error notification."
+  },
+  "profile": {
+    "badge": "B2B Profile",
+    "title": "Client profile",
+    "description": "Profile UI route scaffolded from the Figma screen. Next step is implementing the full layout and form sections."
+  }
+}

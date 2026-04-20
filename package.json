@@ -1,0 +1,48 @@
+{
+  "name": "central-tour-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "yarn@4.13.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:b2c": "yarn workspace b2c dev",
+    "dev:b2b": "yarn workspace b2b dev",
+    "build:b2c": "yarn workspace b2c build",
+    "build:b2b": "yarn workspace b2b build",
+    "start:b2c": "yarn workspace b2c start",
+    "start:b2b": "yarn workspace b2b start",
+    "lint": "eslint apps/b2c apps/b2b packages/ui packages/config",
+    "lint:fix": "eslint --fix apps/b2c apps/b2b packages/ui packages/config",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "type-check": "yarn workspaces foreach --all --parallel --topological run type-check",
+    "commitlint": "commitlint",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,mjs,ts,tsx,mts,cts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,css,yml,yaml}": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
+    "@svgr/webpack": "^8.1.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.3",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.2",
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "typescript": "^5"
+  }
+}

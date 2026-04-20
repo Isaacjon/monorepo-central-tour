@@ -1,0 +1,16 @@
+@import "@central-tour/config/styles/globals.css";
+@import "sonner/dist/styles.css";
+
+:root {
+  --primary: #db003a;
+  --primary-foreground: oklch(0.985 0 0);
+  --ring: #db003a;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #db003a;
+    --primary-foreground: oklch(0.985 0 0);
+    --ring: #db003a;
+  }
+} */
