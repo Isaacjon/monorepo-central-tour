@@ -1,14 +1,14 @@
 export type OtpVisualStatus = "default" | "error" | "success"
 
 export const FILLED_CLASS: Record<OtpVisualStatus, string> = {
-  default: "border-2 border-primary text-primary",
+  default: "border-2 border-control-accent text-control-accent",
   error: "border-2 border-[#FEE4E2] text-[#F04438]",
   success: "border-2 border-[#DCFAE6] text-[#17B26A]",
 }
 
 export const FOCUS_CLASS: Record<OtpVisualStatus, string> = {
   default:
-    "focus-visible:border-2 focus-visible:border-primary focus-visible:shadow-[0px_0px_0px_4px_color-mix(in_srgb,var(--color-primary)_24%,transparent),0px_1px_2px_0px_rgba(16,24,40,0.05)]",
+    "focus-visible:border-2 focus-visible:border-control-accent focus-visible:shadow-[0px_0px_0px_4px_color-mix(in_srgb,var(--color-control-accent)_24%,transparent),0px_1px_2px_0px_rgba(16,24,40,0.05)]",
   error:
     "focus-visible:border-2 focus-visible:border-[#FEE4E2] focus-visible:shadow-[0px_0px_0px_4px_color-mix(in_srgb,#F04438_24%,transparent),0px_1px_2px_0px_rgba(16,24,40,0.05)]",
   success:

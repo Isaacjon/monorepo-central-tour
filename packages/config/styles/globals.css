@@ -7,6 +7,8 @@
 
 :root {
   --radius: 0.625rem;
+  /* Product UI chrome (OTP, default focus rings) — not app brand primary. */
+  --control-accent: #4765ff;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -21,11 +23,12 @@
   --muted-foreground: oklch(0.556 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
+  /* Shared danger / exit — same red in every app; override only with intent. */
+  --destructive: #db003a;
   --destructive-foreground: oklch(0.985 0 0);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.488 0.243 264.376);
+  /* --ring: var(--control-accent); */
   --c-surface: oklch(1 0 0);
   --c-selected: oklch(0.985 0.0014 247.8394);
   --c-text: oklch(0.2081 0.0316 264.6656);
@@ -38,6 +41,7 @@
   /* Form text — Untitled UI gray scale (InputField, etc.) */
   --c-gray-100: #f2f4f7;
   --c-gray-300: #d0d5dd;
+  --c-gray-400: #98a2b3;
   --c-gray-500: #667085;
   --c-gray-700: #344054;
   --c-gray-900: #101828;
@@ -45,6 +49,7 @@
 
 /* @media (prefers-color-scheme: dark) {
   :root {
+    --control-accent: #4765ff;
     --background: oklch(0.145 0 0);
     --foreground: oklch(0.985 0 0);
     --card: oklch(0.205 0 0);
@@ -59,11 +64,11 @@
     --muted-foreground: oklch(0.708 0 0);
     --accent: oklch(0.269 0 0);
     --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
+    --destructive: #db003a;
     --destructive-foreground: oklch(0.985 0 0);
     --border: oklch(1 0 0 / 10%);
     --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.62 0.19 264);
+    --ring: var(--control-accent);
     --c-surface: oklch(0.205 0 0);
     --c-greyscale-200: #525252;
     --c-selected: oklch(0.2495 0.0117 280.7237);
@@ -90,6 +95,7 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-control-accent: var(--control-accent);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -103,6 +109,7 @@
   --color-c-greyscale-800: var(--c-greyscale-800);
   --color-c-gray-100: var(--c-gray-100);
   --color-c-gray-300: var(--c-gray-300);
+  --color-c-gray-400: var(--c-gray-400);
   --color-c-gray-500: var(--c-gray-500);
   --color-c-gray-700: var(--c-gray-700);
   --color-c-gray-900: var(--c-gray-900);

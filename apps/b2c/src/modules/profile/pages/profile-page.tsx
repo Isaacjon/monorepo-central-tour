@@ -16,6 +16,8 @@ export async function ProfilePage({ lang }: { lang: string }) {
           currencyModalTitle: t("currencyModalTitle"),
           currencyFeaturedSectionTitle: t("currencyFeaturedSectionTitle"),
           currencyAllSectionTitle: t("currencyAllSectionTitle"),
+          notificationTitle: t("notificationTitle"),
+          notificationEmptyLabel: t("notificationEmptyLabel"),
           authLabel: t("authLabel"),
           navFlights: t("navFlights"),
           navHotels: t("navHotels"),

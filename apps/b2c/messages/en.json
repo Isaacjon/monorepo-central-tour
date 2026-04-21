@@ -116,6 +116,8 @@
     "navAdditionalServices": "Additional services",
     "currencyModalTitle": "Select currency",
     "currencyFeaturedSectionTitle": "Main currencies",
-    "currencyAllSectionTitle": "All currencies"
+    "currencyAllSectionTitle": "All currencies",
+    "notificationTitle": "Notifications",
+    "notificationEmptyLabel": "No notifications"
   }
 }

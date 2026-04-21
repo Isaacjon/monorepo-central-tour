@@ -5,6 +5,8 @@ export type ProfileHeaderCopy = {
   currencyModalTitle: string
   currencyFeaturedSectionTitle: string
   currencyAllSectionTitle: string
+  notificationTitle: string
+  notificationEmptyLabel: string
   authLabel: string
   navFlights: string
   navHotels: string

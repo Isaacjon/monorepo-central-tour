@@ -1,11 +1,10 @@
 import Image from "next/image"
 import { Suspense } from "react"
 import type { ProfileHeaderCopy } from "@/modules/profile/types/profile-header-copy"
-import { HeaderMiniBlock } from "ui"
+import { HeaderMiniBlock, NotificationsDropdown } from "ui"
 import { ProfileCurrencyChanger } from "./profile-currency-changer"
 import { ProfileLanguageChanger } from "./profile-language-changer"
 
-import BellIcon from "../assets/bell-icon.svg"
 import HeartIcon from "../assets/heart-icon.svg"
 import UserIcon from "../assets/user-icon.svg"
 
@@ -44,9 +43,10 @@ export function ProfileHeader({ copy, lang }: ProfileHeaderProps) {
           <HeaderMiniBlock aria-label="Favorites">
             <HeartIcon width={24} height={24} aria-hidden />
           </HeaderMiniBlock>
-          <HeaderMiniBlock aria-label="Notifications">
-            <BellIcon width={24} height={24} aria-hidden />
-          </HeaderMiniBlock>
+          <NotificationsDropdown
+            title={copy.notificationTitle}
+            emptyLabel={copy.notificationEmptyLabel}
+          />
 
           <Suspense
             fallback={

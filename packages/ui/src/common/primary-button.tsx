@@ -5,7 +5,7 @@ import * as React from "react"
 import { cn } from "../lib/utils"
 
 const primaryButtonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap border border-primary bg-primary font-semibold tracking-normal text-primary-foreground shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] transition-colors hover:border-primary/90 hover:bg-primary/90 focus-visible:outline-none focus-visible:shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05),0px_0px_0px_4px_color-mix(in_srgb,var(--color-ring)_24%,transparent)] disabled:pointer-events-none disabled:border-primary/[0.24] disabled:bg-primary/[0.24] disabled:text-primary-foreground/60 disabled:shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] disabled:hover:border-primary/[0.24] disabled:hover:bg-primary/[0.24] [&_svg]:shrink-0",
+  "inline-flex items-center justify-center whitespace-nowrap border border-primary bg-primary font-semibold tracking-normal text-primary-foreground shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] transition-colors hover:border-primary/90 hover:bg-primary/90 focus-visible:outline-none focus-visible:shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05),0px_0px_0px_4px_color-mix(in_srgb,var(--color-primary)_24%,transparent)] disabled:pointer-events-none disabled:border-primary/[0.24] disabled:bg-primary/[0.24] disabled:text-primary-foreground/60 disabled:shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] disabled:hover:border-primary/[0.24] disabled:hover:bg-primary/[0.24] [&_svg]:shrink-0",
   {
     variants: {
       size: {

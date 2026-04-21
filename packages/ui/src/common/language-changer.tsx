@@ -133,7 +133,7 @@ export function LanguageChanger({
       >
         {isProfile && dropdownTitle ? (
           <div className="border-b border-[#EAECF0] px-3 py-2.5">
-            <p className="text-[16px] leading-5 font-medium text-[#344054]">
+            <p className="text-c-gray-700 leading-5 font-medium">
               {dropdownTitle}
             </p>
           </div>

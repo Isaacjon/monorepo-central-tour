@@ -13,6 +13,7 @@
     "./dropdown-menu": "./src/components/ui/dropdown-menu.tsx",
     "./common/currency-changer": "./src/common/currency-changer.tsx",
     "./common/language-changer": "./src/common/language-changer.tsx",
+    "./common/notifications-dropdown": "./src/common/notifications-dropdown.tsx",
     "./dialog": "./src/components/ui/dialog.tsx",
     "./common/otp-input": "./src/common/otp-input/index.ts",
     "./common/primary-button": "./src/common/primary-button.tsx",
