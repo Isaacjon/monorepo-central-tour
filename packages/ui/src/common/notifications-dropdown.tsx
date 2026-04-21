@@ -52,7 +52,7 @@ export function NotificationsDropdown({
         <div className="flex flex-col items-center justify-center gap-3 px-4 py-8">
           <React.Suspense
             fallback={
-              <div className="size-20 animate-spin rounded-full border-4 border-[#D0D5DD] border-t-[#98A2B3]" />
+              <div className="border-t-c-gray-400 size-20 animate-spin rounded-full border-4 border-[#D0D5DD]" />
             }
           >
             <NotificationBellIllustration

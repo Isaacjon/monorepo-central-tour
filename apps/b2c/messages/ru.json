@@ -118,6 +118,27 @@
     "currencyFeaturedSectionTitle": "Основные валюты",
     "currencyAllSectionTitle": "Все валюты",
     "notificationTitle": "Уведомления",
-    "notificationEmptyLabel": "Нет уведомлений"
+    "notificationEmptyLabel": "Нет уведомлений",
+    "sidebarCustomerData": "Данные клиента",
+    "sidebarMyBookings": "Мои бронирования",
+    "sidebarFavorites": "Избранные",
+    "sidebarLogout": "Выйти",
+    "formTitle": "Данные клиента",
+    "formFirstName": "Имя",
+    "formFirstNamePlaceholder": "Введите имя",
+    "formLastName": "Фамилия",
+    "formLastNamePlaceholder": "Введите фамилию",
+    "formMiddleName": "Отчество",
+    "formMiddleNamePlaceholder": "Введите отчество",
+    "formPhone": "Номер телефона",
+    "formPhonePlaceholder": "Введите номер телефона",
+    "formEmail": "Главная почта",
+    "formEmailPlaceholder": "Введите главную почту",
+    "formPassport": "Паспортные данные",
+    "formPassportPlaceholder": "AD000000",
+    "formBirthDate": "Дата рождения",
+    "formBirthDatePlaceholder": "ДД.ММ.ГГ",
+    "formCancel": "Отмена",
+    "formSave": "Сохранить изменения"
   }
 }

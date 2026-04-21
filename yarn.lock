@@ -8346,6 +8346,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "ui@workspace:packages/ui"
   dependencies:
+    "@mona-health/react-input-mask": "npm:^3.0.3"
     "@radix-ui/react-dialog": "npm:^1.1.15"
     "@radix-ui/react-dropdown-menu": "npm:^2.1.16"
     "@radix-ui/react-slot": "npm:^1.2.4"

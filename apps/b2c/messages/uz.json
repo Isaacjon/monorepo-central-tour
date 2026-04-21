@@ -118,6 +118,27 @@
     "currencyFeaturedSectionTitle": "Asosiy valyutalar",
     "currencyAllSectionTitle": "Barcha valyutalar",
     "notificationTitle": "Bildirishnomalar",
-    "notificationEmptyLabel": "Bildirishnomalar yo'q"
+    "notificationEmptyLabel": "Bildirishnomalar yo'q",
+    "sidebarCustomerData": "Mijoz ma'lumotlari",
+    "sidebarMyBookings": "Mening bronlarim",
+    "sidebarFavorites": "Sevimlilar",
+    "sidebarLogout": "Chiqish",
+    "formTitle": "Mijoz ma'lumotlari",
+    "formFirstName": "Ism",
+    "formFirstNamePlaceholder": "Ismingizni kiriting",
+    "formLastName": "Familiya",
+    "formLastNamePlaceholder": "Familiyangizni kiriting",
+    "formMiddleName": "Otasining ismi",
+    "formMiddleNamePlaceholder": "Otasining ismini kiriting",
+    "formPhone": "Telefon raqami",
+    "formPhonePlaceholder": "Telefon raqamini kiriting",
+    "formEmail": "Asosiy pochta",
+    "formEmailPlaceholder": "Asosiy pochtani kiriting",
+    "formPassport": "Pasport ma'lumotlari",
+    "formPassportPlaceholder": "AD000000",
+    "formBirthDate": "Tug'ilgan sana",
+    "formBirthDatePlaceholder": "KK.OO.YY",
+    "formCancel": "Bekor qilish",
+    "formSave": "O'zgarishlarni saqlash"
   }
 }

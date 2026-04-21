@@ -1,12 +1,9 @@
 import Image from "next/image"
 import { Suspense } from "react"
 import type { ProfileHeaderCopy } from "@/modules/profile/types/profile-header-copy"
-import { HeaderMiniBlock, NotificationsDropdown } from "ui"
+import { HeaderMiniBlock, HeartIcon, NotificationsDropdown, UserIcon } from "ui"
 import { ProfileCurrencyChanger } from "./profile-currency-changer"
 import { ProfileLanguageChanger } from "./profile-language-changer"
-
-import HeartIcon from "../assets/heart-icon.svg"
-import UserIcon from "../assets/user-icon.svg"
 
 const LOGO_SRC = "/images/logo.svg"
 
@@ -28,7 +25,7 @@ export function ProfileHeader({ copy, lang }: ProfileHeaderProps) {
 
   return (
     <header className="w-full border-b border-[#EAECF0] bg-white">
-      <div className="ct-container flex min-h-[74px] items-center justify-between gap-8 py-[19px]">
+      <div className="ct-container flex min-h-[74px] items-center justify-between gap-8 py-[10px]">
         <Image
           src={LOGO_SRC}
           alt="Central Tour"
@@ -40,7 +37,10 @@ export function ProfileHeader({ copy, lang }: ProfileHeaderProps) {
         />
 
         <div className="flex items-center gap-3 text-[#0C111D]">
-          <HeaderMiniBlock aria-label="Favorites">
+          <HeaderMiniBlock
+            aria-label="Favorites"
+            className="size-8 rounded-md p-1.5"
+          >
             <HeartIcon width={24} height={24} aria-hidden />
           </HeaderMiniBlock>
           <NotificationsDropdown
@@ -79,9 +79,14 @@ export function ProfileHeader({ copy, lang }: ProfileHeaderProps) {
 
           <button
             type="button"
-            className="inline-flex h-10 items-center gap-1.5 rounded-lg px-2 py-2 text-[16px] leading-6 font-normal text-[#0C111D]"
+            className="inline-flex h-10 items-center gap-1.5 rounded-lg px-2 py-2 text-sm leading-5 font-normal text-[#667085]"
           >
-            <UserIcon width={20} height={20} aria-hidden className="shrink-0" />
+            <UserIcon
+              width={20}
+              height={20}
+              aria-hidden
+              className="shrink-0 [&_path]:fill-[#292D32]"
+            />
             <span>{copy.authLabel}</span>
           </button>
         </div>
@@ -93,11 +98,7 @@ export function ProfileHeader({ copy, lang }: ProfileHeaderProps) {
             <li key={item.label}>
               <button
                 type="button"
-                className={
-                  item.active
-                    ? "bg-primary/10 text-primary inline-flex h-10 items-center rounded-lg px-2 py-2 text-[16px] leading-6 font-normal"
-                    : "inline-flex h-10 items-center rounded-lg px-2 py-2 text-[16px] leading-6 font-normal text-[#0C111D]"
-                }
+                className="inline-flex h-10 items-center rounded-lg px-2 py-2 text-sm leading-5 font-normal text-[#0C111D]"
               >
                 {item.label}
               </button>

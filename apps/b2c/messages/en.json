@@ -118,6 +118,27 @@
     "currencyFeaturedSectionTitle": "Main currencies",
     "currencyAllSectionTitle": "All currencies",
     "notificationTitle": "Notifications",
-    "notificationEmptyLabel": "No notifications"
+    "notificationEmptyLabel": "No notifications",
+    "sidebarCustomerData": "Customer data",
+    "sidebarMyBookings": "My bookings",
+    "sidebarFavorites": "Favorites",
+    "sidebarLogout": "Log out",
+    "formTitle": "Customer data",
+    "formFirstName": "First name",
+    "formFirstNamePlaceholder": "Enter first name",
+    "formLastName": "Last name",
+    "formLastNamePlaceholder": "Enter last name",
+    "formMiddleName": "Middle name",
+    "formMiddleNamePlaceholder": "Enter middle name",
+    "formPhone": "Phone number",
+    "formPhonePlaceholder": "Enter phone number",
+    "formEmail": "Primary email",
+    "formEmailPlaceholder": "Enter primary email",
+    "formPassport": "Passport details",
+    "formPassportPlaceholder": "AD000000",
+    "formBirthDate": "Date of birth",
+    "formBirthDatePlaceholder": "DD.MM.YY",
+    "formCancel": "Cancel",
+    "formSave": "Save changes"
   }
 }

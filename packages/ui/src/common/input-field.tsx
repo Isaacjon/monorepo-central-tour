@@ -92,7 +92,7 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
               "min-w-0 flex-1 border-0 bg-transparent p-0 shadow-none",
               "font-[family-name:var(--font-inter-stack,Inter,ui-sans-serif,sans-serif)] text-base leading-6 font-normal tracking-normal",
               "text-[color:var(--c-gray-900)] placeholder:text-[color:var(--c-gray-500)]",
-              "disabled:text-[#98A2B3] disabled:placeholder:text-[#98A2B3]",
+              "disabled:text-c-gray-400 disabled:placeholder:text-c-gray-400",
               inputClassName
             )}
             {...props}
