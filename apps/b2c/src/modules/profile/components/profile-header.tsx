@@ -1,7 +1,8 @@
 import Image from "next/image"
 import { Suspense } from "react"
 import type { ProfileHeaderCopy } from "@/modules/profile/types/profile-header-copy"
-import { ChevronDownIcon, CurrencyIcon, HeaderMiniBlock } from "ui"
+import { HeaderMiniBlock } from "ui"
+import { ProfileCurrencyChanger } from "./profile-currency-changer"
 import { ProfileLanguageChanger } from "./profile-language-changer"
 
 import BellIcon from "../assets/bell-icon.svg"
@@ -61,19 +62,20 @@ export function ProfileHeader({ copy, lang }: ProfileHeaderProps) {
             />
           </Suspense>
 
-          <button
-            type="button"
-            className="inline-flex h-10 items-center gap-1.5 rounded-lg px-2 py-2 text-[16px] leading-6 font-normal text-[#0C111D]"
+          <Suspense
+            fallback={
+              <div
+                className="h-10 w-[90px] rounded-lg bg-[#F9FAFB]"
+                aria-hidden
+              />
+            }
           >
-            <CurrencyIcon
-              width={24}
-              height={24}
-              aria-hidden
-              className="shrink-0"
+            <ProfileCurrencyChanger
+              modalTitle={copy.currencyModalTitle}
+              featuredSectionTitle={copy.currencyFeaturedSectionTitle}
+              allSectionTitle={copy.currencyAllSectionTitle}
             />
-            <span>{copy.currency}</span>
-            <ChevronDownIcon width={16} height={16} aria-hidden />
-          </button>
+          </Suspense>
 
           <button
             type="button"

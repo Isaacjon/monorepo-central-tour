@@ -113,6 +113,9 @@
     "navExcursions": "Excursions",
     "navCarRental": "Car rental",
     "navTourPackages": "Tour packages",
-    "navAdditionalServices": "Additional services"
+    "navAdditionalServices": "Additional services",
+    "currencyModalTitle": "Select currency",
+    "currencyFeaturedSectionTitle": "Main currencies",
+    "currencyAllSectionTitle": "All currencies"
   }
 }

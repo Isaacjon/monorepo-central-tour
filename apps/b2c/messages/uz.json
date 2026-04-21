@@ -113,6 +113,9 @@
     "navExcursions": "Ekskursiyalar",
     "navCarRental": "Avto ijara",
     "navTourPackages": "Tur paketlar",
-    "navAdditionalServices": "Qo'shimcha xizmatlar"
+    "navAdditionalServices": "Qo'shimcha xizmatlar",
+    "currencyModalTitle": "Valyutani tanlang",
+    "currencyFeaturedSectionTitle": "Asosiy valyutalar",
+    "currencyAllSectionTitle": "Barcha valyutalar"
   }
 }

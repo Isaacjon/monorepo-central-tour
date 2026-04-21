@@ -113,6 +113,9 @@
     "navExcursions": "Экскурсии",
     "navCarRental": "Аренда авто",
     "navTourPackages": "Турпакеты",
-    "navAdditionalServices": "Дополнительные услуги"
+    "navAdditionalServices": "Дополнительные услуги",
+    "currencyModalTitle": "Выберите валюту",
+    "currencyFeaturedSectionTitle": "Основные валюты",
+    "currencyAllSectionTitle": "Все валюты"
   }
 }
