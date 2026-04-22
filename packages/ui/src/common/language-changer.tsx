@@ -89,7 +89,7 @@ export function LanguageChanger({
         <button
           className={cn(
             isProfile
-              ? "inline-flex h-10 shrink-0 items-center justify-between gap-2 rounded-lg px-2 py-2 text-left text-[#0C111D] focus-visible:ring-2 focus-visible:outline-none"
+              ? "text-c-gray-950 inline-flex h-10 shrink-0 items-center justify-between gap-2 rounded-lg px-2 py-2 text-left focus-visible:ring-2 focus-visible:outline-none"
               : "border-c-greyscale-200 bg-c-surface focus-visible:ring-ring focus-visible:ring-offset-background inline-flex h-10 w-[135px] shrink-0 items-center justify-between gap-2 rounded-lg border py-2 pr-2 pl-3 text-left focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
             className
           )}
@@ -105,7 +105,7 @@ export function LanguageChanger({
               className={cn(
                 "min-w-13",
                 isProfile
-                  ? "text-[16px] leading-6 font-medium text-[#0C111D]"
+                  ? "text-c-gray-950 text-[16px] leading-6 font-medium"
                   : "text-c-greyscale-800 text-sm leading-none font-normal"
               )}
             >
@@ -151,8 +151,8 @@ export function LanguageChanger({
                     : "flex h-11 items-center rounded-md px-2 text-sm leading-none font-normal transition-colors outline-none",
                   isProfile
                     ? isSelected
-                      ? "bg-primary/10 focus:bg-primary/10 data-highlighted:bg-primary/10 text-[#0C111D] focus:text-[#0C111D] data-highlighted:text-[#0C111D]"
-                      : "focus:bg-muted data-highlighted:bg-muted text-[#0C111D] focus:text-[#0C111D] data-highlighted:text-[#0C111D]"
+                      ? "bg-primary/10 focus:bg-primary/10 data-highlighted:bg-primary/10 text-c-gray-950 focus:text-c-gray-950 data-highlighted:text-c-gray-950"
+                      : "focus:bg-muted data-highlighted:bg-muted text-c-gray-950 focus:text-c-gray-950 data-highlighted:text-c-gray-950"
                     : isSelected
                       ? "bg-c-selected text-c-greyscale-800 focus:bg-c-selected focus:text-c-greyscale-800 data-highlighted:bg-c-selected data-highlighted:text-c-greyscale-800"
                       : "text-c-greyscale-500 focus:bg-muted focus:text-c-greyscale-500 data-highlighted:bg-muted data-highlighted:text-c-greyscale-500"
@@ -171,7 +171,7 @@ export function LanguageChanger({
                       className={cn(
                         "truncate",
                         isProfile
-                          ? "text-[16px] leading-6 font-medium text-[#0C111D]"
+                          ? "text-c-gray-950 text-[16px] leading-6 font-medium"
                           : "text-sm leading-none font-normal"
                       )}
                     >

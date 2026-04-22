@@ -20,7 +20,7 @@ const HeaderMiniBlock = React.forwardRef<
     <Comp
       ref={ref}
       className={cn(
-        "active:bg-primary/10 active:text-primary inline-flex size-10 items-center justify-center gap-2 rounded-lg p-2 text-[#0C111D] transition-colors hover:bg-[#F9FAFB] [&_svg]:shrink-0",
+        "active:bg-primary/10 active:text-primary text-c-gray-950 inline-flex size-10 items-center justify-center gap-2 rounded-lg p-2 transition-colors hover:bg-[#F9FAFB] [&_svg]:shrink-0",
         className
       )}
       {...(asChild

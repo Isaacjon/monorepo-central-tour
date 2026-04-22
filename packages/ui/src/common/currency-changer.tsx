@@ -26,7 +26,7 @@ const currencyDialogCloseCn =
   "*:data-[slot=dialog-close]:p-0 *:data-[slot=dialog-close]:opacity-100 " +
   "*:data-[slot=dialog-close]:text-[#667085] " +
   "*:data-[slot=dialog-close]:hover:bg-[#F9FAFB] " +
-  "*:data-[slot=dialog-close]:hover:text-[#0C111D] " +
+  "*:data-[slot=dialog-close]:hover:text-c-gray-950 " +
   "[&>[data-slot=dialog-close]>svg]:size-6!"
 
 type CurrencyChangerProps = {
@@ -72,7 +72,7 @@ export function CurrencyChanger({
         <button
           type="button"
           className={cn(
-            "inline-flex h-10 shrink-0 items-center justify-between gap-2 rounded-lg px-2 py-2 text-left text-[#0C111D] focus-visible:ring-2 focus-visible:outline-none",
+            "text-c-gray-950 inline-flex h-10 shrink-0 items-center justify-between gap-2 rounded-lg px-2 py-2 text-left focus-visible:ring-2 focus-visible:outline-none",
             className
           )}
         >
@@ -83,7 +83,7 @@ export function CurrencyChanger({
               aria-hidden
               className="shrink-0"
             />
-            <span className="text-[16px] leading-6 font-medium text-[#0C111D]">
+            <span className="text-c-gray-950 text-[16px] leading-6 font-medium">
               {selected}
             </span>
           </span>
@@ -108,7 +108,7 @@ export function CurrencyChanger({
           <DialogTitle
             className={cn(
               inter,
-              "m-0 pr-12 text-[24px] leading-none font-bold tracking-normal text-[#0C111D]"
+              "text-c-gray-950 m-0 pr-12 text-[24px] leading-none font-bold tracking-normal"
             )}
           >
             {modalTitle}
@@ -121,7 +121,7 @@ export function CurrencyChanger({
                   <p
                     className={cn(
                       inter,
-                      "text-[20px] leading-none font-medium text-[#0C111D]"
+                      "text-c-gray-950 text-[20px] leading-none font-medium"
                     )}
                   >
                     {featuredSectionTitle}
@@ -145,7 +145,7 @@ export function CurrencyChanger({
                 <p
                   className={cn(
                     inter,
-                    "text-[20px] leading-none font-medium text-[#0C111D]"
+                    "text-c-gray-950 text-[20px] leading-none font-medium"
                   )}
                 >
                   {allSectionTitle}

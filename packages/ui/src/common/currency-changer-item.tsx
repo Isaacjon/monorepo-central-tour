@@ -34,7 +34,7 @@ export function CurrencyItem({
       <span
         className={cn(
           "shrink-0 text-[20px] leading-none font-bold tracking-normal",
-          isSelected ? "text-primary" : "text-[#0C111D]"
+          isSelected ? "text-primary" : "text-c-gray-950"
         )}
       >
         {option.code}

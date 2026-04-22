@@ -45,6 +45,7 @@
   --c-gray-500: #667085;
   --c-gray-700: #344054;
   --c-gray-900: #101828;
+  --c-gray-950: #0c111d;
   --c-error-100: #fee4e2;
 }
 
@@ -114,6 +115,7 @@
   --color-c-gray-500: var(--c-gray-500);
   --color-c-gray-700: var(--c-gray-700);
   --color-c-gray-900: var(--c-gray-900);
+  --color-c-gray-950: var(--c-gray-950);
   --color-c-error-100: var(--c-error-100);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
