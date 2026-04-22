@@ -1,21 +1,17 @@
 "use client"
 
+import Image from "next/image"
 import * as React from "react"
 
 import { HeaderMiniBlock } from "./header-mini-block"
 import BellIcon from "../assets/icons/bell.svg"
+import emptyNotificationsPng from "../assets/images/empty-notifications.png"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "../components/ui/dropdown-menu"
 import { cn } from "../lib/utils"
-
-type SvgIllustration = React.FunctionComponent<React.SVGProps<SVGSVGElement>>
-
-const NotificationBellIllustration = React.lazy(
-  () => import("../assets/icons/empty-notifications.svg")
-) as React.LazyExoticComponent<SvgIllustration>
 
 type NotificationChangerProps = {
   title: string
@@ -52,18 +48,14 @@ export function NotificationsDropdown({
         </div>
 
         <div className="flex flex-col items-center justify-center gap-3 px-4 py-8">
-          <React.Suspense
-            fallback={
-              <div className="border-t-c-gray-400 size-20 animate-spin rounded-full border-4 border-[#D0D5DD]" />
-            }
-          >
-            <NotificationBellIllustration
-              width={80}
-              height={80}
-              aria-hidden
-              className="size-20"
-            />
-          </React.Suspense>
+          <Image
+            src={emptyNotificationsPng}
+            alt=""
+            width={80}
+            height={80}
+            className="size-20 object-contain"
+            aria-hidden
+          />
           <p className="text-c-gray-400 leading-5 font-medium">{emptyLabel}</p>
         </div>
       </DropdownMenuContent>
