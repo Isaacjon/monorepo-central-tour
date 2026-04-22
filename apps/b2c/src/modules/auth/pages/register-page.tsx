@@ -3,12 +3,10 @@ import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 import { Suspense } from "react"
 
-import {
-  LoginHeroPanel,
-  type LoginHeroSlide,
-} from "@/modules/auth/components/login-hero-panel"
+import loginHeroImage from "@/modules/auth/assets/login-hero.png"
 import { RegisterForm } from "@/modules/auth/components/register-form"
 import type { RegisterFormCopy } from "@/modules/auth/types/register-form-copy"
+import { AuthHeroPanel, type AuthHeroSlide } from "ui"
 
 type RegisterPageProps = {
   lang: string
@@ -58,10 +56,10 @@ export async function RegisterPage({ lang }: RegisterPageProps) {
 
   const t = await getTranslations("auth")
   const formCopy = buildRegisterFormCopy(t)
-  const heroSlides = t.raw("hero.slides") as LoginHeroSlide[]
+  const heroSlides = t.raw("hero.slides") as AuthHeroSlide[]
 
   return (
-    <main className="relative flex min-h-svh flex-col bg-white">
+    <main className="relative flex min-h-svh bg-white">
       <div className="flex flex-1 flex-col lg:w-[53.33%]">
         <Suspense
           fallback={
@@ -76,7 +74,8 @@ export async function RegisterPage({ lang }: RegisterPageProps) {
 
       <div className="flex min-h-[320px] flex-col px-4 pb-4 lg:hidden">
         <div className="flex flex-1 flex-col overflow-hidden rounded-2xl">
-          <LoginHeroPanel
+          <AuthHeroPanel
+            image={loginHeroImage}
             slides={heroSlides}
             prevLabel={t("hero.prev")}
             nextLabel={t("hero.next")}
@@ -84,8 +83,9 @@ export async function RegisterPage({ lang }: RegisterPageProps) {
         </div>
       </div>
 
-      <aside className="absolute inset-y-4 right-4 hidden w-[46.67%] max-w-[672px] flex-col overflow-hidden rounded-2xl lg:flex">
-        <LoginHeroPanel
+      <aside className="hidden w-[46.67%] flex-col overflow-hidden rounded-2xl p-4 lg:flex">
+        <AuthHeroPanel
+          image={loginHeroImage}
           slides={heroSlides}
           prevLabel={t("hero.prev")}
           nextLabel={t("hero.next")}

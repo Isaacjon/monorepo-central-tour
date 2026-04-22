@@ -1,4 +1,4 @@
-import { EyeIcon, InputField } from "ui"
+import { InputField, PasswordInputField } from "ui"
 
 const CircleHelpIcon = () => (
   <svg
@@ -19,19 +19,8 @@ const CircleHelpIcon = () => (
   </svg>
 )
 
-/** Example trailing actions (e.g. help + password visibility). Error state adds `alert.svg` from `InputField` on the far right. */
-const TrailingActions = () => (
-  <>
-    <button
-      type="button"
-      className="text-muted-foreground hover:text-foreground inline-flex shrink-0"
-      aria-label="Show password"
-    >
-      <EyeIcon className="size-5 shrink-0" aria-hidden />
-    </button>
-    <CircleHelpIcon />
-  </>
-)
+/** Example trailing actions. Error state adds `alert.svg` from `InputField` on the far right. */
+const TrailingActions = () => <CircleHelpIcon />
 
 export function InputShowcase() {
   return (
@@ -46,10 +35,9 @@ export function InputShowcase() {
         hintRight="Hint Text"
       />
 
-      <InputField
+      <PasswordInputField
         label="Password"
         name="showcase-field-password-demo"
-        type="password"
         placeholder="••••••••"
         autoComplete="new-password"
         trailing={<TrailingActions />}

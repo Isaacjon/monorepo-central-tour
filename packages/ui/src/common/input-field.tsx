@@ -39,7 +39,7 @@ export interface InputFieldProps
     VariantProps<typeof inputWrapperVariants> {
   label?: string
   hintLeft?: string
-  hintRight?: string
+  hintRight?: string | React.ReactNode
   /** Extra controls to the right of the text (e.g. password visibility). Shown left of the error alert icon when `variant` is `error`. */
   trailing?: React.ReactNode
   wrapperClassName?: string
@@ -70,7 +70,7 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="font-[family-name:var(--font-inter-stack,Inter,ui-sans-serif,sans-serif)] text-sm leading-5 font-medium tracking-normal text-[color:var(--c-gray-700)]"
+            className="text-c-gray-700 font-(family-name:--font-inter-stack,Inter,ui-sans-serif,sans-serif) text-sm leading-5 font-medium tracking-normal"
           >
             {label}
           </label>
@@ -90,8 +90,8 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
             disabled={disabled}
             className={cn(
               "min-w-0 flex-1 border-0 bg-transparent p-0 shadow-none",
-              "font-[family-name:var(--font-inter-stack,Inter,ui-sans-serif,sans-serif)] text-base leading-6 font-normal tracking-normal",
-              "text-[color:var(--c-gray-900)] placeholder:text-[color:var(--c-gray-500)]",
+              "font-(family-name:--font-inter-stack,Inter,ui-sans-serif,sans-serif) text-base leading-6 font-normal tracking-normal",
+              "text-c-gray-900 placeholder:text-c-gray-500",
               "disabled:text-c-gray-400 disabled:placeholder:text-c-gray-400",
               inputClassName
             )}
@@ -102,7 +102,7 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
               {trailing}
               {variant === "error" && (
                 <AlertIcon
-                  className="size-5 shrink-0 text-[#DB003A]"
+                  className="size-4 shrink-0 text-[#DB003A]"
                   aria-hidden
                 />
               )}

@@ -1,7 +1,6 @@
 "use client"
 
-import { formatMmSs } from "@/modules/auth/lib/format-mm-ss"
-import { PrimaryButton, SecondaryGrayButton } from "ui"
+import { formatMmSs, PrimaryButton, SecondaryGrayButton } from "ui"
 
 type AuthOtpActionsCopy = {
   otpResendIn: string

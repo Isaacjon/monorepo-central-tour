@@ -1,4 +1,56 @@
 {
+  "auth": {
+    "loginMetaTitle": "Kirish · Centbed",
+    "registerMetaTitle": "Hisob yaratish · Centbed",
+    "forgotMetaTitle": "Parolni unutdingizmi · Centbed",
+    "loginTitle": "Kirish",
+    "loginBody": "Xush kelibsiz. Hamkorlar konsoliga kirish uchun ma'lumotlarni kiriting.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "siz@kompaniya.uz",
+    "passwordLabel": "Parol",
+    "passwordPlaceholder": "Parolni kiriting",
+    "forgotPassword": "Parolni unutdingizmi?",
+    "loginSubmit": "Kirish",
+    "registerCta": "Ro'yxatdan o'tish",
+    "forgotCta": "Parolni unutdingizmi",
+    "welcomeBackToast": "Xush kelibsiz!",
+    "loginErrorToast": "Tizimga kirishda xatolik yuz berdi.",
+    "otpTitle": "Akkaunt tekshiruvi",
+    "otpSubtitle": "Biz __DESTINATION__ manziliga OTP kodni yubordik",
+    "otpConfirm": "Kirish",
+    "otpBack": "Orqaga",
+    "otpResendIn": "Kodni qayta yuborish __TIME__ orqali",
+    "otpResend": "Kodni qayta yuborish",
+    "validationEmailRequired": "Email manzilingizni kiriting.",
+    "validationPasswordRequired": "Parolni kiriting.",
+    "registerTitle": "Hisob yaratish",
+    "registerBody": "Hamkorlar ro'yxatdan o'tishi shu yerda bo'ladi.",
+    "loginCta": "Hisobingiz bormi? Kirish",
+    "forgotTitle": "Parolni tiklash",
+    "forgotBody": "Email orqali tiklash ulanishi bilan bu yerda paydo bo'ladi.",
+    "backToLogin": "Kirishga qaytish",
+    "hero": {
+      "prev": "Oldingi slayd",
+      "next": "Keyingi slayd",
+      "slides": [
+        {
+          "quote": "Centbed barcha mijozlar uchun bronlashni bir joyda boshqarishni osonlashtiradi.",
+          "roleLabel": "Hamkor",
+          "name": "Central Tour Agency"
+        },
+        {
+          "quote": "Hamkorlar konsoli jamoamizga har hafta soatlab vaqt tejaydi.",
+          "roleLabel": "Hamkor",
+          "name": "Travel Expert UZ"
+        },
+        {
+          "quote": "Ishonchli, tez va doim dolzarb — B2B platforma aynan shunday bo'lishi kerak.",
+          "roleLabel": "Hamkor",
+          "name": "Horizon Travel"
+        }
+      ]
+    }
+  },
   "home": {
     "badge": "Centbed",
     "title": "Central Tour hamkorlar konsoli.",
@@ -7,8 +59,8 @@
     "ctaSecondary": "Ikkilamchi kulrang",
     "ctaPrimaryButton": "CTA tugmasi",
     "toastSection": "Tostlar (Sonner)",
-    "toastShowSuccess": "Muvaffaqiyat tostini ko‘rsatish",
-    "toastShowError": "Xato tostini ko‘rsatish",
+    "toastShowSuccess": "Muvaffaqiyat tostini ko'rsatish",
+    "toastShowError": "Xato tostini ko'rsatish",
     "toastSuccessTitle": "Tayyor",
     "toastSuccessDescription": "Namuna muvaffaqiyat bildirishnomasi.",
     "toastErrorTitle": "Xato yuz berdi",

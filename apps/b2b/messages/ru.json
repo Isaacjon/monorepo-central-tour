@@ -1,4 +1,56 @@
 {
+  "auth": {
+    "loginMetaTitle": "Вход · Centbed",
+    "registerMetaTitle": "Регистрация · Centbed",
+    "forgotMetaTitle": "Забыли пароль · Centbed",
+    "loginTitle": "Вход",
+    "loginBody": "С возвращением. Введите данные для доступа к партнёрской консоли.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "вы@компания.ru",
+    "passwordLabel": "Пароль",
+    "passwordPlaceholder": "Введите пароль",
+    "forgotPassword": "Забыли пароль?",
+    "loginSubmit": "Войти",
+    "registerCta": "Регистрация",
+    "forgotCta": "Забыли пароль",
+    "welcomeBackToast": "С возвращением!",
+    "loginErrorToast": "Не удалось выполнить вход в систему.",
+    "otpTitle": "Верификация аккаунта",
+    "otpSubtitle": "Мы отправили код ОТР на номер __DESTINATION__",
+    "otpConfirm": "Войти",
+    "otpBack": "Назад",
+    "otpResendIn": "Отправить код заново через __TIME__",
+    "otpResend": "Отправить код заново",
+    "validationEmailRequired": "Введите адрес электронной почты.",
+    "validationPasswordRequired": "Введите пароль.",
+    "registerTitle": "Создать аккаунт",
+    "registerBody": "Здесь будет регистрация партнёра.",
+    "loginCta": "Уже есть аккаунт? Войти",
+    "forgotTitle": "Сброс пароля",
+    "forgotBody": "Восстановление по email появится после подключения потока сброса.",
+    "backToLogin": "Назад ко входу",
+    "hero": {
+      "prev": "Предыдущий слайд",
+      "next": "Следующий слайд",
+      "slides": [
+        {
+          "quote": "Centbed позволяет управлять бронированиями всех клиентов в одном месте.",
+          "roleLabel": "Партнёр",
+          "name": "Central Tour Agency"
+        },
+        {
+          "quote": "Партнёрская консоль экономит нашей команде часы каждую неделю.",
+          "roleLabel": "Партнёр",
+          "name": "Travel Expert UZ"
+        },
+        {
+          "quote": "Надёжно, быстро и всегда актуально — именно так должна работать B2B-платформа.",
+          "roleLabel": "Партнёр",
+          "name": "Horizon Travel"
+        }
+      ]
+    }
+  },
   "home": {
     "badge": "Centbed",
     "title": "Партнёрская консоль Central Tour.",

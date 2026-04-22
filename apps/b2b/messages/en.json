@@ -1,4 +1,56 @@
 {
+  "auth": {
+    "loginMetaTitle": "Sign in · Centbed",
+    "registerMetaTitle": "Create account · Centbed",
+    "forgotMetaTitle": "Forgot password · Centbed",
+    "loginTitle": "Sign in",
+    "loginBody": "Welcome back. Enter your credentials to access the partner console.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@company.com",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "forgotPassword": "Forgot password?",
+    "loginSubmit": "Sign in",
+    "registerCta": "Registration",
+    "forgotCta": "Forgot password",
+    "welcomeBackToast": "Welcome back!",
+    "loginErrorToast": "Failed to sign in. Please try again.",
+    "otpTitle": "Account verification",
+    "otpSubtitle": "We sent an OTP code to __DESTINATION__",
+    "otpConfirm": "Sign in",
+    "otpBack": "Back",
+    "otpResendIn": "Resend code in __TIME__",
+    "otpResend": "Resend code",
+    "validationEmailRequired": "Please enter your email address.",
+    "validationPasswordRequired": "Please enter your password.",
+    "registerTitle": "Create account",
+    "registerBody": "Partner registration will live here.",
+    "loginCta": "Already have an account? Sign in",
+    "forgotTitle": "Reset password",
+    "forgotBody": "Password reset will be available once email-based recovery is connected.",
+    "backToLogin": "Back to sign in",
+    "hero": {
+      "prev": "Previous slide",
+      "next": "Next slide",
+      "slides": [
+        {
+          "quote": "Centbed makes it easy to manage bookings for all our clients in one place.",
+          "roleLabel": "Partner",
+          "name": "Central Tour Agency"
+        },
+        {
+          "quote": "The partner console saves our team hours every week on hotel and flight reservations.",
+          "roleLabel": "Partner",
+          "name": "Travel Expert UZ"
+        },
+        {
+          "quote": "Reliable, fast, and always up to date — exactly what a B2B platform should be.",
+          "roleLabel": "Partner",
+          "name": "Horizon Travel"
+        }
+      ]
+    }
+  },
   "home": {
     "badge": "Centbed",
     "title": "Partner console for Central Tour.",

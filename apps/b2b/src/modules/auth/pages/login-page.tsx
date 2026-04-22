@@ -1,5 +1,3 @@
-import { isLocale } from "@central-tour/config/i18n/locale"
-import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 import { Suspense } from "react"
 
@@ -8,50 +6,35 @@ import { LoginForm } from "@/modules/auth/components/login-form"
 import type { LoginFormCopy } from "@/modules/auth/types/login-form-copy"
 import { AuthHeroPanel, type AuthHeroSlide } from "ui"
 
-type LoginPageProps = {
-  lang: string
-}
-
-function buildLoginFormCopy(
+function buildCopy(
   t: Awaited<ReturnType<typeof getTranslations>>
 ): LoginFormCopy {
   return {
-    logoWordmark: t("logoWordmark"),
-    logoTagline: t("logoTagline"),
     loginTitle: t("loginTitle"),
-    loginSubtitle: t("loginSubtitle"),
-    tabPhone: t("tabPhone"),
-    tabEmail: t("tabEmail"),
-    phoneLabel: t("phoneLabel"),
-    countryDialPreview: t("countryDialPreview"),
-    phonePlaceholder: t("phonePlaceholder"),
+    loginBody: t("loginBody"),
     emailLabel: t("emailLabel"),
     emailPlaceholder: t("emailPlaceholder"),
-    submit: t("submit"),
-    register: t("register"),
-    orDivider: t("orDivider"),
-    google: t("google"),
-    apple: t("apple"),
-    validationEmailInvalid: t("validation.emailInvalid"),
-    validationPhoneInvalid: t("validation.phoneInvalid"),
+    passwordLabel: t("passwordLabel"),
+    passwordPlaceholder: t("passwordPlaceholder"),
+    forgotPassword: t("forgotPassword"),
+    submit: t("loginSubmit"),
+    register: t("registerCta"),
+    welcomeBackToast: t("welcomeBackToast"),
+    loginErrorToast: t("loginErrorToast"),
+    validationEmailRequired: t("validationEmailRequired"),
+    validationPasswordRequired: t("validationPasswordRequired"),
     otpTitle: t("otpTitle"),
-    otpSubtitlePhone: t("otpSubtitlePhone"),
-    otpSubtitleEmail: t("otpSubtitleEmail"),
+    otpSubtitle: t("otpSubtitle"),
     otpConfirm: t("otpConfirm"),
     otpBack: t("otpBack"),
     otpResendIn: t("otpResendIn"),
     otpResend: t("otpResend"),
-    welcomeBackToast: t("welcomeBackToast"),
   }
 }
 
-export async function LoginPage({ lang }: LoginPageProps) {
-  if (!isLocale(lang)) {
-    notFound()
-  }
-
+export async function LoginPage() {
   const t = await getTranslations("auth")
-  const formCopy = buildLoginFormCopy(t)
+  const copy = buildCopy(t)
   const heroSlides = t.raw("hero.slides") as AuthHeroSlide[]
 
   return (
@@ -64,7 +47,7 @@ export async function LoginPage({ lang }: LoginPageProps) {
             </div>
           }
         >
-          <LoginForm lang={lang} copy={formCopy} />
+          <LoginForm copy={copy} />
         </Suspense>
       </div>
 

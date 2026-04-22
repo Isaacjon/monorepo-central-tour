@@ -1,3 +1,4 @@
+/** Formats total seconds as `MM:SS` (e.g. countdown timers). */
 export function formatMmSs(totalSeconds: number) {
   const m = Math.floor(totalSeconds / 60)
   const s = totalSeconds % 60

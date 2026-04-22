@@ -4,42 +4,50 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import Image, { type StaticImageData } from "next/image"
 import { useCallback, useState } from "react"
 
-import { cn } from "ui"
-import loginHeroImage from "../assets/login-hero.png"
+import { cn } from "../lib/utils"
 
-export type LoginHeroSlide = {
+export type AuthHeroSlide = {
   quote: string
   roleLabel: string
   name: string
 }
 
-type LoginHeroPanelProps = {
-  slides: LoginHeroSlide[]
+type AuthHeroPanelProps = {
+  /** Static import or public-folder URL for the background photo. */
+  image: StaticImageData | string
+  slides: AuthHeroSlide[]
   prevLabel: string
   nextLabel: string
 }
 
-export function LoginHeroPanel({
+export function AuthHeroPanel({
+  image,
   slides,
   prevLabel,
   nextLabel,
-}: LoginHeroPanelProps) {
-  const [index, setIndex] = useState(0)
+}: AuthHeroPanelProps) {
   const safeSlides =
     slides.length > 0 ? slides : [{ quote: "", roleLabel: "", name: "" }]
-  const active = safeSlides[index % safeSlides.length]!
   const len = safeSlides.length
+  const [index, setIndex] = useState(0)
+  const active = safeSlides[index % len]!
 
   const go = useCallback(
-    (delta: number) => {
-      setIndex((prev) => (prev + delta + len) % len)
-    },
+    (delta: number) => setIndex((prev) => (prev + delta + len) % len),
     [len]
   )
 
   return (
     <div className="relative flex w-full flex-1 flex-col overflow-hidden rounded-2xl">
-      <HeroImage src={loginHeroImage} />
+      <Image
+        src={image}
+        alt=""
+        fill
+        priority
+        className="object-cover object-right"
+        sizes="(max-width: 1023px) 100vw, min(672px, 46.667vw)"
+      />
+
       <div
         aria-hidden
         className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"
@@ -93,18 +101,5 @@ export function LoginHeroPanel({
         </div>
       </div>
     </div>
-  )
-}
-
-function HeroImage({ src }: { src: StaticImageData }) {
-  return (
-    <Image
-      src={src}
-      alt=""
-      fill
-      priority
-      className="object-cover object-right"
-      sizes="(max-width: 1023px) 100vw, min(672px, 46.667vw)"
-    />
   )
 }
