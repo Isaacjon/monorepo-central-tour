@@ -91,5 +91,15 @@
     "badge": "Centbed profile",
     "title": "Client profile",
     "description": "Profile UI route scaffolded from the Figma screen. Next step is implementing the full layout and form sections."
+  },
+  "footer": {
+    "logoAlt": "Centbed",
+    "navSearch": "Search",
+    "navQuotes": "Quotes",
+    "navOrders": "Orders",
+    "navReports": "Reports",
+    "navClients": "Clients",
+    "privacy": "Privacy policy",
+    "contactEmail": "b2b@centbed.gmail.com"
   }
 }

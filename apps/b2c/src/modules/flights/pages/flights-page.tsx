@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server"
 
 import { AppHeader } from "@/shared/components/common/app-header"
+import { B2cSiteFooter } from "@/shared/components/common/b2c-site-footer"
 import { WhyChooseUsSection } from "@/shared/components/common/why-choose-us-section"
 import {
   AirplaneIcon,
@@ -95,7 +96,7 @@ export async function FlightsPage({ lang }: { lang: string }) {
   )
 
   return (
-    <div className="min-h-screen bg-[#F5F7FB]">
+    <div className="flex min-h-screen flex-col bg-[#F5F7FB]">
       <AppHeader
         lang={lang}
         activeNav="flights"
@@ -119,7 +120,7 @@ export async function FlightsPage({ lang }: { lang: string }) {
         }}
       />
 
-      <main className="py-6">
+      <main className="flex-1 py-6">
         <HomeBanner
           bannerImageSrc={flightsBannerImage}
           title={t("bannerTitle")}
@@ -182,6 +183,7 @@ export async function FlightsPage({ lang }: { lang: string }) {
 
         <WhyChooseUsSection />
       </main>
+      <B2cSiteFooter lang={lang} />
     </div>
   )
 }

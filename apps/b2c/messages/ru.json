@@ -198,6 +198,14 @@
     "formCancel": "Отмена",
     "formSave": "Сохранить изменения"
   },
+  "footer": {
+    "logoAlt": "Central Tour",
+    "navHome": "Главная",
+    "navFlights": "Авиабилеты",
+    "navProfile": "Профиль",
+    "privacy": "Политика конфиденциальности",
+    "contactEmail": "b2b@centbed.gmail.com"
+  },
   "whyChooseUs": {
     "title": "Почему выбирают нас",
     "subtitle": "Давайте потратим ваши деньги и снимем стресс, путешествуя по острову Бали",

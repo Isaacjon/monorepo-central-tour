@@ -91,5 +91,15 @@
     "badge": "Centbed profili",
     "title": "Mijoz profili",
     "description": "Profil sahifasi marshruti Figma maketi asosida tayyorlandi. Keyingi qadam — to'liq layout va forma bo'limlarini joriy qilish."
+  },
+  "footer": {
+    "logoAlt": "Centbed",
+    "navSearch": "Qidiruv",
+    "navQuotes": "Iqtiboslar",
+    "navOrders": "Buyurtmalar",
+    "navReports": "Hisobotlar",
+    "navClients": "Mijozlar",
+    "privacy": "Maxfiylik siyosati",
+    "contactEmail": "b2b@centbed.gmail.com"
   }
 }

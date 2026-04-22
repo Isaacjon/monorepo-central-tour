@@ -198,6 +198,14 @@
     "formCancel": "Bekor qilish",
     "formSave": "O'zgarishlarni saqlash"
   },
+  "footer": {
+    "logoAlt": "Central Tour",
+    "navHome": "Bosh sahifa",
+    "navFlights": "Parvozlar",
+    "navProfile": "Profil",
+    "privacy": "Maxfiylik siyosati",
+    "contactEmail": "b2b@centbed.gmail.com"
+  },
   "whyChooseUs": {
     "title": "Nega aynan biz",
     "subtitle": "Bali orolida sayohat qilganingizda tajribalarga sarmoya kiring va stressdan xalos bo'ling — biz sizga yordam beramiz.",

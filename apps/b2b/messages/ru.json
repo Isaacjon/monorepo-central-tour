@@ -91,5 +91,15 @@
     "badge": "Профиль Centbed",
     "title": "Профиль клиента",
     "description": "Маршрут экрана профиля создан по макету Figma. Следующий шаг — реализовать полный лейаут и секции формы."
+  },
+  "footer": {
+    "logoAlt": "Centbed",
+    "navSearch": "Поиск",
+    "navQuotes": "Цитаты",
+    "navOrders": "Заказы",
+    "navReports": "Отчеты",
+    "navClients": "Клиенты",
+    "privacy": "Политика конфидициальности",
+    "contactEmail": "b2b@centbed.gmail.com"
   }
 }

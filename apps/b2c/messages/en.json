@@ -198,6 +198,14 @@
     "formCancel": "Cancel",
     "formSave": "Save changes"
   },
+  "footer": {
+    "logoAlt": "Central Tour",
+    "navHome": "Home",
+    "navFlights": "Flights",
+    "navProfile": "Profile",
+    "privacy": "Privacy policy",
+    "contactEmail": "b2b@centbed.gmail.com"
+  },
   "whyChooseUs": {
     "title": "Why choose us",
     "subtitle": "Let us help you invest in experiences and leave stress behind while exploring Bali island.",
