@@ -16,6 +16,7 @@ import {
 
 import { FlightsAboutNumbersSection } from "../components/flights-about-numbers-section"
 import { FlightsFilter } from "../components/flights-filter"
+import { PopularAirTicketsSection } from "../components/popular-air-tickets-section"
 import { RecentlySearchedFlightsSection } from "../components/recently-searched-flights-section"
 import type { RecentFlightSearchItem } from "../types/recent-flight-search"
 
@@ -84,6 +85,14 @@ export async function FlightsPage({ lang }: { lang: string }) {
     { ...sampleRecentSearch, id: "recent-3" },
   ]
 
+  const popularAirTickets: RecentFlightSearchItem[] = Array.from(
+    { length: 8 },
+    (_, i) => ({
+      ...sampleRecentSearch,
+      id: `popular-${i + 1}`,
+    })
+  )
+
   return (
     <div className="min-h-screen bg-[#F5F7FB]">
       <AppHeader
@@ -144,7 +153,6 @@ export async function FlightsPage({ lang }: { lang: string }) {
           }}
           items={recentSearches}
         />
-
         <FlightsAboutNumbersSection
           ctaHref={`/${lang}/tour-packages`}
           copy={{
@@ -160,6 +168,15 @@ export async function FlightsPage({ lang }: { lang: string }) {
             image1Alt: t("aboutNumbersImage1Alt"),
             image2Alt: t("aboutNumbersImage2Alt"),
           }}
+        />
+        <PopularAirTicketsSection
+          copy={{
+            sectionTitle: t("popularAirTicketsTitle"),
+            sectionSubtitle: t("popularAirTicketsSubtitle"),
+            detailsLabel: t("recentSearchDetails"),
+            priceFromPrefix: t("priceFromPrefix"),
+          }}
+          items={popularAirTickets}
         />
       </main>
     </div>
