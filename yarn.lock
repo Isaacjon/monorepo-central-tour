@@ -8361,6 +8361,7 @@ __metadata:
     tailwind-merge: "npm:^3.5.0"
     typescript: "npm:^5"
   peerDependencies:
+    next: ">=15"
     react: ^19
     react-dom: ^19
   languageName: unknown
