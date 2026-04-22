@@ -1,8 +1,8 @@
 {
   "home": {
-    "badge": "Central Tour B2B",
+    "badge": "Centbed",
     "title": "Partner console for Central Tour.",
-    "description": "Same shared UI as B2C, but this app overrides `--primary` via CSS variables only.",
+    "description": "Same shared design system as the traveler-facing app; Centbed only overrides `--primary` via CSS variables.",
     "ctaPrimary": "Primary action",
     "ctaSecondary": "Secondary gray",
     "ctaPrimaryButton": "Button CTA",
@@ -15,7 +15,7 @@
     "toastErrorDescription": "This is a sample error notification."
   },
   "profile": {
-    "badge": "B2B Profile",
+    "badge": "Centbed profile",
     "title": "Client profile",
     "description": "Profile UI route scaffolded from the Figma screen. Next step is implementing the full layout and form sections."
   }

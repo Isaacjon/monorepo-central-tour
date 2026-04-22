@@ -16,8 +16,8 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "Central Tour B2B",
-  description: "Multi-language B2B app (monorepo).",
+  title: "Centbed",
+  description: "Centbed — partner console for Central Tour.",
 }
 
 export function generateStaticParams() {

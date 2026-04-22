@@ -1,8 +1,8 @@
 {
   "home": {
-    "badge": "Central Tour B2B",
+    "badge": "Centbed",
     "title": "Central Tour hamkorlar konsoli.",
-    "description": "B2C bilan bir xil umumiy UI, lekin `--primary` faqat CSS o'zgaruvchilari orqali qayta belgilangan.",
+    "description": "Sayohatchilar ilovasi bilan bir xil dizayn tizimi; Centbedda `--primary` faqat CSS o'zgaruvchilari orqali qayta belgilanadi.",
     "ctaPrimary": "Asosiy amal",
     "ctaSecondary": "Ikkilamchi kulrang",
     "ctaPrimaryButton": "CTA tugmasi",
@@ -15,7 +15,7 @@
     "toastErrorDescription": "Namuna xato bildirishnomasi."
   },
   "profile": {
-    "badge": "B2B Profil",
+    "badge": "Centbed profili",
     "title": "Mijoz profili",
     "description": "Profil sahifasi marshruti Figma maketi asosida tayyorlandi. Keyingi qadam — to'liq layout va forma bo'limlarini joriy qilish."
   }
