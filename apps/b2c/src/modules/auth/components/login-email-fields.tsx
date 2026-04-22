@@ -31,7 +31,7 @@ export function LoginEmailFields<T extends FieldValues & { email: string }>({
         <InputField
           label={copy.emailLabel}
           type="email"
-          autoComplete="email"
+          autoComplete="off"
           placeholder={copy.emailPlaceholder}
           variant={fieldState.error ? "error" : "default"}
           hintLeft={fieldState.error?.message}

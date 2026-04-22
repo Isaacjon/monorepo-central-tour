@@ -78,13 +78,6 @@
     "otpResend": "Resend code",
     "welcomeBackToast": "Welcome back!"
   },
-  "authPlaceholder": {
-    "registerTitle": "Create an account",
-    "registerBody": "Registration will be available soon.",
-    "forgotTitle": "Reset password",
-    "forgotBody": "Password recovery will be available soon.",
-    "backToLogin": "Back to sign in"
-  },
   "home": {
     "badge": "Central Tour B2C",
     "title": "To get started, edit your modules.",

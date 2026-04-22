@@ -1,7 +1,7 @@
 "use client"
 
 import { Link } from "@central-tour/config/i18n/navigation"
-import type { FormEvent } from "react"
+import { type FormEvent, useId } from "react"
 
 import type { LoginFormCopy } from "@/modules/auth/types/login-form-copy"
 import {
@@ -36,6 +36,8 @@ export function LoginCredentialsPanel({
   onPasswordChange,
   onSubmit,
 }: LoginCredentialsPanelProps) {
+  const fieldNameSuffix = useId().replace(/:/g, "")
+
   return (
     <AuthFormLayout
       upper={
@@ -56,9 +58,14 @@ export function LoginCredentialsPanel({
             noValidate
           >
             <InputField
+              name={`b2b-centbed-email-${fieldNameSuffix}`}
               label={copy.emailLabel}
-              type="email"
-              autoComplete="email"
+              type="text"
+              inputMode="email"
+              autoCapitalize="off"
+              autoCorrect="off"
+              spellCheck={false}
+              autoComplete="off"
               placeholder={copy.emailPlaceholder}
               value={email}
               onChange={(e) => onEmailChange(e.target.value)}
@@ -68,8 +75,9 @@ export function LoginCredentialsPanel({
 
             <div className="flex flex-col gap-1">
               <PasswordInputField
+                name={`b2b-centbed-password-${fieldNameSuffix}`}
                 label={copy.passwordLabel}
-                autoComplete="current-password"
+                autoComplete="off"
                 placeholder={copy.passwordPlaceholder}
                 value={password}
                 onChange={(e) => onPasswordChange(e.target.value)}

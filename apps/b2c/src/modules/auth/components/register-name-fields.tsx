@@ -21,7 +21,7 @@ export function RegisterNameFields({ control, copy }: RegisterNameFieldsProps) {
           <InputField
             label={copy.lastNameLabel}
             placeholder={copy.lastNamePlaceholder}
-            autoComplete="family-name"
+            autoComplete="off"
             variant={fieldState.error ? "error" : "default"}
             hintLeft={fieldState.error?.message}
             {...field}
@@ -35,7 +35,7 @@ export function RegisterNameFields({ control, copy }: RegisterNameFieldsProps) {
           <InputField
             label={copy.firstNameLabel}
             placeholder={copy.firstNamePlaceholder}
-            autoComplete="given-name"
+            autoComplete="off"
             variant={fieldState.error ? "error" : "default"}
             hintLeft={fieldState.error?.message}
             {...field}
@@ -49,7 +49,7 @@ export function RegisterNameFields({ control, copy }: RegisterNameFieldsProps) {
           <InputField
             label={copy.middleNameLabel}
             placeholder={copy.middleNamePlaceholder}
-            autoComplete="additional-name"
+            autoComplete="off"
             variant={fieldState.error ? "error" : "default"}
             hintLeft={fieldState.error?.message}
             {...field}

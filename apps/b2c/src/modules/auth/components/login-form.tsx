@@ -135,12 +135,19 @@ export function LoginForm({ lang, copy }: LoginFormProps) {
               className="w-full"
               onSubmit={form.handleSubmit(onSubmit)}
               noValidate
+              autoComplete="off"
+              data-1p-ignore
+              data-lpignore="true"
             >
               <LoginPhoneField control={form.control} copy={copy} tab={tab} />
               <LoginEmailFields control={form.control} copy={copy} tab={tab} />
             </form>
           ) : (
-            <div className="flex w-full flex-col items-center">
+            <div
+              className="flex w-full flex-col items-center"
+              data-1p-ignore
+              data-lpignore="true"
+            >
               <OtpInput
                 value={otp}
                 onChange={(next) => {

@@ -78,13 +78,6 @@
     "otpResend": "Отправить код заново",
     "welcomeBackToast": "С возвращением!"
   },
-  "authPlaceholder": {
-    "registerTitle": "Создание аккаунта",
-    "registerBody": "Регистрация скоро будет доступна.",
-    "forgotTitle": "Восстановление пароля",
-    "forgotBody": "Восстановление пароля скоро будет доступно.",
-    "backToLogin": "Назад ко входу"
-  },
   "home": {
     "badge": "Central Tour B2C",
     "title": "Для начала, отредактируйте ваши модули.",

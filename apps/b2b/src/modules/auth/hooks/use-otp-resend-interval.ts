@@ -1,14 +1,12 @@
-import { useEffect, type Dispatch, type SetStateAction } from "react"
-
-type LoginStep = "credentials" | "otp"
+import { type Dispatch, type SetStateAction, useEffect } from "react"
 
 export function useOtpResendInterval(
-  step: LoginStep,
+  active: boolean,
   resendToken: number,
   setResendSeconds: Dispatch<SetStateAction<number>>
 ) {
   useEffect(() => {
-    if (step !== "otp") return
+    if (!active) return
     const id = window.setInterval(() => {
       setResendSeconds((s) => {
         if (s <= 1) {
@@ -19,5 +17,5 @@ export function useOtpResendInterval(
       })
     }, 1000)
     return () => window.clearInterval(id)
-  }, [step, resendToken, setResendSeconds])
+  }, [active, resendToken, setResendSeconds])
 }

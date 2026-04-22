@@ -103,7 +103,7 @@ export function LanguageChanger({
             />
             <span
               className={cn(
-                "truncate",
+                "min-w-13",
                 isProfile
                   ? "text-[16px] leading-6 font-medium text-[#0C111D]"
                   : "text-c-greyscale-800 text-sm leading-none font-normal"

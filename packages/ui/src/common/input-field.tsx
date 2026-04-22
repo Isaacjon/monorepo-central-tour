@@ -113,19 +113,19 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
         {(hintLeft ?? hintRight) && (
           <div className="flex items-start justify-between gap-2">
             {hintLeft && (
-              <p
+              <div
                 className={cn(
                   "text-muted-foreground text-sm",
                   variant === "error" && "text-destructive"
                 )}
               >
                 {hintLeft}
-              </p>
+              </div>
             )}
             {hintRight && (
-              <p className="text-muted-foreground ml-auto text-sm">
+              <div className="text-muted-foreground ml-auto text-sm">
                 {hintRight}
-              </p>
+              </div>
             )}
           </div>
         )}

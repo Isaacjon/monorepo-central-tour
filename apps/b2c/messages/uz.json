@@ -78,13 +78,6 @@
     "otpResend": "Kodni qayta yuborish",
     "welcomeBackToast": "Xush kelibsiz!"
   },
-  "authPlaceholder": {
-    "registerTitle": "Hisob yaratish",
-    "registerBody": "Roʻyxatdan oʻtish tez orada ochiladi.",
-    "forgotTitle": "Parolni tiklash",
-    "forgotBody": "Parolni tiklash tez orada ochiladi.",
-    "backToLogin": "Kirish sahifasiga qaytish"
-  },
   "home": {
     "badge": "Central Tour B2C",
     "title": "Boshlash uchun modullaringizni tahrirlang.",

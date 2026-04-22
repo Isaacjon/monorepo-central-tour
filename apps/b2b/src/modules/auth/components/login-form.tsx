@@ -32,7 +32,7 @@ export function LoginForm({ copy }: LoginFormProps) {
   const [resendSeconds, setResendSeconds] = useState(0)
   const [resendToken, setResendToken] = useState(0)
 
-  useOtpResendInterval(step, resendToken, setResendSeconds)
+  useOtpResendInterval(step === "otp", resendToken, setResendSeconds)
 
   function validate() {
     let valid = true

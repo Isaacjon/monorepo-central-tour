@@ -1,13 +1,13 @@
 "use client"
 
-import type { LoginFormCopy } from "@/modules/auth/types/login-form-copy"
+import type { ForgotPasswordFormCopy } from "@/modules/auth/types/forgot-password-form-copy"
 import { formatMmSs, OtpInput, PrimaryButton, SecondaryGrayButton } from "ui"
 
 import { AuthFormLayout } from "./auth-form-layout"
 
-type LoginOtpPanelProps = {
-  copy: LoginFormCopy
-  email: string
+type ForgotPasswordOtpPanelProps = {
+  copy: ForgotPasswordFormCopy
+  phoneDisplay: string
   otp: string
   otpInvalid: boolean
   resendSeconds: number
@@ -17,9 +17,9 @@ type LoginOtpPanelProps = {
   onBack: () => void
 }
 
-export function LoginOtpPanel({
+export function ForgotPasswordOtpPanel({
   copy,
-  email,
+  phoneDisplay,
   otp,
   otpInvalid,
   resendSeconds,
@@ -27,7 +27,7 @@ export function LoginOtpPanel({
   onResend,
   onConfirm,
   onBack,
-}: LoginOtpPanelProps) {
+}: ForgotPasswordOtpPanelProps) {
   return (
     <AuthFormLayout
       upper={
@@ -37,7 +37,7 @@ export function LoginOtpPanel({
               {copy.otpTitle}
             </h1>
             <p className="text-[16px] leading-[24px] text-[#667085]">
-              {copy.otpSubtitle.replace("__DESTINATION__", email)}
+              {copy.otpSubtitle.replace("__DESTINATION__", phoneDisplay)}
             </p>
           </div>
           <div
@@ -77,7 +77,7 @@ export function LoginOtpPanel({
             className="rounded-xl"
             onClick={onConfirm}
           >
-            {copy.otpConfirm}
+            {copy.otpSubmit}
           </PrimaryButton>
           <SecondaryGrayButton
             type="button"
@@ -85,7 +85,7 @@ export function LoginOtpPanel({
             size="lg"
             onClick={onBack}
           >
-            {copy.otpBack}
+            {copy.back}
           </SecondaryGrayButton>
         </div>
       }
