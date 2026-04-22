@@ -11,9 +11,11 @@ import {
 } from "../components/ui/dropdown-menu"
 import { cn } from "../lib/utils"
 
+type SvgIllustration = React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+
 const NotificationBellIllustration = React.lazy(
   () => import("../assets/icons/empty-notifications.svg")
-)
+) as React.LazyExoticComponent<SvgIllustration>
 
 type NotificationChangerProps = {
   title: string

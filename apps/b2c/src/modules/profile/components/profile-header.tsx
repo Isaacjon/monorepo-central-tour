@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { Suspense } from "react"
 import type { ProfileHeaderCopy } from "@/modules/profile/types/profile-header-copy"
 import { HeaderMiniBlock, HeartIcon, NotificationsDropdown, UserIcon } from "ui"
@@ -26,15 +27,17 @@ export function ProfileHeader({ copy, lang }: ProfileHeaderProps) {
   return (
     <header className="w-full border-b border-[#EAECF0] bg-white">
       <div className="ct-container flex min-h-[74px] items-center justify-between gap-8 py-[10px]">
-        <Image
-          src={LOGO_SRC}
-          alt="Central Tour"
-          width={137}
-          height={36}
-          priority
-          unoptimized
-          className="h-9 w-auto object-contain object-left"
-        />
+        <Link href="/" className="block">
+          <Image
+            src={LOGO_SRC}
+            alt="Central Tour"
+            width={137}
+            height={36}
+            priority
+            unoptimized
+            className="h-9 w-auto object-contain object-left"
+          />
+        </Link>
 
         <div className="flex items-center gap-3 text-[#0C111D]">
           <HeaderMiniBlock
