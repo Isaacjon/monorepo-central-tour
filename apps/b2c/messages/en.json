@@ -197,5 +197,15 @@
     "formBirthDatePlaceholder": "DD.MM.YY",
     "formCancel": "Cancel",
     "formSave": "Save changes"
+  },
+  "whyChooseUs": {
+    "title": "Why choose us",
+    "subtitle": "Let us help you invest in experiences and leave stress behind while exploring Bali island.",
+    "feature1Title": "Hiking in the mountains",
+    "feature1Description": "Quis autem vel eum iure voluptate velit esse nihil molestiae consequatur.",
+    "feature2Title": "Mountain biking",
+    "feature2Description": "Quis autem vel eum iure voluptate velit esse nihil molestiae consequatur.",
+    "feature3Title": "Swimming and fishing",
+    "feature3Description": "Quis autem vel eum iure voluptate velit esse nihil molestiae consequatur."
   }
 }

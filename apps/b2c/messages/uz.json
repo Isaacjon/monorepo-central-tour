@@ -197,5 +197,15 @@
     "formBirthDatePlaceholder": "KK.OO.YY",
     "formCancel": "Bekor qilish",
     "formSave": "O'zgarishlarni saqlash"
+  },
+  "whyChooseUs": {
+    "title": "Nega aynan biz",
+    "subtitle": "Bali orolida sayohat qilganingizda tajribalarga sarmoya kiring va stressdan xalos bo'ling — biz sizga yordam beramiz.",
+    "feature1Title": "Tog'larda piyoda sayohat",
+    "feature1Description": "Quis autem vel eum iure voluptate velit esse nihil molestiae consequatur.",
+    "feature2Title": "Tog' velosipedida minish",
+    "feature2Description": "Quis autem vel eum iure voluptate velit esse nihil molestiae consequatur.",
+    "feature3Title": "Suzish va baliq tutish",
+    "feature3Description": "Quis autem vel eum iure voluptate velit esse nihil molestiae consequatur."
   }
 }

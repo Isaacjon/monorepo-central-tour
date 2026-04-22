@@ -197,5 +197,15 @@
     "formBirthDatePlaceholder": "ДД.ММ.ГГ",
     "formCancel": "Отмена",
     "formSave": "Сохранить изменения"
+  },
+  "whyChooseUs": {
+    "title": "Почему выбирают нас",
+    "subtitle": "Давайте потратим ваши деньги и снимем стресс, путешествуя по острову Бали",
+    "feature1Title": "Пеший туризм по горам",
+    "feature1Description": "Quis autem vel eum iure voluptate velit esse nihil molestiae consequatur.",
+    "feature2Title": "Катание на горных велосипедах",
+    "feature2Description": "Quis autem vel eum iure voluptate velit esse nihil molestiae consequatur.",
+    "feature3Title": "Плавание и рыбалка",
+    "feature3Description": "Quis autem vel eum iure voluptate velit esse nihil molestiae consequatur."
   }
 }

@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server"
 
 import { AppHeader } from "@/shared/components/common/app-header"
+import { WhyChooseUsSection } from "@/shared/components/common/why-choose-us-section"
 import {
   AirplaneIcon,
   BuildingIcon,
@@ -178,6 +179,8 @@ export async function FlightsPage({ lang }: { lang: string }) {
           }}
           items={popularAirTickets}
         />
+
+        <WhyChooseUsSection />
       </main>
     </div>
   )
