@@ -124,6 +124,8 @@
     "filterFromPlaceholder": "Toshkent",
     "filterTo": "Qaerga",
     "filterToPlaceholder": "Shahar yoki aeroport",
+    "filterNoLocationResults": "Hech narsa topilmadi",
+    "filterAirportsGroup": "Aeroportlar",
     "filterDeparture": "Jo'nash",
     "filterDeparturePlaceholder": "28 fevr. 2026.",
     "filterReturn": "Qaytish",

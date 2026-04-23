@@ -124,6 +124,8 @@
     "filterFromPlaceholder": "Tashkent",
     "filterTo": "To",
     "filterToPlaceholder": "City or airport",
+    "filterNoLocationResults": "No matches",
+    "filterAirportsGroup": "Airports",
     "filterDeparture": "Departure",
     "filterDeparturePlaceholder": "28 Feb 2026",
     "filterReturn": "Return",

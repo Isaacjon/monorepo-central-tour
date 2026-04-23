@@ -1,7 +1,14 @@
 "use client"
 
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import { BezierCurveIcon, ChevronDownIcon } from "ui"
+
+import { FlightLocationSelect } from "./flight-location-select"
+import {
+  FLIGHT_LOCATION_AIRPORT_OPTIONS,
+  FLIGHT_LOCATION_CITY_OPTIONS,
+} from "../constants/flight-location-demo-options"
+import type { FlightLocationOption } from "../types/flight-location"
 
 type TripType = "round-trip" | "one-way" | "no-stops"
 
@@ -10,6 +17,9 @@ type FlightsFilterCopy = {
   fromPlaceholder: string
   toLabel: string
   toPlaceholder: string
+  locationSearchPlaceholder: string
+  noLocationResults: string
+  airportsGroupLabel: string
   departureLabel: string
   departurePlaceholder: string
   returnLabel: string
@@ -29,6 +39,19 @@ type FlightsFilterProps = {
 export function FlightsFilter({ copy }: FlightsFilterProps) {
   const [tripType, setTripType] = useState<TripType>("round-trip")
 
+  const defaultFrom = useMemo(
+    () =>
+      FLIGHT_LOCATION_CITY_OPTIONS.find((o) => o.id === "tas-city") ?? null,
+    []
+  )
+
+  const [fromLocation, setFromLocation] = useState<FlightLocationOption | null>(
+    defaultFrom
+  )
+  const [toLocation, setToLocation] = useState<FlightLocationOption | null>(
+    null
+  )
+
   const tripTypeOptions: { id: TripType; label: string }[] = [
     { id: "round-trip", label: copy.roundTripLabel },
     { id: "one-way", label: copy.oneWayLabel },
@@ -39,25 +62,29 @@ export function FlightsFilter({ copy }: FlightsFilterProps) {
     <div className="flex flex-col gap-3">
       {/* Row 1: search fields */}
       <div className="flex items-stretch gap-3">
-        {/* From */}
-        <div className="flex min-h-[54px] flex-1 flex-col justify-center rounded-xl border border-[#D0D5DD] bg-white px-3 py-2">
-          <span className="text-xs leading-none text-[#667085]">
-            {copy.fromLabel}
-          </span>
-          <span className="mt-1 text-sm leading-tight font-medium text-[#101828]">
-            {copy.fromPlaceholder}
-          </span>
-        </div>
+        <FlightLocationSelect
+          label={copy.fromLabel}
+          emptyLabel={copy.fromPlaceholder}
+          searchPlaceholder={copy.locationSearchPlaceholder}
+          emptySearchLabel={copy.noLocationResults}
+          airportsGroupLabel={copy.airportsGroupLabel}
+          cityOptions={FLIGHT_LOCATION_CITY_OPTIONS}
+          airportOptions={FLIGHT_LOCATION_AIRPORT_OPTIONS}
+          value={fromLocation}
+          onChange={setFromLocation}
+        />
 
-        {/* To */}
-        <div className="flex min-h-[54px] flex-1 flex-col justify-center rounded-xl border border-[#D0D5DD] bg-white px-3 py-2">
-          <span className="text-xs leading-none text-[#667085]">
-            {copy.toLabel}
-          </span>
-          <span className="mt-1 text-sm leading-none font-medium text-[#98A2B3]">
-            {copy.toPlaceholder}
-          </span>
-        </div>
+        <FlightLocationSelect
+          label={copy.toLabel}
+          emptyLabel={copy.toPlaceholder}
+          searchPlaceholder={copy.locationSearchPlaceholder}
+          emptySearchLabel={copy.noLocationResults}
+          airportsGroupLabel={copy.airportsGroupLabel}
+          cityOptions={FLIGHT_LOCATION_CITY_OPTIONS}
+          airportOptions={FLIGHT_LOCATION_AIRPORT_OPTIONS}
+          value={toLocation}
+          onChange={setToLocation}
+        />
 
         {/* Departure date */}
         <div

@@ -124,6 +124,8 @@
     "filterFromPlaceholder": "Ташкент",
     "filterTo": "Куда",
     "filterToPlaceholder": "Город или аэропорт",
+    "filterNoLocationResults": "Ничего не найдено",
+    "filterAirportsGroup": "Аэропорты",
     "filterDeparture": "Вылет",
     "filterDeparturePlaceholder": "28 февр. 2026.",
     "filterReturn": "Прилет",
