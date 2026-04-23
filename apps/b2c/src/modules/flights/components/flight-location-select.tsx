@@ -1,10 +1,7 @@
 "use client"
 
 import { useMemo } from "react"
-import {
-  type SearchableCommandGroup,
-  SearchableCommandPopover,
-} from "ui"
+import { type SearchableCommandGroup, SearchableCommandPopover } from "ui"
 
 import type { FlightLocationOption } from "../types/flight-location"
 
@@ -14,18 +11,17 @@ type FlightLocationSelectProps = {
   searchPlaceholder: string
   emptySearchLabel: string
   airportsGroupLabel: string
-  cityOptions: FlightLocationOption[]
   airportOptions: FlightLocationOption[]
+  searchValue?: string
+  onSearchValueChange?: (value: string) => void
   value: FlightLocationOption | null
   onChange: (next: FlightLocationOption) => void
 }
 
 function optionMap(
-  cityOptions: FlightLocationOption[],
   airportOptions: FlightLocationOption[]
 ): Map<string, FlightLocationOption> {
   const m = new Map<string, FlightLocationOption>()
-  for (const o of cityOptions) m.set(o.id, o)
   for (const o of airportOptions) m.set(o.id, o)
   return m
 }
@@ -36,25 +32,16 @@ export function FlightLocationSelect({
   searchPlaceholder,
   emptySearchLabel,
   airportsGroupLabel,
-  cityOptions,
   airportOptions,
+  searchValue,
+  onSearchValueChange,
   value,
   onChange,
 }: FlightLocationSelectProps) {
-  const byId = useMemo(
-    () => optionMap(cityOptions, airportOptions),
-    [airportOptions, cityOptions]
-  )
+  const byId = useMemo(() => optionMap(airportOptions), [airportOptions])
 
   const groups: SearchableCommandGroup[] = useMemo(
     () => [
-      {
-        options: cityOptions.map((o) => ({
-          value: o.id,
-          label: o.label,
-          icon: o.icon,
-        })),
-      },
       {
         heading: airportsGroupLabel,
         options: airportOptions.map((o) => ({
@@ -64,7 +51,7 @@ export function FlightLocationSelect({
         })),
       },
     ],
-    [airportOptions, airportsGroupLabel, cityOptions]
+    [airportOptions, airportsGroupLabel]
   )
 
   return (
@@ -76,6 +63,8 @@ export function FlightLocationSelect({
         emptySearchLabel={emptySearchLabel}
         groups={groups}
         value={value?.id ?? null}
+        searchValue={searchValue}
+        onSearchValueChange={onSearchValueChange}
         onValueChange={(id) => {
           const next = byId.get(id)
           if (next) onChange(next)

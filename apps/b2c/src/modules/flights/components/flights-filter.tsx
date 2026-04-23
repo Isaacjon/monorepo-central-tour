@@ -1,151 +1,145 @@
 "use client"
 
-import { useMemo, useState } from "react"
-import { BezierCurveIcon, ChevronDownIcon } from "ui"
+import Link from "next/link"
+import { useCallback, useMemo, useState } from "react"
+import {
+  BezierCurveIcon,
+  DateRangePicker,
+  type DateRangePickerProps,
+  FlightAirplaneIcon,
+} from "ui"
 
 import { FlightLocationSelect } from "./flight-location-select"
 import {
-  FLIGHT_LOCATION_AIRPORT_OPTIONS,
-  FLIGHT_LOCATION_CITY_OPTIONS,
-} from "../constants/flight-location-demo-options"
+  type FlightsFilterCopy,
+  getTripTypeOptions,
+  type TripType,
+} from "./flights-filter.config"
+import { FlightsPassengersPopover } from "./flights-passengers-popover"
+import {
+  cloneRooms,
+  defaultFirstRoom,
+  type FlightRoomGuests,
+} from "./flights-passengers-popover/flight-room-guests"
+import { useAirportsQuery } from "../services/airports/airports.query"
 import type { FlightLocationOption } from "../types/flight-location"
-
-type TripType = "round-trip" | "one-way" | "no-stops"
-
-type FlightsFilterCopy = {
-  fromLabel: string
-  fromPlaceholder: string
-  toLabel: string
-  toPlaceholder: string
-  locationSearchPlaceholder: string
-  noLocationResults: string
-  airportsGroupLabel: string
-  departureLabel: string
-  departurePlaceholder: string
-  returnLabel: string
-  returnPlaceholder: string
-  passengersLabel: string
-  searchLabel: string
-  complexRouteLabel: string
-  roundTripLabel: string
-  oneWayLabel: string
-  noStopsLabel: string
-}
-
+import { buildFlightsSearchHref } from "../utils/build-flights-search-href"
 type FlightsFilterProps = {
   copy: FlightsFilterCopy
+  searchHref: string
 }
-
-export function FlightsFilter({ copy }: FlightsFilterProps) {
+export function FlightsFilter({ copy, searchHref }: FlightsFilterProps) {
   const [tripType, setTripType] = useState<TripType>("round-trip")
-
-  const defaultFrom = useMemo(
-    () =>
-      FLIGHT_LOCATION_CITY_OPTIONS.find((o) => o.id === "tas-city") ?? null,
-    []
-  )
-
+  const { data: airportDtos } = useAirportsQuery()
+  const airportOptions = useMemo((): FlightLocationOption[] => {
+    if (!airportDtos?.length) {
+      return []
+    }
+    return airportDtos.map((airport) => ({
+      id: airport.id,
+      label: airport.label,
+      icon: (
+        <FlightAirplaneIcon
+          width={24}
+          height={24}
+          aria-hidden
+          className="size-6 shrink-0 rounded-[3px] text-[#101828]"
+        />
+      ),
+    }))
+  }, [airportDtos])
   const [fromLocation, setFromLocation] = useState<FlightLocationOption | null>(
-    defaultFrom
+    null
   )
   const [toLocation, setToLocation] = useState<FlightLocationOption | null>(
     null
   )
-
-  const tripTypeOptions: { id: TripType; label: string }[] = [
-    { id: "round-trip", label: copy.roundTripLabel },
-    { id: "one-way", label: copy.oneWayLabel },
-    { id: "no-stops", label: copy.noStopsLabel },
-  ]
-
+  const [fromSearchValue, setFromSearchValue] = useState("")
+  const [toSearchValue, setToSearchValue] = useState("")
+  const [passengerRooms, setPassengerRooms] = useState<FlightRoomGuests[]>(() =>
+    cloneRooms([defaultFirstRoom()])
+  )
+  const [travelDateRange, setTravelDateRange] =
+    useState<DateRangePickerProps["selected"]>(undefined)
+  const tripTypeOptions = getTripTypeOptions(copy)
+  const searchHrefWithParams = useMemo(() => {
+    return buildFlightsSearchHref({
+      searchHref,
+      tripType,
+      passengerRooms,
+      fromSearchValue,
+      toSearchValue,
+      fromLocation,
+      toLocation,
+      departureDate: travelDateRange?.from,
+      returnDate: travelDateRange?.to,
+    })
+  }, [
+    searchHref,
+    tripType,
+    passengerRooms,
+    fromSearchValue,
+    toSearchValue,
+    fromLocation,
+    toLocation,
+    travelDateRange,
+  ])
+  const handlePassengersChange = useCallback(
+    ({ rooms }: { rooms: FlightRoomGuests[]; totalGuests: number }) => {
+      setPassengerRooms(rooms)
+    },
+    []
+  )
   return (
     <div className="flex flex-col gap-3">
-      {/* Row 1: search fields */}
-      <div className="flex items-stretch gap-3">
+      <div className="flex min-w-0 items-stretch gap-3">
         <FlightLocationSelect
           label={copy.fromLabel}
-          emptyLabel={copy.fromPlaceholder}
+          emptyLabel={copy.toPlaceholder}
           searchPlaceholder={copy.locationSearchPlaceholder}
           emptySearchLabel={copy.noLocationResults}
           airportsGroupLabel={copy.airportsGroupLabel}
-          cityOptions={FLIGHT_LOCATION_CITY_OPTIONS}
-          airportOptions={FLIGHT_LOCATION_AIRPORT_OPTIONS}
+          airportOptions={airportOptions}
+          searchValue={fromSearchValue}
+          onSearchValueChange={setFromSearchValue}
           value={fromLocation}
           onChange={setFromLocation}
         />
-
         <FlightLocationSelect
           label={copy.toLabel}
           emptyLabel={copy.toPlaceholder}
           searchPlaceholder={copy.locationSearchPlaceholder}
           emptySearchLabel={copy.noLocationResults}
           airportsGroupLabel={copy.airportsGroupLabel}
-          cityOptions={FLIGHT_LOCATION_CITY_OPTIONS}
-          airportOptions={FLIGHT_LOCATION_AIRPORT_OPTIONS}
+          airportOptions={airportOptions}
+          searchValue={toSearchValue}
+          onSearchValueChange={setToSearchValue}
           value={toLocation}
           onChange={setToLocation}
         />
-
-        {/* Departure date */}
-        <div
-          className="flex min-h-[54px] flex-col justify-center rounded-xl border border-[#D0D5DD] bg-white px-3 py-2"
-          style={{ minWidth: 140 }}
-        >
-          <span className="text-xs leading-none text-[#667085]">
-            {copy.departureLabel}
-          </span>
-          <span className="mt-1 text-sm leading-none font-medium text-[#101828]">
-            {copy.departurePlaceholder}
-          </span>
+        <div className="min-w-0 flex-1">
+          <DateRangePicker
+            selected={travelDateRange}
+            onSelect={(range) => setTravelDateRange(range ?? undefined)}
+            fromLabel={copy.departureLabel}
+            toLabel={copy.returnLabel}
+            fromPlaceholder={copy.departurePlaceholder}
+            toPlaceholder={copy.returnPlaceholder}
+            clearable={false}
+          />
         </div>
-
-        {/* Return date */}
-        <div
-          className="flex min-h-[54px] flex-col justify-center rounded-xl border border-[#D0D5DD] bg-white px-3 py-2"
-          style={{ minWidth: 140 }}
-        >
-          <span className="text-xs leading-none text-[#667085]">
-            {copy.returnLabel}
-          </span>
-          <span className="mt-1 text-sm leading-none font-medium text-[#101828]">
-            {copy.returnPlaceholder}
-          </span>
-        </div>
-
-        {/* Passengers */}
-        <div
-          className="flex min-h-[54px] flex-col justify-center rounded-xl border border-[#D0D5DD] bg-white px-3 py-2"
-          style={{ minWidth: 160 }}
-        >
-          <span className="text-xs leading-none text-[#667085]">
-            {copy.passengersLabel}
-          </span>
-          <div className="mt-1 flex items-center justify-between gap-2">
-            <span className="text-sm leading-none font-medium text-[#101828]">
-              2 пассажира
-            </span>
-            <ChevronDownIcon
-              width={20}
-              height={20}
-              aria-hidden
-              className="text-c-gray-950 shrink-0"
-            />
-          </div>
-        </div>
-
-        {/* Search button */}
-        <button
-          type="button"
-          className="bg-primary hover:bg-primary/90 flex min-h-[54px] items-center justify-center rounded-xl px-8 text-base font-semibold text-white transition-colors"
-          style={{ minWidth: 120 }}
+        <FlightsPassengersPopover
+          passengersLabel={copy.passengersLabel}
+          onChange={handlePassengersChange}
+        />
+        <Link
+          href={searchHrefWithParams}
+          className="bg-primary hover:bg-primary/90 flex min-h-[54px] min-w-[120px] shrink-0 items-center justify-center rounded-xl px-8 text-base font-semibold text-white transition-colors"
         >
           {copy.searchLabel}
-        </button>
+        </Link>
       </div>
-
-      {/* Row 2: trip type */}
       <div className="flex items-center gap-4">
-        {/* Complex route */}
         <button
           type="button"
           className="inline-flex items-center gap-2 text-base leading-4 font-normal text-[#101828]"
@@ -158,8 +152,6 @@ export function FlightsFilter({ copy }: FlightsFilterProps) {
           />
           {copy.complexRouteLabel}
         </button>
-
-        {/* Radio buttons */}
         {tripTypeOptions.map((option) => (
           <label
             key={option.id}
@@ -191,5 +183,4 @@ export function FlightsFilter({ copy }: FlightsFilterProps) {
     </div>
   )
 }
-
-export type { FlightsFilterCopy }
+export type { FlightsFilterCopy } from "./flights-filter.config"

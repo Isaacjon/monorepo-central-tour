@@ -15,7 +15,8 @@
     },
     "./i18n/routing": "./i18n/routing.ts",
     "./i18n/locale": "./i18n/locale.ts",
-    "./i18n/navigation": "./i18n/navigation.ts"
+    "./i18n/navigation": "./i18n/navigation.ts",
+    "./providers/query-provider": "./providers/query-provider.tsx"
   },
   "files": [
     "eslint",
@@ -23,13 +24,15 @@
     "postcss",
     "styles",
     "next",
-    "i18n"
+    "i18n",
+    "providers"
   ],
   "scripts": {
     "type-check": "tsc --noEmit -p tsconfig.json"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4",
+    "@tanstack/react-query": "^5.90.2",
     "eslint-config-next": "16.2.3",
     "eslint-config-prettier": "^10.1.8",
     "next-intl": "^4.9.1",
@@ -39,10 +42,15 @@
   "peerDependencies": {
     "eslint": "^9",
     "prettier": "^3",
+    "react": "^19",
+    "react-dom": "^19",
     "tailwindcss": "^4"
   },
   "devDependencies": {
+    "@types/react": "^19",
     "next": "16.2.3",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
     "typescript": "^5"
   }
 }

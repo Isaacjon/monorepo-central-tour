@@ -39,6 +39,8 @@ export type SearchableCommandPopoverProps = {
   groups: SearchableCommandGroup[]
   value: string | null
   onValueChange: (value: string) => void
+  searchValue?: string
+  onSearchValueChange?: (value: string) => void
   /** Tailwind width class for panel (trigger still flex-1). */
   contentClassName?: string
   align?: "start" | "center" | "end"
@@ -64,15 +66,26 @@ export function SearchableCommandPopover({
   groups,
   value,
   onValueChange,
+  searchValue,
+  onSearchValueChange,
   contentClassName,
   align = "start",
 }: SearchableCommandPopoverProps) {
   const [open, setOpen] = React.useState(false)
   const [cmdKey, setCmdKey] = React.useState(0)
+  const [internalSearchValue, setInternalSearchValue] = React.useState("")
 
   const selectedLabel = findLabel(groups, value)
   const displayLabel = selectedLabel ?? emptyLabel
   const displayMuted = !selectedLabel
+  const effectiveSearchValue = searchValue ?? internalSearchValue
+
+  const handleSearchValueChange = (next: string) => {
+    if (searchValue === undefined) {
+      setInternalSearchValue(next)
+    }
+    onSearchValueChange?.(next)
+  }
 
   const onOpenChange = (next: boolean) => {
     if (next) setCmdKey((k) => k + 1)
@@ -113,13 +126,15 @@ export function SearchableCommandPopover({
       <PopoverContent
         align={align}
         className={cn(
-          "w-[var(--radix-popover-trigger-width)] min-w-[277px] rounded-lg border border-[#D0D5DD] p-0 shadow-lg",
+          "w-(--radix-popover-trigger-width) min-w-[277px] rounded-lg border border-[#D0D5DD] p-0 shadow-lg",
           contentClassName
         )}
       >
         <Command key={cmdKey} className="rounded-lg border-none shadow-none">
           <CommandInput
             placeholder={searchPlaceholder}
+            value={effectiveSearchValue}
+            onValueChange={handleSearchValueChange}
             className="h-12 text-base leading-6 text-[#101828] placeholder:text-[#98A2B3]"
           />
           <CommandList className="max-h-[min(320px,50vh)]">
@@ -131,7 +146,7 @@ export function SearchableCommandPopover({
                 {gi > 0 ? <CommandSeparator className="bg-[#EAECF0]" /> : null}
                 <CommandGroup
                   heading={group.heading}
-                  className="p-0 [&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:py-2 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-[#667085]"
+                  className="p-0 **:[[cmdk-group-heading]]:px-3 **:[[cmdk-group-heading]]:py-2 **:[[cmdk-group-heading]]:text-xs **:[[cmdk-group-heading]]:font-medium **:[[cmdk-group-heading]]:text-[#667085]"
                 >
                   {group.options.map((opt) => {
                     const isPicked = value === opt.value
@@ -159,7 +174,7 @@ export function SearchableCommandPopover({
                         </span>
                         {isPicked ? (
                           <Check
-                            className="size-5 shrink-0 text-[var(--color-control-accent)]"
+                            className="size-5 shrink-0 text-(--color-control-accent)"
                             strokeWidth={2}
                             aria-hidden
                           />

@@ -21,6 +21,10 @@ import { FlightsFilter } from "../components/flights-filter"
 import { PopularAirTicketsSection } from "../components/popular-air-tickets-section"
 import { RecentlySearchedFlightsSection } from "../components/recently-searched-flights-section"
 import type { RecentFlightSearchItem } from "../types/recent-flight-search"
+import {
+  getFlightsFilterCopy,
+  getFlightsSearchRouteHref,
+} from "../utils/get-flights-filter-copy"
 
 export async function FlightsPage({ lang }: { lang: string }) {
   const t = await getTranslations("flights")
@@ -128,25 +132,8 @@ export async function FlightsPage({ lang }: { lang: string }) {
           activeTabId="flights"
         >
           <FlightsFilter
-            copy={{
-              fromLabel: t("filterFrom"),
-              fromPlaceholder: t("filterFromPlaceholder"),
-              toLabel: t("filterTo"),
-              toPlaceholder: t("filterToPlaceholder"),
-              locationSearchPlaceholder: t("filterToPlaceholder"),
-              noLocationResults: t("filterNoLocationResults"),
-              airportsGroupLabel: t("filterAirportsGroup"),
-              departureLabel: t("filterDeparture"),
-              departurePlaceholder: t("filterDeparturePlaceholder"),
-              returnLabel: t("filterReturn"),
-              returnPlaceholder: t("filterReturnPlaceholder"),
-              passengersLabel: t("filterPassengers"),
-              searchLabel: t("filterSearch"),
-              complexRouteLabel: t("filterComplexRoute"),
-              roundTripLabel: t("filterRoundTrip"),
-              oneWayLabel: t("filterOneWay"),
-              noStopsLabel: t("filterNoStops"),
-            }}
+            searchHref={getFlightsSearchRouteHref(lang)}
+            copy={getFlightsFilterCopy(t)}
           />
         </HomeBanner>
 

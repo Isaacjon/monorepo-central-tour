@@ -4,5 +4,5 @@
     "baseUrl": ".",
     "noEmit": true
   },
-  "include": ["i18n/**/*.ts", "next/**/*.d.ts"]
+  "include": ["i18n/**/*.ts", "next/**/*.d.ts", "providers/**/*.tsx"]
 }

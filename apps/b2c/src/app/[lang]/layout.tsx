@@ -1,9 +1,11 @@
+import QueryProvider from "@central-tour/config/providers/query-provider"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { notFound } from "next/navigation"
 import { NextIntlClientProvider } from "next-intl"
 import { getMessages, setRequestLocale } from "next-intl/server"
 import type { ReactNode } from "react"
+
 
 import { isLocale, locales } from "@/shared/lib/i18n/config"
 import { Toaster } from "ui"
@@ -47,10 +49,12 @@ export default async function LocaleLayout({
       className={`${inter.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <NextIntlClientProvider messages={messages} locale={lang}>
-          {children}
-          <Toaster />
-        </NextIntlClientProvider>
+        <QueryProvider>
+          <NextIntlClientProvider messages={messages} locale={lang}>
+            {children}
+            <Toaster />
+          </NextIntlClientProvider>
+        </QueryProvider>
       </body>
     </html>
   )
