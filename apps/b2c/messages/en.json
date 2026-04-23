@@ -187,8 +187,10 @@
       "three": "3 stops"
     },
     "searchSidebarTimeTitle": "Departure & arrival time",
-    "searchSidebarDepartureTas": "Departure from TAS",
-    "searchSidebarArrivalDxb": "Arrival in DXB",
+    "searchSidebarDeparture": "Departure from {code}",
+    "searchSidebarArrival": "Arrival in {code}",
+    "searchSidebarTimeEarliest": "Earliest",
+    "searchSidebarTimeLatest": "Latest",
     "searchSidebarAirlines": "Airlines",
     "searchAirlines": {
       "all": "All",

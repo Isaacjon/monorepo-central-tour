@@ -187,8 +187,10 @@
       "three": "3 to'xtama"
     },
     "searchSidebarTimeTitle": "Uchish / kelish vaqti",
-    "searchSidebarDepartureTas": "TAS dan uchish",
-    "searchSidebarArrivalDxb": "DXB da kelish",
+    "searchSidebarDeparture": "{code} dan uchish",
+    "searchSidebarArrival": "{code} da kelish",
+    "searchSidebarTimeEarliest": "Ertaroq",
+    "searchSidebarTimeLatest": "Kechroq",
     "searchSidebarAirlines": "Aviakompaniyalar",
     "searchAirlines": {
       "all": "Hammasi",

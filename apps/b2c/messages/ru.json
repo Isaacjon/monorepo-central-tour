@@ -187,8 +187,10 @@
       "three": "3 пересадки"
     },
     "searchSidebarTimeTitle": "Время вылета/прибытия",
-    "searchSidebarDepartureTas": "Вылет из TAS",
-    "searchSidebarArrivalDxb": "Прибытие в DXB",
+    "searchSidebarDeparture": "Вылет из {code}",
+    "searchSidebarArrival": "Прибытие в {code}",
+    "searchSidebarTimeEarliest": "Ранее",
+    "searchSidebarTimeLatest": "Позднее",
     "searchSidebarAirlines": "Авиакомпании",
     "searchAirlines": {
       "all": "Все",

@@ -14,36 +14,3 @@
   }
 } */
 
-@layer components {
-  /* Dual time range: transparent tracks so the custom bar + thumbs match Figma. */
-  input.range-thumb[type="range"] {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-  }
-  input.range-thumb[type="range"]::-webkit-slider-runnable-track {
-    height: 6px;
-    background: transparent;
-  }
-  input.range-thumb[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 16px;
-    height: 16px;
-    border-radius: 9999px;
-    border: 2px solid #fff;
-    background: #4765ff;
-    box-shadow: 0 1px 2px rgba(12, 17, 29, 0.12);
-  }
-  input.range-thumb[type="range"]::-moz-range-track {
-    height: 6px;
-    background: transparent;
-  }
-  input.range-thumb[type="range"]::-moz-range-thumb {
-    width: 16px;
-    height: 16px;
-    border-radius: 9999px;
-    border: 2px solid #fff;
-    background: #4765ff;
-    box-shadow: 0 1px 2px rgba(12, 17, 29, 0.12);
-  }
-}

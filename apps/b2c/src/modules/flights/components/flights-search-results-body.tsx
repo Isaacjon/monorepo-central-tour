@@ -1,10 +1,13 @@
 "use client"
 
+import { useSearchParams } from "next/navigation"
 import { useTranslations } from "next-intl"
+import { useMemo } from "react"
 
 import { FlightsSearchMainColumn } from "./flights-search-main-column"
 import { FlightsSearchSidebar } from "./flights-search-sidebar"
 import type { FlightSearchResult } from "../types/flight-search-result"
+import { getFlightsSearchAirportCodes } from "../utils/get-flights-search-airport-codes"
 
 type FlightsSearchResultsBodyProps = {
   totalCount: number
@@ -16,6 +19,12 @@ export function FlightsSearchResultsBody({
   results,
 }: FlightsSearchResultsBodyProps) {
   const t = useTranslations("flights")
+  const searchParams = useSearchParams()
+  const { departureCode, arrivalCode } = useMemo(
+    () =>
+      getFlightsSearchAirportCodes(Object.fromEntries(searchParams.entries())),
+    [searchParams]
+  )
 
   return (
     <>
@@ -23,7 +32,10 @@ export function FlightsSearchResultsBody({
         {t("searchResultCount", { count: totalCount })}
       </p>
       <div className="ct-container flex flex-col gap-6 pb-8 md:flex-row md:items-start">
-        <FlightsSearchSidebar />
+        <FlightsSearchSidebar
+          departureAirportCode={departureCode}
+          arrivalAirportCode={arrivalCode}
+        />
         <FlightsSearchMainColumn results={results} />
       </div>
     </>

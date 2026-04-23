@@ -1,18 +1,13 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import { useCallback, useState } from "react"
 
-import { cn } from "ui"
+import { cn, Slider, TimeInputField } from "ui"
 
 const MIN_MINUTES = 8 * 60
 const MAX_MINUTES = 22 * 60
 const STEP = 15
-
-function formatTime(totalMinutes: number) {
-  const h = Math.floor(totalMinutes / 60)
-  const m = totalMinutes % 60
-  return `${h}:${m.toString().padStart(2, "0")}`
-}
 
 type FlightsDualTimeRangeProps = {
   /** Accessible name for the control group */
@@ -29,6 +24,7 @@ export function FlightsDualTimeRange({
 }: FlightsDualTimeRangeProps) {
   const [lo, setLo] = useState(MIN_MINUTES)
   const [hi, setHi] = useState(MAX_MINUTES)
+  const t = useTranslations("flights")
 
   const onLo = useCallback(
     (v: number) => {
@@ -45,47 +41,39 @@ export function FlightsDualTimeRange({
     [lo]
   )
 
-  const span = MAX_MINUTES - MIN_MINUTES
-  const leftPct = ((lo - MIN_MINUTES) / span) * 100
-  const rightPct = ((MAX_MINUTES - hi) / span) * 100
-
   return (
     <div className={cn("flex flex-col gap-3", className)}>
-      <div className="flex items-center justify-between gap-2 text-sm font-normal text-[#0C111D]">
-        <time className="rounded-lg border border-[#EAECF0] bg-white px-2 py-1.5 leading-4">
-          {formatTime(lo)}
-        </time>
-        <time className="rounded-lg border border-[#EAECF0] bg-white px-2 py-1.5 leading-4">
-          {formatTime(hi)}
-        </time>
+      <div className="flex h-10 items-center justify-between gap-3 text-sm font-normal text-[#0C111D]">
+        <TimeInputField
+          valueMinutes={lo}
+          onValueMinutesChange={onLo}
+          minMinutes={MIN_MINUTES}
+          maxMinutes={hi - STEP}
+          stepMinutes={STEP}
+          aria-label={t("searchSidebarTimeEarliest")}
+        />
+        <TimeInputField
+          valueMinutes={hi}
+          onValueMinutesChange={onHi}
+          minMinutes={lo + STEP}
+          maxMinutes={MAX_MINUTES}
+          stepMinutes={STEP}
+          aria-label={t("searchSidebarTimeLatest")}
+        />
       </div>
-      <div className="relative h-8 pt-1" aria-label={a11yLabel} role="group">
-        <div
-          className="pointer-events-none absolute top-1/2 h-1.5 w-full -translate-y-1/2 rounded-full bg-[#EAECF0]"
-          aria-hidden
-        />
-        <div
-          className="bg-primary pointer-events-none absolute top-1/2 h-1.5 -translate-y-1/2 rounded-full"
-          style={{ left: `${leftPct}%`, right: `${rightPct}%` }}
-          aria-hidden
-        />
-        <input
-          type="range"
+      <div className="mx-auto w-full max-w-56 pt-0.5" role="group" aria-label={a11yLabel}>
+        <Slider
+          className="w-full"
           min={MIN_MINUTES}
           max={MAX_MINUTES}
           step={STEP}
-          value={lo}
-          onChange={(e) => onLo(Number(e.target.value))}
-          className="range-thumb pointer-events-auto absolute top-0 z-20 h-8 w-full cursor-pointer appearance-none bg-transparent"
-        />
-        <input
-          type="range"
-          min={MIN_MINUTES}
-          max={MAX_MINUTES}
-          step={STEP}
-          value={hi}
-          onChange={(e) => onHi(Number(e.target.value))}
-          className="range-thumb pointer-events-auto absolute top-0 z-10 h-8 w-full cursor-pointer appearance-none bg-transparent"
+          value={[lo, hi]}
+          onValueChange={([a, b]) => {
+            const nextLo = Math.max(MIN_MINUTES, Math.min(a, b - STEP))
+            const nextHi = Math.min(MAX_MINUTES, Math.max(b, a + STEP))
+            setLo(nextLo)
+            setHi(nextHi)
+          }}
         />
       </div>
     </div>

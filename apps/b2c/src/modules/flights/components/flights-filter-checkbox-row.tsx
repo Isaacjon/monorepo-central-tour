@@ -1,6 +1,6 @@
 "use client"
 
-import { cn } from "ui"
+import { Checkbox } from "ui"
 
 type FlightsFilterCheckboxRowProps = {
   id: string
@@ -23,17 +23,12 @@ export function FlightsFilterCheckboxRow({
       className="flex cursor-pointer items-center justify-between gap-2"
     >
       <span className="flex min-w-0 items-center gap-2">
-        <input
+        <Checkbox
           id={id}
-          type="checkbox"
           checked={checked}
-          onChange={(e) => onCheckedChange(e.target.checked)}
-          className={cn(
-            "size-4 shrink-0 appearance-none rounded border transition-colors",
-            "border-[#EAECF0] bg-white",
-            "checked:border-primary checked:bg-[#FEE4E2]",
-            "focus-visible:ring-primary focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:outline-none"
-          )}
+          onCheckedChange={(v) => {
+            if (typeof v === "boolean") onCheckedChange(v)
+          }}
         />
         <span className="text-sm leading-4 text-[#0C111D]">{label}</span>
       </span>

@@ -3,6 +3,7 @@ import type { Locale } from "date-fns"
 
 import { ru } from "date-fns/locale"
 import * as React from "react"
+import type { CustomComponents } from "react-day-picker"
 
 import CaptionLabel from "./caption-label"
 import MonthGrid from "./month-grid"
@@ -47,8 +48,16 @@ export function useDatepicker({
   const currentMonth = React.useMemo(() => month ?? new Date(), [month])
 
   React.useEffect(() => {
+    let timeout: NodeJS.Timeout | undefined
     if (selected) {
-      setMonth(selected)
+      timeout = setTimeout(() => {
+        setMonth(selected)
+      }, 0)
+    }
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout)
+      }
     }
   }, [selected])
 
@@ -146,7 +155,7 @@ export function useDatepicker({
   )
 
   const getCalendarComponents = React.useCallback(
-    (existingComponents?: any) => {
+    (existingComponents?: Partial<CustomComponents>) => {
       if (!enableYearMonthPicker) {
         return existingComponents
       }
