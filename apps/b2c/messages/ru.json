@@ -174,7 +174,91 @@
     "aboutNumbersImage1Alt": "Бухта с бирюзовой водой",
     "aboutNumbersImage2Alt": "Тропический пляж с пальмами",
     "searchResultsEmptyTitle": "Ничего не найдено",
-    "searchResultsEmptyImageAlt": "Иллюстрация пустого результата поиска"
+    "searchResultsEmptyImageAlt": "Иллюстрация пустого результата поиска",
+    "searchResultCount": "{count, plural, one {# доступный вариант} few {# доступных варианта} many {# доступных вариантов} other {# доступных вариантов}}",
+    "searchFiltersAria": "Фильтры результатов",
+    "searchSidebarFavorites": "Избранное",
+    "searchSidebarStops": "Пересадки",
+    "searchStops": {
+      "all": "Все",
+      "direct": "Прямой",
+      "one": "1 пересадка",
+      "two": "2 пересадки",
+      "three": "3 пересадки"
+    },
+    "searchSidebarTimeTitle": "Время вылета/прибытия",
+    "searchSidebarDepartureTas": "Вылет из TAS",
+    "searchSidebarArrivalDxb": "Прибытие в DXB",
+    "searchSidebarAirlines": "Авиакомпании",
+    "searchAirlines": {
+      "all": "Все",
+      "uz": "Uz Airways",
+      "qatar": "Qatar Airways",
+      "aa": "American Airlines"
+    },
+    "searchSidebarCabin": "Классы",
+    "searchCabin": {
+      "economy": "Эконом",
+      "economy_premium": "Эконом премиум",
+      "business": "Бизнес",
+      "first": "Первый класс"
+    },
+    "searchSidebarReviewRating": "Оценка по отзывам",
+    "searchRating": {
+      "any": "Любая оценка",
+      "super9": "Супер: 9+",
+      "very8": "Очень хорошо: 8+",
+      "good7": "Хорошо: 7+",
+      "ok6": "Нормально: 6+",
+      "fair5": "Неплохо: 5+"
+    },
+    "searchSidebarMeals": "Питание",
+    "searchMeals": {
+      "all": "Все",
+      "breakfast": "Завтрак включен",
+      "snack": "Перекус"
+    },
+    "searchSidebarTransferCities": "Города пересадки",
+    "searchTransferCities": {
+      "dubai": "Дубай"
+    },
+    "searchDateTabsLabel": "Длительность поездки",
+    "searchDateTabDays": "{count, plural, one {# день} few {# дня} many {# дней} other {# дней}}",
+    "searchPriceGraphTitle": "График цены",
+    "searchPriceGraphZoomIn": "Увеличить",
+    "searchPriceGraphZoomOut": "Уменьшить",
+    "searchPriceGraphPrevious": "Предыдущий период",
+    "searchPriceGraphNext": "Следующий период",
+    "searchPriceBarLabel": "Цена, столбец {index}",
+    "searchSortBy": "Сортировать по:",
+    "searchSort": {
+      "popularity": "Популярность",
+      "price": "Цена",
+      "rating": "Рейтинг"
+    },
+    "searchCompare": "Сравнить",
+    "searchFlightInFlight": "в пути {duration}",
+    "searchFlightTimelineTagDirect": "Прямой",
+    "searchFlightTimelineTagComplex": "С пересадками",
+    "searchFlightTransferLayoverShort": "{minutes}мин",
+    "searchFlightTransferInCity": "Пересадка в {city}",
+    "searchFlightDetailsTransferDuration": "{minutes} мин",
+    "searchFlightDetailsLink": "Детали перелета",
+    "searchFlightCardDirect": "Прямой рейс",
+    "searchFlightCardWithStops": "С пересадками",
+    "searchFlightShowDetails": "Показать детали",
+    "searchFlightHideDetails": "Скрыть перелета",
+    "searchFlightAddCompare": "Добавить для сравнения",
+    "searchFlightAddCollection": "Добавить для подборки",
+    "searchFlightSelectFares": "Выбрать тарифы",
+    "searchFlightToggleFavorite": "В избранное",
+    "searchFlightBaggageLabel": "Багаж",
+    "searchFlightAirlineLabel": "Авиакомпания",
+    "searchFlightTerminalLabel": "Терминал вылета",
+    "searchFlightClassLabel": "Класс",
+    "searchFlightValueNotAvailable": "Н/Д",
+    "searchFlightDetailsLegOutbound": "Туда",
+    "searchFlightDetailsLegReturn": "Обратно"
   },
   "profile": {
     "title": "Профиль клиента",

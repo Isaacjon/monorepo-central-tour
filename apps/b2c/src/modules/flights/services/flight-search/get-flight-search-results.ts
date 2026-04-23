@@ -1,11 +1,149 @@
 import type { FlightSearchResult } from "../../types/flight-search-result"
 
+const demoResults: readonly FlightSearchResult[] = [
+  {
+    id: "demo-1",
+    isDirect: true,
+    itineraryType: "direct",
+    airlineName: "Turkish airlines",
+    airlineIataCode: "TK",
+    flightNumber: "TK 366",
+    departureTime: "20:50",
+    departureDateLabel: "12 марта",
+    departureCity: "Москва",
+    departureCode: "DME",
+    arrivalTime: "22:30",
+    arrivalDateLabel: "13 марта",
+    arrivalCity: "Ташкент",
+    arrivalCode: "TAS",
+    duration: "1ч 40 м",
+    baggage: "1PC",
+    priceDisplay: "650 000 сум",
+    terminal: "2",
+    bookingClass: "L(4)",
+    baggageWeight: "20кг",
+    operatingAirlineName: "Uzbekistan Air",
+  },
+  {
+    id: "demo-2",
+    isDirect: true,
+    itineraryType: "direct_return",
+    airlineName: "Uzbekistan Airways",
+    airlineIataCode: "HY",
+    flightNumber: "HY-123",
+    departureTime: "10:15",
+    departureDateLabel: "22 марта",
+    departureCity: "Tashkent",
+    departureCode: "TAS",
+    arrivalTime: "16:20",
+    arrivalDateLabel: "22 марта",
+    arrivalCity: "Dubai",
+    arrivalCode: "DXB",
+    duration: "5ч 5м",
+    baggage: "1PC",
+    priceDisplay: "772 000 сум",
+    returnFlight: {
+      id: "demo-2-return",
+      isDirect: true,
+      itineraryType: "direct_return",
+      airlineName: "Uzbekistan Airways",
+      airlineIataCode: "HY",
+      flightNumber: "HY-124",
+      departureTime: "19:40",
+      departureDateLabel: "29 марта",
+      departureCity: "Dubai",
+      departureCode: "DXB",
+      arrivalTime: "01:15",
+      arrivalDateLabel: "30 марта",
+      arrivalCity: "Tashkent",
+      arrivalCode: "TAS",
+      duration: "4ч 35м",
+      baggage: "1PC",
+      priceDisplay: "772 000 сум",
+    },
+  },
+  {
+    id: "demo-3",
+    isDirect: false,
+    itineraryType: "complex",
+    transferAirportCode: "DXB",
+    transferLayoverMinutes: 40,
+    airlineName: "Turkish airlines",
+    airlineIataCode: "TK",
+    flightNumber: "TK 102 + TK 371",
+    departureTime: "08:10",
+    departureDateLabel: "15 марта",
+    departureCity: "Москва",
+    departureCode: "VKO",
+    arrivalTime: "08:50",
+    arrivalDateLabel: "16 марта",
+    arrivalCity: "Ташкент",
+    arrivalCode: "TAS",
+    duration: "18ч 40 м",
+    baggage: "2PC",
+    priceDisplay: "920 000 сум",
+    terminal: "1",
+    bookingClass: "M(2)",
+    baggageWeight: "23кг",
+    operatingAirlineName: "Turkish Airlines",
+    detailSegments: [
+      {
+        airlineName: "Turkish airlines",
+        airlineIataCode: "TK",
+        flightNumber: "TK 102",
+        departureTime: "08:10",
+        departureDateLabel: "15 марта",
+        departureCity: "Москва",
+        departureCode: "VKO",
+        arrivalTime: "16:20",
+        arrivalDateLabel: "15 марта",
+        arrivalCity: "Дубай",
+        arrivalCode: "DXB",
+        duration: "8ч 10м",
+        baggage: "2PC",
+        terminal: "1",
+        bookingClass: "M(2)",
+        baggageWeight: "23кг",
+        operatingAirlineName: "Turkish Airlines",
+      },
+      {
+        airlineName: "Turkish airlines",
+        airlineIataCode: "TK",
+        flightNumber: "TK 371",
+        departureTime: "17:00",
+        departureDateLabel: "15 марта",
+        departureCity: "Дубай",
+        departureCode: "DXB",
+        arrivalTime: "08:50",
+        arrivalDateLabel: "16 марта",
+        arrivalCity: "Ташкент",
+        arrivalCode: "TAS",
+        duration: "12ч 50м",
+        baggage: "2PC",
+        terminal: "1",
+        bookingClass: "M(2)",
+        baggageWeight: "23кг",
+        operatingAirlineName: "Turkish Airlines",
+      },
+    ],
+  },
+] as const
+
+export type FlightSearchQueryResult = {
+  results: FlightSearchResult[]
+  /** Total offers matching the query; may exceed `results.length` (pagination). */
+  totalCount: number
+}
+
 /**
- * Loads flight offers for the search route. Replace with real API integration.
+ * Loads flight offers for the search route. Returns demo data until the API is wired.
  */
 export async function getFlightSearchResults(
   _query: Readonly<Record<string, string | string[] | undefined>>
-): Promise<FlightSearchResult[]> {
+): Promise<FlightSearchQueryResult> {
   void _query
-  return []
+  return {
+    results: [...demoResults],
+    totalCount: 424,
+  }
 }

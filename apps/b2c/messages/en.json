@@ -174,7 +174,91 @@
     "aboutNumbersImage1Alt": "Coastal cove with turquoise water",
     "aboutNumbersImage2Alt": "Tropical beach with palm trees",
     "searchResultsEmptyTitle": "Nothing found",
-    "searchResultsEmptyImageAlt": "Empty search results illustration"
+    "searchResultsEmptyImageAlt": "Empty search results illustration",
+    "searchResultCount": "{count, plural, one {# available option} other {# available options}}",
+    "searchFiltersAria": "Flight result filters",
+    "searchSidebarFavorites": "Favorites",
+    "searchSidebarStops": "Stops",
+    "searchStops": {
+      "all": "All",
+      "direct": "Non-stop",
+      "one": "1 stop",
+      "two": "2 stops",
+      "three": "3 stops"
+    },
+    "searchSidebarTimeTitle": "Departure & arrival time",
+    "searchSidebarDepartureTas": "Departure from TAS",
+    "searchSidebarArrivalDxb": "Arrival in DXB",
+    "searchSidebarAirlines": "Airlines",
+    "searchAirlines": {
+      "all": "All",
+      "uz": "Uz Airways",
+      "qatar": "Qatar Airways",
+      "aa": "American Airlines"
+    },
+    "searchSidebarCabin": "Cabin",
+    "searchCabin": {
+      "economy": "Economy",
+      "economy_premium": "Premium economy",
+      "business": "Business",
+      "first": "First"
+    },
+    "searchSidebarReviewRating": "Review score",
+    "searchRating": {
+      "any": "Any score",
+      "super9": "Great: 9+",
+      "very8": "Very good: 8+",
+      "good7": "Good: 7+",
+      "ok6": "OK: 6+",
+      "fair5": "So-so: 5+"
+    },
+    "searchSidebarMeals": "Meals",
+    "searchMeals": {
+      "all": "All",
+      "breakfast": "Breakfast included",
+      "snack": "Snack"
+    },
+    "searchSidebarTransferCities": "Connection cities",
+    "searchTransferCities": {
+      "dubai": "Dubai"
+    },
+    "searchDateTabsLabel": "Length of stay",
+    "searchDateTabDays": "{count, plural, one {# day} other {# days}}",
+    "searchPriceGraphTitle": "Price chart",
+    "searchPriceGraphZoomIn": "Zoom in",
+    "searchPriceGraphZoomOut": "Zoom out",
+    "searchPriceGraphPrevious": "Previous period",
+    "searchPriceGraphNext": "Next period",
+    "searchPriceBarLabel": "Price {index}",
+    "searchSortBy": "Sort by:",
+    "searchSort": {
+      "popularity": "Popularity",
+      "price": "Price",
+      "rating": "Rating"
+    },
+    "searchCompare": "Compare",
+    "searchFlightInFlight": "In flight {duration}",
+    "searchFlightTimelineTagDirect": "Non-stop",
+    "searchFlightTimelineTagComplex": "Connections",
+    "searchFlightTransferLayoverShort": "{minutes} min",
+    "searchFlightTransferInCity": "Transfer in {city}",
+    "searchFlightDetailsTransferDuration": "{minutes} min",
+    "searchFlightDetailsLink": "Flight details",
+    "searchFlightCardDirect": "Non-stop",
+    "searchFlightCardWithStops": "With connections",
+    "searchFlightShowDetails": "Show details",
+    "searchFlightHideDetails": "Hide leg details",
+    "searchFlightAddCompare": "Add to compare",
+    "searchFlightAddCollection": "Add to a list",
+    "searchFlightSelectFares": "Select fares",
+    "searchFlightToggleFavorite": "Save to favorites",
+    "searchFlightBaggageLabel": "Baggage",
+    "searchFlightAirlineLabel": "Airline",
+    "searchFlightTerminalLabel": "Departure terminal",
+    "searchFlightClassLabel": "Class",
+    "searchFlightValueNotAvailable": "N/A",
+    "searchFlightDetailsLegOutbound": "Outbound",
+    "searchFlightDetailsLegReturn": "Return"
   },
   "profile": {
     "title": "Client profile",

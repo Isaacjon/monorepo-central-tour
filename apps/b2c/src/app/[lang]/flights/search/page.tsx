@@ -10,7 +10,9 @@ export default async function FlightsSearchRoutePage({
 }) {
   const { lang } = await params
   const query = searchParams ? await searchParams : {}
-  const results = await getFlightSearchResults(query)
+  const { results, totalCount } = await getFlightSearchResults(query)
 
-  return <FlightsSearchPage lang={lang} results={results} />
+  return (
+    <FlightsSearchPage lang={lang} results={results} totalCount={totalCount} />
+  )
 }

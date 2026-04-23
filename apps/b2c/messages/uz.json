@@ -174,7 +174,91 @@
     "aboutNumbersImage1Alt": "Turkuaz suvli qoya sohil",
     "aboutNumbersImage2Alt": "Palma daraxtlari bilan tropik plyaj",
     "searchResultsEmptyTitle": "Hech narsa topilmadi",
-    "searchResultsEmptyImageAlt": "Bo'sh qidiruv natijasi illustratsiyasi"
+    "searchResultsEmptyImageAlt": "Bo'sh qidiruv natijasi illustratsiyasi",
+    "searchResultCount": "{count, plural, one {# ta variant} other {# ta variant}}",
+    "searchFiltersAria": "Natijalar filtrlari",
+    "searchSidebarFavorites": "Sevimlilar",
+    "searchSidebarStops": "To'xtamalar",
+    "searchStops": {
+      "all": "Hammasi",
+      "direct": "To'g'ridan-to'g'ri",
+      "one": "1 to'xtama",
+      "two": "2 to'xtama",
+      "three": "3 to'xtama"
+    },
+    "searchSidebarTimeTitle": "Uchish / kelish vaqti",
+    "searchSidebarDepartureTas": "TAS dan uchish",
+    "searchSidebarArrivalDxb": "DXB da kelish",
+    "searchSidebarAirlines": "Aviakompaniyalar",
+    "searchAirlines": {
+      "all": "Hammasi",
+      "uz": "Uz Airways",
+      "qatar": "Qatar Airways",
+      "aa": "American Airlines"
+    },
+    "searchSidebarCabin": "Klass",
+    "searchCabin": {
+      "economy": "Ekonom",
+      "economy_premium": "Yuqori ekonom",
+      "business": "Biznes",
+      "first": "Birinchi"
+    },
+    "searchSidebarReviewRating": "Sharhlar bo'yicha baho",
+    "searchRating": {
+      "any": "Istalgan baho",
+      "super9": "A'lo: 9+",
+      "very8": "Juda yaxshi: 8+",
+      "good7": "Yaxshi: 7+",
+      "ok6": "Yaxshi: 6+",
+      "fair5": "O'rtacha: 5+"
+    },
+    "searchSidebarMeals": "Ovqat",
+    "searchMeals": {
+      "all": "Hammasi",
+      "breakfast": "Nonushta kiritilgan",
+      "snack": "Gazak"
+    },
+    "searchSidebarTransferCities": "Aloqador shaharlar",
+    "searchTransferCities": {
+      "dubai": "Dubay"
+    },
+    "searchDateTabsLabel": "Sayohat davomiyligi",
+    "searchDateTabDays": "{count, plural, one {# kun} other {# kun}}",
+    "searchPriceGraphTitle": "Narx grafigi",
+    "searchPriceGraphZoomIn": "Kattalashtirish",
+    "searchPriceGraphZoomOut": "Kichiklashtirish",
+    "searchPriceGraphPrevious": "Oldingi davr",
+    "searchPriceGraphNext": "Keyingi davr",
+    "searchPriceBarLabel": "Narx, ustun {index}",
+    "searchSortBy": "Saralash:",
+    "searchSort": {
+      "popularity": "Mashhurlik",
+      "price": "Narx",
+      "rating": "Reyting"
+    },
+    "searchCompare": "Solishtirish",
+    "searchFlightInFlight": "yo'lda {duration}",
+    "searchFlightTimelineTagDirect": "To'g'ridan-to'g'ri",
+    "searchFlightTimelineTagComplex": "Aloqalar bilan",
+    "searchFlightTransferLayoverShort": "{minutes} daq",
+    "searchFlightTransferInCity": "Aloqa: {city}",
+    "searchFlightDetailsTransferDuration": "{minutes} daq",
+    "searchFlightDetailsLink": "Parvoz tafsilotlari",
+    "searchFlightCardDirect": "To'g'ri parvoz",
+    "searchFlightCardWithStops": "Aloqalar bilan",
+    "searchFlightShowDetails": "Batafsil",
+    "searchFlightHideDetails": "Batafsil yashirish",
+    "searchFlightAddCompare": "Solishtirishga qo'shish",
+    "searchFlightAddCollection": "Parchaga qo'shish",
+    "searchFlightSelectFares": "Tariflarni tanlash",
+    "searchFlightToggleFavorite": "Sevimlilarga",
+    "searchFlightBaggageLabel": "Bagaj",
+    "searchFlightAirlineLabel": "Aviakompaniya",
+    "searchFlightTerminalLabel": "Uchish terminali",
+    "searchFlightClassLabel": "Klass",
+    "searchFlightValueNotAvailable": "Mavjud emas",
+    "searchFlightDetailsLegOutbound": "Borish",
+    "searchFlightDetailsLegReturn": "Qaytish"
   },
   "profile": {
     "title": "Mijoz profili",
