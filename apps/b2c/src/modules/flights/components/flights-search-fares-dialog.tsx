@@ -117,7 +117,7 @@ export function FlightsSearchFaresDialog({
         <div className="min-h-0 flex-1 overflow-y-auto bg-white p-6 pb-28">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <DialogTitle className="font-[family-name:var(--font-inter-stack,Inter,ui-sans-serif,sans-serif)] text-[28px] leading-8 font-bold text-[#111126]">
+              <DialogTitle className="font-(family-name:--font-inter-stack,Inter,ui-sans-serif,sans-serif) text-[28px] leading-8 font-bold text-[#111126]">
                 <span className="flex items-center gap-[6px]">
                   <span>{title.from}</span>
                   <span

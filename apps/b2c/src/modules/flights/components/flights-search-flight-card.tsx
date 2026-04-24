@@ -101,13 +101,13 @@ export function FlightsSearchFlightCard({
         <div className="flex flex-wrap items-center justify-end gap-3">
           <button
             type="button"
-            className="text-base leading-[22px] font-normal text-black transition-opacity hover:opacity-75"
+            className="cursor-pointer text-base leading-[22px] font-normal text-black transition-opacity hover:opacity-75"
             onClick={() => setFaresDialogOpen(true)}
           >
             {t("searchFlightSelectFares")}
           </button>
           <PrimaryButton
-            className="min-h-0 rounded-xl px-4 py-2.5 text-base leading-[22px] font-medium"
+            className="min-h-0 cursor-pointer rounded-xl px-4 py-2.5 text-base leading-[22px] font-medium"
             size="sm"
             type="button"
           >

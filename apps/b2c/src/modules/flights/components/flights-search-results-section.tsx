@@ -38,9 +38,32 @@ export function FlightsSearchResultsSection({
 
   if (isPending) {
     return (
-      <p className="ct-container my-4 text-base leading-[22px] text-[#667085]">
-        {t("searchResultsLoading")}
-      </p>
+      <div
+        className="ct-container my-4 space-y-4"
+        role="status"
+        aria-live="polite"
+      >
+        <div className="flex items-center gap-3 text-base leading-[22px] text-[#667085]">
+          <span
+            className="border-primary size-4 animate-spin rounded-full border-2 border-r-transparent"
+            aria-hidden
+          />
+          <p>{t("searchResultsLoading")}</p>
+        </div>
+
+        <div className="space-y-3" aria-hidden>
+          {Array.from({ length: 3 }).map((_, index) => (
+            <div
+              key={`search-results-loading-skeleton-${index}`}
+              className="animate-pulse rounded-2xl border border-[#EAECF0] bg-white p-4"
+            >
+              <div className="mb-3 h-4 w-1/3 rounded bg-[#EAECF0]" />
+              <div className="mb-2 h-3 w-4/5 rounded bg-[#F2F4F7]" />
+              <div className="h-3 w-2/3 rounded bg-[#F2F4F7]" />
+            </div>
+          ))}
+        </div>
+      </div>
     )
   }
 
