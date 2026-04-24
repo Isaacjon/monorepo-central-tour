@@ -1,5 +1,8 @@
-import { encodeGuestRooms } from "./guest-rooms-url"
-import type { FlightRoomGuests } from "../components/flights-passengers-popover/flight-room-guests"
+import {
+  flightCabinToParam,
+  syncFlightChildAgesLength,
+  type FlightPassengersSelection,
+} from "../types/flight-passengers"
 
 type SearchLocation = {
   id: string
@@ -9,7 +12,7 @@ type SearchLocation = {
 type BuildFlightsSearchHrefInput = {
   searchHref: string
   tripType: "round-trip" | "one-way" | "no-stops"
-  passengerRooms: FlightRoomGuests[]
+  passengers: FlightPassengersSelection
   fromSearchValue: string
   toSearchValue: string
   fromLocation: SearchLocation | null
@@ -28,7 +31,7 @@ function formatDateParam(date: Date): string {
 export function buildFlightsSearchHref({
   searchHref,
   tripType,
-  passengerRooms,
+  passengers,
   fromSearchValue,
   toSearchValue,
   fromLocation,
@@ -40,7 +43,21 @@ export function buildFlightsSearchHref({
   const params = new URLSearchParams(existingQuery)
 
   params.set("tripType", tripType)
-  params.set("rooms", encodeGuestRooms(passengerRooms))
+  params.set("adults", String(passengers.adults))
+  params.set("children", String(passengers.children))
+  params.set("cabin", flightCabinToParam(passengers.cabin))
+  if (passengers.children > 0) {
+    const ages = syncFlightChildAgesLength(
+      passengers.children,
+      passengers.childAges
+    )
+      .map((a) => (a === undefined ? "_" : String(a)))
+      .join(",")
+    params.set("childAges", ages)
+  } else {
+    params.delete("childAges")
+  }
+  params.delete("rooms")
 
   if (fromSearchValue) {
     params.set("fromQuery", fromSearchValue)

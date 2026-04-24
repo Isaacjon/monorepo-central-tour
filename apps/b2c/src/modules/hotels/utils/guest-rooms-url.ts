@@ -1,8 +1,8 @@
-import type { FlightRoomGuests } from "../components/flights-passengers-popover/flight-room-guests"
+import type { HotelRoomGuests } from "../components/hotels-guests-popover/hotel-room-guests"
 import {
   cloneRooms,
   defaultFirstRoom,
-} from "../components/flights-passengers-popover/flight-room-guests"
+} from "../components/hotels-guests-popover/hotel-room-guests"
 
 const ROOM_SEP = "/"
 
@@ -10,11 +10,11 @@ const ROOM_SEP = "/"
  * Readable URL encoding: rooms separated by `/`, each room `adults-children` or
  * `adults-children-age1,age2` (use `_` for an age not yet selected).
  */
-export function encodeGuestRooms(rooms: FlightRoomGuests[]): string {
+export function encodeGuestRooms(rooms: HotelRoomGuests[]): string {
   return rooms.map(encodeRoom).join(ROOM_SEP)
 }
 
-function encodeRoom(r: FlightRoomGuests): string {
+function encodeRoom(r: HotelRoomGuests): string {
   if (r.children === 0) {
     return `${r.adults}-0`
   }
@@ -22,7 +22,7 @@ function encodeRoom(r: FlightRoomGuests): string {
   return `${r.adults}-${r.children}-${ages}`
 }
 
-export function decodeGuestRooms(raw: string): FlightRoomGuests[] {
+export function decodeGuestRooms(raw: string): HotelRoomGuests[] {
   const trimmed = raw.trim()
   if (!trimmed) {
     return cloneRooms([defaultFirstRoom()])
@@ -30,7 +30,7 @@ export function decodeGuestRooms(raw: string): FlightRoomGuests[] {
   return trimmed.split(ROOM_SEP).map(decodeRoom)
 }
 
-function decodeRoom(part: string): FlightRoomGuests {
+function decodeRoom(part: string): HotelRoomGuests {
   const segments = part.split("-")
   const adults = Math.max(0, Number.parseInt(segments[0] ?? "0", 10) || 0)
   const children = Math.max(0, Number.parseInt(segments[1] ?? "0", 10) || 0)

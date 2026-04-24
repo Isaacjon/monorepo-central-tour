@@ -17,6 +17,7 @@ export function getFlightsFilterCopy(
     returnPlaceholder: t("filterReturnPlaceholder"),
     passengersLabel: t("filterPassengers"),
     searchLabel: t("filterSearch"),
+    searchDisabledHint: t("filterSearchDisabledHint"),
     complexRouteLabel: t("filterComplexRoute"),
     roundTripLabel: t("filterRoundTrip"),
     oneWayLabel: t("filterOneWay"),

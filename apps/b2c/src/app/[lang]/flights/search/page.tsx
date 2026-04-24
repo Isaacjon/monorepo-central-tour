@@ -1,5 +1,7 @@
 import { FlightsSearchPage } from "@/modules/flights/pages/flights-search-page"
-import { getFlightSearchResults } from "@/modules/flights/services/flight-search/get-flight-search-results"
+
+/** Query string must be read per request (layout uses `generateStaticParams` for `[lang]`). */
+export const dynamic = "force-dynamic"
 
 export default async function FlightsSearchRoutePage({
   params,
@@ -10,9 +12,6 @@ export default async function FlightsSearchRoutePage({
 }) {
   const { lang } = await params
   const query = searchParams ? await searchParams : {}
-  const { results, totalCount } = await getFlightSearchResults(query)
 
-  return (
-    <FlightsSearchPage lang={lang} results={results} totalCount={totalCount} />
-  )
+  return <FlightsSearchPage lang={lang} searchQuery={query} />
 }

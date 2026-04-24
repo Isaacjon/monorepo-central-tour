@@ -4,18 +4,14 @@ import { useTranslations } from "next-intl"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { ChevronDownIcon, cn, Popover, PopoverContent, PopoverTrigger } from "ui"
 
+import { FlightsPassengersFormContent } from "./flights-passengers-form-content"
 import {
-  cloneRooms,
-  defaultAdditionalRoom,
-  defaultFirstRoom,
-  type FlightRoomGuests,
-  MAX_PER_ROOM,
-  MAX_ROOMS,
-  totalGuests,
-} from "./flight-room-guests"
-import { FlightsGuestPickerContent } from "./flights-guest-picker-content"
+  type FlightCabin,
+  type FlightPassengersSelection,
+  normalizeFlightPassengersSelection,
+} from "../../types/flight-passengers"
 
-export type { FlightRoomGuests }
+export type { FlightCabin, FlightPassengersSelection }
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n))
@@ -26,7 +22,9 @@ type FlightsPassengersPopoverProps = {
   className?: string
   triggerClassName?: string
   minWidth?: number
-  onChange?: (value: { rooms: FlightRoomGuests[]; totalGuests: number }) => void
+  /** Seeds saved/draft state on mount (e.g. from URL). */
+  initialPassengers?: FlightPassengersSelection
+  onChange?: (value: FlightPassengersSelection) => void
 }
 
 export function FlightsPassengersPopover({
@@ -34,86 +32,73 @@ export function FlightsPassengersPopover({
   className,
   triggerClassName,
   minWidth = 160,
+  initialPassengers,
   onChange,
 }: FlightsPassengersPopoverProps) {
   const t = useTranslations("flights")
   const [open, setOpen] = useState(false)
-  const [savedRooms, setSavedRooms] = useState<FlightRoomGuests[]>([
-    defaultFirstRoom(),
-  ])
-  const [draftRooms, setDraftRooms] = useState<FlightRoomGuests[]>(() =>
-    cloneRooms([defaultFirstRoom()])
+  const [saved, setSaved] = useState<FlightPassengersSelection>(() =>
+    normalizeFlightPassengersSelection(initialPassengers)
+  )
+  const [draft, setDraft] = useState<FlightPassengersSelection>(() =>
+    normalizeFlightPassengersSelection(initialPassengers)
   )
 
   const openPopover = useCallback(
     (next: boolean) => {
       setOpen(next)
       if (next) {
-        setDraftRooms(cloneRooms(savedRooms))
+        setDraft({ ...saved })
       }
     },
-    [savedRooms]
+    [saved]
   )
 
-  const summaryTotal = useMemo(() => totalGuests(savedRooms), [savedRooms])
+  const summaryTotal = useMemo(
+    () => saved.adults + saved.children,
+    [saved.adults, saved.children]
+  )
 
   useEffect(() => {
-    onChange?.({
-      rooms: cloneRooms(savedRooms),
-      totalGuests: summaryTotal,
-    })
-  }, [onChange, savedRooms, summaryTotal])
+    onChange?.({ ...saved })
+  }, [onChange, saved])
 
-  const updateDraftRoom = (
-    index: number,
-    updater: (r: FlightRoomGuests) => FlightRoomGuests
-  ) => {
-    setDraftRooms((prev) => prev.map((r, i) => (i === index ? updater(r) : r)))
+  const setDraftAdults = (delta: number) => {
+    setDraft((prev) => ({
+      ...prev,
+      adults: clamp(prev.adults + delta, 1, 9),
+    }))
   }
 
-  const setAdults = (index: number, delta: number) => {
-    updateDraftRoom(index, (r) => {
-      const adults = clamp(r.adults + delta, 0, MAX_PER_ROOM)
-      return { ...r, adults }
-    })
-  }
-
-  const setChildren = (index: number, delta: number) => {
-    updateDraftRoom(index, (r) => {
-      const children = clamp(r.children + delta, 0, MAX_PER_ROOM)
-      let childAges = [...r.childAges]
-      if (children < childAges.length) {
-        childAges = childAges.slice(0, children)
+  const setDraftChildren = (delta: number) => {
+    setDraft((prev) => {
+      const nextChildren = clamp(prev.children + delta, 0, 9)
+      let childAges = [...prev.childAges]
+      if (nextChildren < childAges.length) {
+        childAges = childAges.slice(0, nextChildren)
       } else {
-        while (childAges.length < children) {
+        while (childAges.length < nextChildren) {
           childAges.push(undefined)
         }
       }
-      return { ...r, children, childAges }
+      return { ...prev, children: nextChildren, childAges }
     })
   }
 
-  const setChildAge = (
-    roomIndex: number,
-    childIndex: number,
-    age: number | undefined
-  ) => {
-    updateDraftRoom(roomIndex, (r) => {
-      const childAges = [...r.childAges]
+  const setDraftChildAge = (childIndex: number, age: number | undefined) => {
+    setDraft((prev) => {
+      const childAges = [...prev.childAges]
       childAges[childIndex] = age
-      return { ...r, childAges }
+      return { ...prev, childAges }
     })
   }
 
-  const addRoom = () => {
-    setDraftRooms((prev) => {
-      if (prev.length >= MAX_ROOMS) return prev
-      return [...prev, defaultAdditionalRoom()]
-    })
+  const setDraftCabin = (cabin: FlightCabin) => {
+    setDraft((prev) => ({ ...prev, cabin }))
   }
 
   const save = () => {
-    setSavedRooms(cloneRooms(draftRooms))
+    setSaved({ ...draft })
     setOpen(false)
   }
 
@@ -153,12 +138,15 @@ export function FlightsPassengersPopover({
         className="border-[#EAECF0] p-0 shadow-[0px_12px_16px_0px_rgba(16,24,40,0.08),0px_4px_6px_0px_rgba(16,24,40,0.03)] w-[min(100vw-24px,336px)]"
         onOpenAutoFocus={(e) => e.preventDefault()}
       >
-        <FlightsGuestPickerContent
-          draftRooms={draftRooms}
-          setAdults={setAdults}
-          setChildren={setChildren}
-          setChildAge={setChildAge}
-          addRoom={addRoom}
+        <FlightsPassengersFormContent
+          draftAdults={draft.adults}
+          draftChildren={draft.children}
+          draftChildAges={draft.childAges}
+          draftCabin={draft.cabin}
+          setDraftAdults={setDraftAdults}
+          setDraftChildren={setDraftChildren}
+          setDraftChildAge={setDraftChildAge}
+          setDraftCabin={setDraftCabin}
           save={save}
         />
       </PopoverContent>

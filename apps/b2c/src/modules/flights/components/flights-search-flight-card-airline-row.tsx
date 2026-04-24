@@ -1,39 +1,30 @@
 import { cn } from "ui"
 
 import { FlightsAirlineLogo } from "./flights-airline-logo"
-import type { FlightSearchLeg } from "../types/flight-search-result"
-
-/** First segment’s flight number for the summary row (hide “TK 102 + TK 371” style joins). */
-function primaryFlightNumber(leg: FlightSearchLeg): string {
-  const fromSegment = leg.detailSegments?.[0]?.flightNumber
-  if (fromSegment) {
-    return fromSegment
-  }
-  const raw = leg.flightNumber
-  const join = " + "
-  const idx = raw.indexOf(join)
-  return idx === -1 ? raw : raw.slice(0, idx).trim()
-}
+import type { FlightOfferDirectionApi } from "../types/flight-offers-search-api"
 
 type FlightsSearchFlightCardAirlineRowProps = {
-  rowFlight: FlightSearchLeg
+  direction: FlightOfferDirectionApi
   className?: string
 }
 
 export function FlightsSearchFlightCardAirlineRow({
-  rowFlight,
+  direction,
   className,
 }: FlightsSearchFlightCardAirlineRowProps) {
-  const numberLabel = primaryFlightNumber(rowFlight)
-  const airlineLabel = `${rowFlight.airlineName} (${numberLabel})`
+  const first = direction.segments[0]
+  if (!first) {
+    return null
+  }
+  const marketing = first.marketingCarrier
+  const numberLabel = first.flightNumber
+  const airlineLabel = `${marketing.name} (${numberLabel})`
 
   return (
-    <div
-      className={cn("flex min-w-0 items-center gap-1.5", className)}
-    >
+    <div className={cn("flex min-w-0 items-center gap-1.5", className)}>
       <FlightsAirlineLogo
         flightNumber={numberLabel}
-        airlineIataCode={rowFlight.airlineIataCode}
+        airlineIataCode={marketing.code}
       />
       <p className="truncate text-[15px] leading-[22px] font-medium text-[#0C111D]">
         {airlineLabel}

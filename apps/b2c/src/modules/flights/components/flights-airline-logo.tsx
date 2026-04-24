@@ -1,8 +1,4 @@
-import {
-  FlightAirplaneIcon,
-  TurkishAirlinesIcon,
-  UzbAirwaysIcon,
-} from "ui"
+import { TurkishAirlinesIcon, UzbAirwaysIcon } from "ui"
 
 type FlightsAirlineLogoProps = {
   flightNumber: string
@@ -23,17 +19,33 @@ export function FlightsAirlineLogo({
   airlineIataCode,
   className,
 }: FlightsAirlineLogoProps) {
-  const code = (airlineIataCode ?? iataFromFlightNumber(flightNumber) ?? "").toUpperCase()
+  const code = (
+    airlineIataCode ??
+    iataFromFlightNumber(flightNumber) ??
+    ""
+  ).toUpperCase()
   const common = `size-6 shrink-0 ${className ?? ""}`.trim()
 
   if (code === "TK") {
-    return <TurkishAirlinesIcon className={common} width={24} height={24} aria-hidden />
+    return (
+      <TurkishAirlinesIcon
+        className={common}
+        width={24}
+        height={24}
+        aria-hidden
+      />
+    )
   }
   if (code === "HY") {
-    return <UzbAirwaysIcon className={common} width={24} height={24} aria-hidden />
+    return (
+      <UzbAirwaysIcon className={common} width={24} height={24} aria-hidden />
+    )
   }
 
   return (
-    <FlightAirplaneIcon className={common} width={24} height={24} aria-hidden />
+    <span
+      className={`${common} block size-5 rounded-full bg-[#f5f5f5]`}
+      aria-hidden
+    />
   )
 }

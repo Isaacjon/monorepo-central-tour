@@ -39,6 +39,11 @@ export type DateRangePickerProps = Omit<
   clearable?: boolean
   resetable?: boolean
   locale?: Locale
+  /**
+   * When true, the first selected date calls `onSelect({ from, to: undefined })` immediately
+   * and closes the popover so one-way flows can apply departure without waiting for return.
+   */
+  commitFromWithoutTo?: boolean
 }
 
 function DateRangePicker({
@@ -59,6 +64,7 @@ function DateRangePicker({
   clearable = true,
   resetable = true,
   locale = ru,
+  commitFromWithoutTo = false,
   ...props
 }: DateRangePickerProps) {
   const [isOpen, setIsOpen] = React.useState(false)
@@ -121,8 +127,13 @@ function DateRangePicker({
   }
 
   const handleFromDateSelect = (triggerDate: Date) => {
-    // choosing from date - set from date
     const valueToSet = { from: triggerDate, to: undefined }
+    if (commitFromWithoutTo) {
+      onSelect?.(valueToSet)
+      setTempRange(undefined)
+      setIsOpen(false)
+      return
+    }
     setTempRange(valueToSet)
   }
 

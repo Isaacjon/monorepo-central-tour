@@ -2,28 +2,10 @@ import { getTranslations } from "next-intl/server"
 
 import { AppHeader } from "@/shared/components/common/app-header"
 import { B2cSiteFooter } from "@/shared/components/common/b2c-site-footer"
-import { FlightsFilter } from "../components/flights-filter"
-import { FlightsSearchResultsSection } from "../components/flights-search-results-section"
-import {
-  getFlightsFilterCopy,
-  getFlightsSearchRouteHref,
-} from "../utils/get-flights-filter-copy"
-import {
-  flightsSearchQueryKey,
-  parseFlightsFilterFromQuery,
-} from "../utils/parse-flights-filter-from-query"
+import { FlightsCheckoutFlightCard } from "../components/flights-checkout-flight-card"
 
-export async function FlightsSearchPage({
-  lang,
-  searchQuery,
-}: {
-  lang: string
-  searchQuery: Readonly<Record<string, string | string[] | undefined>>
-}) {
-  const t = await getTranslations("flights")
+export async function FlightsCheckoutPage({ lang }: { lang: string }) {
   const th = await getTranslations("appHeader")
-  const initialFilter = parseFlightsFilterFromQuery(searchQuery)
-  const filterQueryKey = flightsSearchQueryKey(searchQuery)
 
   return (
     <div className="flex min-h-screen flex-col bg-[#F5F7FB]">
@@ -50,23 +32,8 @@ export async function FlightsSearchPage({
         }}
       />
 
-      <main className="flex flex-1 flex-col">
-        <div className="ct-container py-6">
-          <div
-            className="rounded-[24px] bg-white p-5"
-            style={{
-              boxShadow: "0px 12px 100px 0px rgba(0,0,0,0.04)",
-            }}
-          >
-            <FlightsFilter
-              key={filterQueryKey}
-              copy={getFlightsFilterCopy(t)}
-              searchHref={getFlightsSearchRouteHref(lang)}
-              initialFilter={initialFilter}
-            />
-          </div>
-        </div>
-        <FlightsSearchResultsSection searchQuery={searchQuery} />
+      <main className="ct-container flex flex-1 py-8">
+        <FlightsCheckoutFlightCard lang={lang} />
       </main>
 
       <B2cSiteFooter lang={lang} />

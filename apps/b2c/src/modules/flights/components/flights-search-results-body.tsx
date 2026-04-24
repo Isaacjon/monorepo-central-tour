@@ -6,17 +6,21 @@ import { useMemo } from "react"
 
 import { FlightsSearchMainColumn } from "./flights-search-main-column"
 import { FlightsSearchSidebar } from "./flights-search-sidebar"
-import type { FlightSearchResult } from "../types/flight-search-result"
+import type { FlightOffersSearchResultBody } from "../types/flight-offers-search-api"
 import { getFlightsSearchAirportCodes } from "../utils/get-flights-search-airport-codes"
 
 type FlightsSearchResultsBodyProps = {
-  totalCount: number
-  results: readonly FlightSearchResult[]
+  searchResult: FlightOffersSearchResultBody
+  hasNextPage?: boolean
+  onLoadMore?: () => void
+  isFetchingNextPage?: boolean
 }
 
 export function FlightsSearchResultsBody({
-  totalCount,
-  results,
+  searchResult,
+  hasNextPage = false,
+  onLoadMore,
+  isFetchingNextPage = false,
 }: FlightsSearchResultsBodyProps) {
   const t = useTranslations("flights")
   const searchParams = useSearchParams()
@@ -25,6 +29,8 @@ export function FlightsSearchResultsBody({
       getFlightsSearchAirportCodes(Object.fromEntries(searchParams.entries())),
     [searchParams]
   )
+
+  const totalCount = searchResult.meta.totalOffers
 
   return (
     <>
@@ -36,7 +42,12 @@ export function FlightsSearchResultsBody({
           departureAirportCode={departureCode}
           arrivalAirportCode={arrivalCode}
         />
-        <FlightsSearchMainColumn results={results} />
+        <FlightsSearchMainColumn
+          searchResult={searchResult}
+          hasNextPage={hasNextPage}
+          onLoadMore={onLoadMore}
+          isFetchingNextPage={isFetchingNextPage}
+        />
       </div>
     </>
   )

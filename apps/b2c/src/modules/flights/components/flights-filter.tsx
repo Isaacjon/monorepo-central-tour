@@ -1,95 +1,152 @@
 "use client"
 
-import Link from "next/link"
+import { startOfToday } from "date-fns"
 import { useCallback, useMemo, useState } from "react"
-import {
-  BezierCurveIcon,
-  DateRangePicker,
-  type DateRangePickerProps,
-  FlightAirplaneIcon,
-} from "ui"
+import { DateRangePicker, type DateRangePickerProps } from "ui"
 
 import { FlightLocationSelect } from "./flight-location-select"
+import { FlightsFilterSearchControl } from "./flights-filter-search-control"
+import { FlightsFilterTripTypeControls } from "./flights-filter-trip-type-controls"
 import {
   type FlightsFilterCopy,
   getTripTypeOptions,
   type TripType,
 } from "./flights-filter.config"
-import { FlightsPassengersPopover } from "./flights-passengers-popover"
 import {
-  cloneRooms,
-  defaultFirstRoom,
-  type FlightRoomGuests,
-} from "./flights-passengers-popover/flight-room-guests"
+  airportDtosToLocationOptions,
+  flightLocationFromUrlFields,
+  upgradeLocationFromAirports,
+} from "./flights-filter.utils"
+import { FlightsPassengersPopover } from "./flights-passengers-popover"
 import { useAirportsQuery } from "../services/airports/airports.query"
 import type { FlightLocationOption } from "../types/flight-location"
+import {
+  type FlightPassengersSelection,
+  normalizeFlightPassengersSelection,
+} from "../types/flight-passengers"
 import { buildFlightsSearchHref } from "../utils/build-flights-search-href"
+import {
+  type ParsedFlightsFilterQuery,
+  parseFlightsFilterFromQuery,
+  parseLocalDateFromYmd,
+} from "../utils/parse-flights-filter-from-query"
+
 type FlightsFilterProps = {
   copy: FlightsFilterCopy
   searchHref: string
+  /** Parsed search params; defaults applied when omitted. */
+  initialFilter?: ParsedFlightsFilterQuery
 }
-export function FlightsFilter({ copy, searchHref }: FlightsFilterProps) {
-  const [tripType, setTripType] = useState<TripType>("round-trip")
-  const { data: airportDtos } = useAirportsQuery()
-  const airportOptions = useMemo((): FlightLocationOption[] => {
-    if (!airportDtos?.length) {
-      return []
-    }
-    return airportDtos.map((airport) => ({
-      id: airport.id,
-      label: airport.label,
-      icon: (
-        <FlightAirplaneIcon
-          width={24}
-          height={24}
-          aria-hidden
-          className="size-6 shrink-0 rounded-[3px] text-[#101828]"
-        />
-      ),
-    }))
-  }, [airportDtos])
+
+export function FlightsFilter({
+  copy,
+  searchHref,
+  initialFilter: initialFilterProp,
+}: FlightsFilterProps) {
+  const initialFilter = initialFilterProp ?? parseFlightsFilterFromQuery({})
+  const [tripType, setTripType] = useState<TripType>(initialFilter.tripType)
+  const [fromSearchValue, setFromSearchValue] = useState(
+    initialFilter.fromQuery
+  )
+  const [toSearchValue, setToSearchValue] = useState(initialFilter.toQuery)
+  const { data: fromAirportDtos } = useAirportsQuery(fromSearchValue)
+  const { data: toAirportDtos } = useAirportsQuery(toSearchValue)
+  const fromAirportOptions = useMemo(
+    () => airportDtosToLocationOptions(fromAirportDtos),
+    [fromAirportDtos]
+  )
+  const toAirportOptions = useMemo(
+    () => airportDtosToLocationOptions(toAirportDtos),
+    [toAirportDtos]
+  )
   const [fromLocation, setFromLocation] = useState<FlightLocationOption | null>(
-    null
+    () =>
+      flightLocationFromUrlFields(initialFilter.fromId, initialFilter.fromLabel)
   )
   const [toLocation, setToLocation] = useState<FlightLocationOption | null>(
-    null
+    () => flightLocationFromUrlFields(initialFilter.toId, initialFilter.toLabel)
   )
-  const [fromSearchValue, setFromSearchValue] = useState("")
-  const [toSearchValue, setToSearchValue] = useState("")
-  const [passengerRooms, setPassengerRooms] = useState<FlightRoomGuests[]>(() =>
-    cloneRooms([defaultFirstRoom()])
+  const effectiveFromLocation = useMemo(
+    () =>
+      upgradeLocationFromAirports(
+        fromLocation,
+        initialFilter.fromId,
+        fromAirportOptions
+      ),
+    [fromAirportOptions, fromLocation, initialFilter.fromId]
   )
-  const [travelDateRange, setTravelDateRange] =
-    useState<DateRangePickerProps["selected"]>(undefined)
+  const effectiveToLocation = useMemo(
+    () =>
+      upgradeLocationFromAirports(
+        toLocation,
+        initialFilter.toId,
+        toAirportOptions
+      ),
+    [initialFilter.toId, toAirportOptions, toLocation]
+  )
+
+  const [passengers, setPassengers] = useState<FlightPassengersSelection>(() =>
+    normalizeFlightPassengersSelection(initialFilter.passengers)
+  )
+  const [travelDateRange, setTravelDateRange] = useState<
+    DateRangePickerProps["selected"]
+  >(() => {
+    const from = parseLocalDateFromYmd(initialFilter.departureDateKey)
+    const to = parseLocalDateFromYmd(initialFilter.returnDateKey)
+    if (!from && !to) {
+      return undefined
+    }
+    return { from, to }
+  })
+
   const tripTypeOptions = getTripTypeOptions(copy)
   const searchHrefWithParams = useMemo(() => {
     return buildFlightsSearchHref({
       searchHref,
       tripType,
-      passengerRooms,
+      passengers,
       fromSearchValue,
       toSearchValue,
-      fromLocation,
-      toLocation,
+      fromLocation: effectiveFromLocation,
+      toLocation: effectiveToLocation,
       departureDate: travelDateRange?.from,
-      returnDate: travelDateRange?.to,
+      returnDate: tripType === "round-trip" ? travelDateRange?.to : undefined,
     })
   }, [
     searchHref,
     tripType,
-    passengerRooms,
+    passengers,
     fromSearchValue,
     toSearchValue,
-    fromLocation,
-    toLocation,
+    effectiveFromLocation,
+    effectiveToLocation,
     travelDateRange,
   ])
   const handlePassengersChange = useCallback(
-    ({ rooms }: { rooms: FlightRoomGuests[]; totalGuests: number }) => {
-      setPassengerRooms(rooms)
+    (value: FlightPassengersSelection) => {
+      setPassengers(value)
     },
     []
   )
+  const handleTripTypeChange = useCallback((nextTripType: TripType) => {
+    setTripType(nextTripType)
+    if (nextTripType !== "round-trip") {
+      setTravelDateRange((prev) =>
+        prev?.from ? { from: prev.from, to: undefined } : prev
+      )
+    }
+  }, [])
+
+  const canSubmitSearch = useMemo(() => {
+    const from = travelDateRange?.from
+    return Boolean(
+      effectiveFromLocation &&
+      effectiveToLocation &&
+      from &&
+      !Number.isNaN(from.getTime())
+    )
+  }, [effectiveFromLocation, effectiveToLocation, travelDateRange])
+
   return (
     <div className="flex flex-col gap-3">
       <div className="flex min-w-0 items-stretch gap-3">
@@ -99,10 +156,10 @@ export function FlightsFilter({ copy, searchHref }: FlightsFilterProps) {
           searchPlaceholder={copy.locationSearchPlaceholder}
           emptySearchLabel={copy.noLocationResults}
           airportsGroupLabel={copy.airportsGroupLabel}
-          airportOptions={airportOptions}
+          airportOptions={fromAirportOptions}
           searchValue={fromSearchValue}
           onSearchValueChange={setFromSearchValue}
-          value={fromLocation}
+          value={effectiveFromLocation}
           onChange={setFromLocation}
         />
         <FlightLocationSelect
@@ -111,16 +168,18 @@ export function FlightsFilter({ copy, searchHref }: FlightsFilterProps) {
           searchPlaceholder={copy.locationSearchPlaceholder}
           emptySearchLabel={copy.noLocationResults}
           airportsGroupLabel={copy.airportsGroupLabel}
-          airportOptions={airportOptions}
+          airportOptions={toAirportOptions}
           searchValue={toSearchValue}
           onSearchValueChange={setToSearchValue}
-          value={toLocation}
+          value={effectiveToLocation}
           onChange={setToLocation}
         />
         <div className="min-w-0 flex-1">
           <DateRangePicker
             selected={travelDateRange}
             onSelect={(range) => setTravelDateRange(range ?? undefined)}
+            commitFromWithoutTo={tripType !== "round-trip"}
+            disabledDates={{ before: startOfToday() }}
             fromLabel={copy.departureLabel}
             toLabel={copy.returnLabel}
             fromPlaceholder={copy.departurePlaceholder}
@@ -130,56 +189,22 @@ export function FlightsFilter({ copy, searchHref }: FlightsFilterProps) {
         </div>
         <FlightsPassengersPopover
           passengersLabel={copy.passengersLabel}
+          initialPassengers={passengers}
           onChange={handlePassengersChange}
         />
-        <Link
-          href={searchHrefWithParams}
-          className="bg-primary hover:bg-primary/90 flex min-h-[54px] min-w-[120px] shrink-0 items-center justify-center rounded-xl px-8 text-base font-semibold text-white transition-colors"
-        >
-          {copy.searchLabel}
-        </Link>
+        <FlightsFilterSearchControl
+          canSubmitSearch={canSubmitSearch}
+          searchHrefWithParams={searchHrefWithParams}
+          searchLabel={copy.searchLabel}
+          searchDisabledHint={copy.searchDisabledHint}
+        />
       </div>
-      <div className="flex items-center gap-4">
-        <button
-          type="button"
-          className="inline-flex items-center gap-2 text-base leading-4 font-normal text-[#101828]"
-        >
-          <BezierCurveIcon
-            width={24}
-            height={24}
-            aria-hidden
-            className="shrink-0"
-          />
-          {copy.complexRouteLabel}
-        </button>
-        {tripTypeOptions.map((option) => (
-          <label
-            key={option.id}
-            className="inline-flex cursor-pointer items-center gap-2 text-base leading-4 font-normal text-[#101828]"
-          >
-            <span
-              className="relative flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors"
-              style={{
-                borderColor:
-                  tripType === option.id ? "var(--color-primary)" : "#D0D5DD",
-              }}
-            >
-              {tripType === option.id && (
-                <span className="bg-primary h-2.5 w-2.5 rounded-full" />
-              )}
-            </span>
-            <input
-              type="radio"
-              name="trip-type"
-              value={option.id}
-              checked={tripType === option.id}
-              onChange={() => setTripType(option.id)}
-              className="sr-only"
-            />
-            {option.label}
-          </label>
-        ))}
-      </div>
+      <FlightsFilterTripTypeControls
+        complexRouteLabel={copy.complexRouteLabel}
+        tripTypeOptions={tripTypeOptions}
+        tripType={tripType}
+        onChange={handleTripTypeChange}
+      />
     </div>
   )
 }

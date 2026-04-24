@@ -4,10 +4,14 @@ import { useTranslations } from "next-intl"
 import { ArriveIcon, DepartureIcon } from "ui"
 
 import { FlightsAirlineLogo } from "./flights-airline-logo"
-import type { FlightSearchDetailSegment } from "../types/flight-search-result"
+import type { FlightOfferSegmentApi } from "../types/flight-offers-search-api-segment"
+import {
+  formatCheckedBaggageWeight,
+  formatRouteDurationMinutes,
+} from "../utils/flight-offer-ui-format"
 
 type FlightsSearchFlightDetailsSegmentProps = {
-  segment: FlightSearchDetailSegment
+  segment: FlightOfferSegmentApi
 }
 
 function cityWithCode(city: string, code: string) {
@@ -30,16 +34,30 @@ export function FlightsSearchFlightDetailsSegment({
 }: FlightsSearchFlightDetailsSegmentProps) {
   const t = useTranslations("flights")
   const valueNotAvailable = t("searchFlightValueNotAvailable")
+  const { departure, arrival, marketingCarrier, carrier, cabinClass } = segment
+  const bookingClassDisplay =
+    cabinClass.bookingClass + (segment.seats > 0 ? `(${segment.seats})` : "")
+  const durationLabel = formatRouteDurationMinutes(segment.durationMinutes)
+  const baggageWeightDisplay = formatCheckedBaggageWeight(segment.baggage)
+  const operatingName =
+    carrier.code !== marketingCarrier.code
+      ? carrier.name
+      : marketingCarrier.name
+  const terminalDisplay =
+    departure.terminal != null && departure.terminal !== ""
+      ? departure.terminal
+      : undefined
+
   return (
     <div className="flex flex-col gap-4 md:grid md:max-w-5/6 md:grid-cols-[1.35fr_0.75fr_1.15fr]">
       <div className="flex flex-col gap-2">
         <div className="flex min-w-0 items-center gap-2">
           <FlightsAirlineLogo
             flightNumber={segment.flightNumber}
-            airlineIataCode={segment.airlineIataCode}
+            airlineIataCode={marketingCarrier.code}
           />
           <p className="truncate text-[14px] leading-6 font-bold text-[#0C111D]">
-            {segment.airlineName}
+            {marketingCarrier.name}
           </p>
           <p className="ml-auto truncate text-[13px] leading-[18px] font-normal text-[#0C111D]">
             {segment.flightNumber}
@@ -67,27 +85,27 @@ export function FlightsSearchFlightDetailsSegment({
           <div className="min-w-0 flex-1 space-y-4">
             <div className="flex min-w-0 items-center gap-2 text-[#0C111D]">
               <span className="text-[16px] leading-[22px] font-medium text-[#0C111D]">
-                {segment.departureTime}
+                {departure.time}
               </span>
               <span className="truncate text-[15px] leading-[22px] font-normal text-[#000000]">
-                {cityWithCode(segment.departureCity, segment.departureCode)}
+                {cityWithCode(departure.cityName, departure.airportCode)}
               </span>
               <span className="ml-auto text-right text-[15px] leading-[22px] font-normal text-[#0C111D]">
-                {segment.departureDateLabel}
+                {departure.date}
               </span>
             </div>
             <p className="text-[13px] leading-[18px] font-normal text-[#0C111D]">
-              {segment.duration}
+              {durationLabel}
             </p>
             <div className="flex min-w-0 items-center gap-2 text-[#0C111D]">
               <span className="text-[16px] leading-[22px] font-medium text-[#0C111D]">
-                {segment.arrivalTime}
+                {arrival.time}
               </span>
               <span className="truncate text-[15px] leading-[22px] font-normal text-[#000000]">
-                {cityWithCode(segment.arrivalCity, segment.arrivalCode)}
+                {cityWithCode(arrival.cityName, arrival.airportCode)}
               </span>
               <span className="ml-auto text-right text-[15px] leading-[22px] font-normal text-[#0C111D]">
-                {segment.arrivalDateLabel}
+                {arrival.date}
               </span>
             </div>
           </div>
@@ -98,25 +116,23 @@ export function FlightsSearchFlightDetailsSegment({
         <p className="text-[15px] leading-[22px] font-normal text-[#667085]">
           {t("searchFlightBaggageLabel")}:{" "}
           <span className="font-medium text-[#0C111D]">
-            {formatOptionalDetailValue(segment.baggageWeight, valueNotAvailable)}
+            {formatOptionalDetailValue(baggageWeightDisplay, valueNotAvailable)}
           </span>
         </p>
         <p className="mt-1.5 text-[15px] leading-[22px] font-normal text-[#667085]">
           {t("searchFlightAirlineLabel")}:{" "}
-          <span className="font-medium text-[#0C111D]">
-            {segment.operatingAirlineName ?? segment.airlineName}
-          </span>
+          <span className="font-medium text-[#0C111D]">{operatingName}</span>
         </p>
         <p className="mt-1.5 text-[15px] leading-[22px] font-normal text-[#667085]">
           {t("searchFlightTerminalLabel")}:{" "}
           <span className="font-medium text-[#0C111D]">
-            {formatOptionalDetailValue(segment.terminal, valueNotAvailable)}
+            {formatOptionalDetailValue(terminalDisplay, valueNotAvailable)}
           </span>
         </p>
         <p className="mt-1.5 text-[15px] leading-[22px] font-normal text-[#667085]">
           {t("searchFlightClassLabel")}:{" "}
           <span className="font-medium text-[#0C111D]">
-            {formatOptionalDetailValue(segment.bookingClass, valueNotAvailable)}
+            {formatOptionalDetailValue(bookingClassDisplay, valueNotAvailable)}
           </span>
         </p>
       </div>

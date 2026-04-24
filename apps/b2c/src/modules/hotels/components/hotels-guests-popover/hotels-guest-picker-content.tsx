@@ -6,14 +6,14 @@ import { ChevronDownIcon, cn } from "ui"
 
 import {
   AGE_OPTIONS,
-  type FlightRoomGuests,
+  type HotelRoomGuests,
   MAX_PER_ROOM,
   MAX_ROOMS,
-} from "./flight-room-guests"
-import { GuestPickerStepper } from "./guest-picker-stepper"
+} from "./hotel-room-guests"
+import { GuestPickerStepper } from "@/shared/components/guest-picker-stepper"
 
-type FlightsGuestPickerContentProps = {
-  draftRooms: FlightRoomGuests[]
+type HotelsGuestPickerContentProps = {
+  draftRooms: HotelRoomGuests[]
   setAdults: (index: number, delta: number) => void
   setChildren: (index: number, delta: number) => void
   setChildAge: (
@@ -25,15 +25,15 @@ type FlightsGuestPickerContentProps = {
   save: () => void
 }
 
-export function FlightsGuestPickerContent({
+export function HotelsGuestPickerContent({
   draftRooms,
   setAdults,
   setChildren,
   setChildAge,
   addRoom,
   save,
-}: FlightsGuestPickerContentProps) {
-  const t = useTranslations("flights")
+}: HotelsGuestPickerContentProps) {
+  const t = useTranslations("hotels")
 
   return (
     <>

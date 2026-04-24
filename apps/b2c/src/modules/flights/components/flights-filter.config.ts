@@ -13,6 +13,8 @@ export type FlightsFilterCopy = {
   returnPlaceholder: string
   passengersLabel: string
   searchLabel: string
+  /** Shown when search is disabled (missing from, to, or departure date). */
+  searchDisabledHint: string
   complexRouteLabel: string
   roundTripLabel: string
   oneWayLabel: string

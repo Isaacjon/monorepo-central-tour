@@ -38,20 +38,31 @@ export function FlightLocationSelect({
   value,
   onChange,
 }: FlightLocationSelectProps) {
-  const byId = useMemo(() => optionMap(airportOptions), [airportOptions])
+  const optionsWithSelected = useMemo(() => {
+    if (!value) {
+      return airportOptions
+    }
+    const has = airportOptions.some((o) => o.id === value.id)
+    if (has) {
+      return airportOptions
+    }
+    return [value, ...airportOptions]
+  }, [airportOptions, value])
+
+  const byId = useMemo(() => optionMap(optionsWithSelected), [optionsWithSelected])
 
   const groups: SearchableCommandGroup[] = useMemo(
     () => [
       {
         heading: airportsGroupLabel,
-        options: airportOptions.map((o) => ({
+        options: optionsWithSelected.map((o) => ({
           value: o.id,
           label: o.label,
           icon: o.icon,
         })),
       },
     ],
-    [airportOptions, airportsGroupLabel]
+    [airportsGroupLabel, optionsWithSelected]
   )
 
   return (

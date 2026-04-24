@@ -45,8 +45,16 @@ function mapAirports(airports: ApiAirport[]): AirportOptionDto[] {
   return out
 }
 
+export type GetAirportsParams = {
+  /** Passed to U-Code `object_data.country` for location search (country/city/region per backend). */
+  country?: string
+}
+
 /** Fetches airports from U-Code (client-side; uses NEXT_PUBLIC_* env). */
-export async function getAirports(): Promise<AirportOptionDto[]> {
+export async function getAirports(
+  params: GetAirportsParams = {}
+): Promise<AirportOptionDto[]> {
+  const country = params.country?.trim() ?? ""
   const functionName =
     process.env.NEXT_PUBLIC_U_CODE_FUNCTION_NAME?.trim() ||
     "centraltour-aggregators"
@@ -57,8 +65,8 @@ export async function getAirports(): Promise<AirportOptionDto[]> {
       data: {
         method: "get_airports",
         object_data: {
-          country: "Uzbekistan",
-          city: "",
+          country: "",
+          city: country,
           airport_name: "",
           page: 1,
           limit: 50,
