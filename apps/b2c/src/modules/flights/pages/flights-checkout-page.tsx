@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server"
 
 import { AppHeader } from "@/shared/components/common/app-header"
 import { B2cSiteFooter } from "@/shared/components/common/b2c-site-footer"
-import { FlightsCheckoutFlightCard } from "../components/flights-checkout-flight-card"
+import { FlightsCheckoutContent } from "../components/flights-checkout-content"
 
 export async function FlightsCheckoutPage({ lang }: { lang: string }) {
   const th = await getTranslations("appHeader")
@@ -32,9 +32,7 @@ export async function FlightsCheckoutPage({ lang }: { lang: string }) {
         }}
       />
 
-      <main className="ct-container flex flex-1 py-8">
-        <FlightsCheckoutFlightCard lang={lang} />
-      </main>
+      <FlightsCheckoutContent lang={lang} />
 
       <B2cSiteFooter lang={lang} />
     </div>
