@@ -11,15 +11,18 @@ import { FlightsCheckoutAdditionalServicesField } from "./flights-checkout-addit
 import { FlightsCheckoutFlightCard } from "./flights-checkout-flight-card"
 import { FlightsCheckoutPaymentInformationSection } from "./flights-checkout-payment-information-section"
 import { FlightsCheckoutTravelerForm } from "./flights-checkout-traveler-form"
+import type { FlightsCheckoutContentCopy } from "../../types/flights-checkout-content-copy"
 
 type FlightsCheckoutContentProps = {
   lang: string
   checkoutResultHref: string
+  copy: FlightsCheckoutContentCopy
 }
 
 export function FlightsCheckoutContent({
   lang,
   checkoutResultHref,
+  copy,
 }: FlightsCheckoutContentProps) {
   return (
     <main className="ct-container flex flex-1 flex-col gap-6 py-8">
@@ -29,7 +32,7 @@ export function FlightsCheckoutContent({
           <section className="overflow-hidden rounded-3xl border border-[#EAECF0] bg-white shadow-[0px_12px_100px_0px_rgba(0,0,0,0.04)]">
             <header className="border-b border-[#EAECF0] px-4 py-5 md:px-6">
               <h2 className="text-[20px] leading-5 font-bold text-[#0C111D]">
-                Кто путешествует?
+                {copy.travelersTitle}
               </h2>
             </header>
             <FlightsCheckoutTravelerForm />
@@ -38,21 +41,21 @@ export function FlightsCheckoutContent({
           <section className="overflow-hidden rounded-3xl border border-[#EAECF0] bg-white shadow-[0px_12px_100px_0px_rgba(0,0,0,0.04)]">
             <header className="border-b border-[#EAECF0] px-4 py-5 md:px-6">
               <h2 className="text-[20px] leading-5 font-bold text-[#0C111D]">
-                Контактные данные
+                {copy.contactTitle}
               </h2>
             </header>
             <div className="p-4 md:p-6">
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <PhoneInputField
-                  label="Номер телефона"
-                  placeholder="+998 (__) ___-__-__"
+                  label={copy.phoneLabel}
+                  placeholder={copy.phonePlaceholder}
                   clearable
                 />
                 <StackedInputField
-                  label="Почта"
+                  label={copy.emailLabel}
                   type="email"
                   autoComplete="email"
-                  placeholder="example@mail.com"
+                  placeholder={copy.emailPlaceholder}
                 />
               </div>
             </div>
@@ -61,7 +64,7 @@ export function FlightsCheckoutContent({
           <section className="overflow-hidden rounded-3xl border border-[#EAECF0] bg-white shadow-[0px_12px_100px_0px_rgba(0,0,0,0.04)]">
             <header className="border-b border-[#EAECF0] px-4 py-5 md:px-6">
               <h2 className="text-[20px] leading-5 font-bold text-[#0C111D]">
-                Дополнительные услуги
+                {copy.additionalServicesTitle}
               </h2>
             </header>
             <div className="p-4 md:p-6">
@@ -86,7 +89,7 @@ export function FlightsCheckoutContent({
             className="rounded-full"
           >
             <Link href={checkoutResultHref}>
-              Завершить бронирование
+              {copy.completeBooking}
             </Link>
           </PrimaryButton>
         </div>

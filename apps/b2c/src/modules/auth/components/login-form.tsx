@@ -2,22 +2,16 @@
 
 import { Link } from "@central-tour/config/i18n/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useMemo, useState } from "react"
+import { useMemo } from "react"
 import { useForm, useWatch } from "react-hook-form"
 
-import { useOtpResendInterval } from "@/modules/auth/hooks/use-otp-resend-interval"
+import { useLoginOtpFlow } from "@/modules/auth/hooks/use-login-otp-flow"
 import {
   createLoginFormSchema,
   type LoginFormValues,
 } from "@/modules/auth/lib/login-schema"
 import type { LoginFormCopy } from "@/modules/auth/types/login-form-copy"
-import {
-  OTP_LENGTH,
-  OtpInput,
-  PrimaryButton,
-  SecondaryGrayButton,
-  showToast,
-} from "ui"
+import { OtpInput, PrimaryButton, SecondaryGrayButton } from "ui"
 
 import { AuthFormLayout } from "./auth-form-layout"
 import { AuthOtpActions } from "./auth-otp-actions"
@@ -27,7 +21,6 @@ import { LoginPhoneField } from "./login-phone-field"
 import { LoginSocialRow } from "./login-social-row"
 
 const LOGIN_FORM_ID = "login-form"
-const OTP_RESEND_AFTER_S = 120
 
 type LoginFormProps = { lang: string; copy: LoginFormCopy }
 
@@ -51,51 +44,21 @@ export function LoginForm({ lang, copy }: LoginFormProps) {
   })
 
   const tab = useWatch({ control: form.control, name: "loginTab" }) ?? "phone"
-  const [step, setStep] = useState<"credentials" | "otp">("credentials")
-  const [otpDestination, setOtpDestination] = useState("")
-  const [otpMethod, setOtpMethod] = useState<"phone" | "email">("phone")
-  const [otp, setOtp] = useState("")
-  const [otpInvalid, setOtpInvalid] = useState(false)
-  const [resendSeconds, setResendSeconds] = useState(0)
-  const [resendToken, setResendToken] = useState(0)
-
-  useOtpResendInterval(step, resendToken, setResendSeconds)
-
-  function onSubmit(values: LoginFormValues) {
-    if (values.loginTab === "phone") {
-      const destination = `${copy.countryDialPreview}${values.phone}`.trim()
-      setOtpDestination(destination)
-      setOtpMethod("phone")
-    } else {
-      setOtpDestination(values.email.trim())
-      setOtpMethod("email")
-    }
-    setOtp("")
-    setOtpInvalid(false)
-    setResendSeconds(OTP_RESEND_AFTER_S)
-    setStep("otp")
-  }
-
-  function handleOtpBack() {
-    setStep("credentials")
-    setOtp("")
-    setOtpInvalid(false)
-  }
-
-  function handleOtpConfirm() {
-    setOtpInvalid(false)
-    if (otp.length !== OTP_LENGTH) {
-      setOtpInvalid(true)
-      return
-    }
-    showToast({
-      title: copy.welcomeBackToast,
-      type: "success",
-    })
-    setStep("credentials")
-    setOtp("")
-    form.reset()
-  }
+  const {
+    step,
+    otp,
+    otpInvalid,
+    otpDestination,
+    otpMethod,
+    resendSeconds,
+    isSendingOtp,
+    isConfirmingOtp,
+    onOtpChange,
+    submitCredentials,
+    confirmOtp,
+    backToCredentials,
+    resendOtp,
+  } = useLoginOtpFlow(copy)
 
   return (
     <AuthFormLayout
@@ -133,7 +96,7 @@ export function LoginForm({ lang, copy }: LoginFormProps) {
             <form
               id={LOGIN_FORM_ID}
               className="w-full"
-              onSubmit={form.handleSubmit(onSubmit)}
+              onSubmit={form.handleSubmit(submitCredentials)}
               noValidate
               autoComplete="off"
               data-1p-ignore
@@ -150,10 +113,7 @@ export function LoginForm({ lang, copy }: LoginFormProps) {
             >
               <OtpInput
                 value={otp}
-                onChange={(next) => {
-                  setOtp(next)
-                  setOtpInvalid(false)
-                }}
+                onChange={onOtpChange}
                 invalid={otpInvalid}
                 autoFocus
                 aria-label={copy.otpTitle}
@@ -172,6 +132,7 @@ export function LoginForm({ lang, copy }: LoginFormProps) {
                 size="lg"
                 fullWidth
                 className="rounded-xl"
+                disabled={isSendingOtp}
               >
                 {copy.submit}
               </PrimaryButton>
@@ -184,12 +145,13 @@ export function LoginForm({ lang, copy }: LoginFormProps) {
             <AuthOtpActions
               copy={copy}
               resendSeconds={resendSeconds}
-              onResend={() => {
-                setResendSeconds(OTP_RESEND_AFTER_S)
-                setResendToken((t) => t + 1)
+              onResend={async () => {
+                await resendOtp()
               }}
-              onConfirm={handleOtpConfirm}
-              onBack={handleOtpBack}
+              onConfirm={confirmOtp}
+              onBack={backToCredentials}
+              confirmDisabled={isConfirmingOtp}
+              resendDisabled={isSendingOtp}
             />
           )}
         </div>

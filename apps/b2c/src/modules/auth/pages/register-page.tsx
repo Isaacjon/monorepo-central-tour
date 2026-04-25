@@ -39,6 +39,7 @@ function buildRegisterFormCopy(
     validationEmailInvalid: t("validation.emailInvalid"),
     validationPhoneInvalid: t("validation.phoneInvalid"),
     validationNameRequired: t("validation.nameRequired"),
+    validationNameInvalidChars: t("validation.nameInvalidChars"),
     otpTitle: t("otpTitle"),
     otpSubtitlePhone: t("otpSubtitlePhone"),
     otpSubtitleEmail: t("otpSubtitleEmail"),

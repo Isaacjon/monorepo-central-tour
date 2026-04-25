@@ -23,6 +23,7 @@ export type RegisterFormCopy = {
   validationEmailInvalid: string
   validationPhoneInvalid: string
   validationNameRequired: string
+  validationNameInvalidChars: string
   otpTitle: string
   otpSubtitlePhone: string
   otpSubtitleEmail: string

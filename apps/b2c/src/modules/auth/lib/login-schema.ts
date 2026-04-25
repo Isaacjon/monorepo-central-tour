@@ -15,7 +15,7 @@ export function createLoginFormSchema(messages: LoginFormMessages) {
     .superRefine((data, ctx) => {
       if (data.loginTab === "phone") {
         const digits = data.phone.replace(/\D/g, "")
-        if (digits.length < 9) {
+        if (digits.length < 9 || digits.length > 15) {
           ctx.addIssue({
             code: z.ZodIssueCode.custom,
             message: messages.phoneInvalid,
@@ -23,7 +23,7 @@ export function createLoginFormSchema(messages: LoginFormMessages) {
           })
         }
       } else {
-        const parsed = z.string().email().safeParse(data.email)
+        const parsed = z.string().email().safeParse(data.email.trim())
         if (!parsed.success) {
           ctx.addIssue({
             code: z.ZodIssueCode.custom,

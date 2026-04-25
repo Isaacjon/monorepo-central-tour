@@ -12,9 +12,11 @@ type AuthOtpActionsCopy = {
 type AuthOtpActionsProps = {
   copy: AuthOtpActionsCopy
   resendSeconds: number
-  onResend: () => void
-  onConfirm: () => void
+  onResend: () => void | Promise<void>
+  onConfirm: () => void | Promise<void>
   onBack: () => void
+  resendDisabled?: boolean
+  confirmDisabled?: boolean
 }
 
 export function AuthOtpActions({
@@ -23,6 +25,8 @@ export function AuthOtpActions({
   onResend,
   onConfirm,
   onBack,
+  resendDisabled = false,
+  confirmDisabled = false,
 }: AuthOtpActionsProps) {
   return (
     <>
@@ -35,6 +39,7 @@ export function AuthOtpActions({
           type="button"
           className="text-center text-sm font-medium text-[#1570EF] underline-offset-2 hover:underline"
           onClick={onResend}
+          disabled={resendDisabled}
         >
           {copy.otpResend}
         </button>
@@ -45,6 +50,7 @@ export function AuthOtpActions({
         fullWidth
         className="rounded-xl"
         onClick={onConfirm}
+        disabled={confirmDisabled}
       >
         {copy.otpConfirm}
       </PrimaryButton>

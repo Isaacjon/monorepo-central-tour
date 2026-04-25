@@ -1,5 +1,6 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import { useState } from "react"
 import {
   InputField,
@@ -11,24 +12,24 @@ import {
 
 const emptyIcon = <span className="size-5" aria-hidden />
 
-const countryGroups: SearchableCommandGroup[] = [
-  {
-    options: [
-      { value: "uz", label: "Uzbekistan", icon: emptyIcon },
-      { value: "kz", label: "Kazakhstan", icon: emptyIcon },
-      { value: "kg", label: "Kyrgyzstan", icon: emptyIcon },
-    ],
-  },
-]
-
 export function FlightsCheckoutPaymentInformationSection() {
+  const t = useTranslations("flights")
   const [country, setCountry] = useState<string | null>(null)
+  const countryGroups: SearchableCommandGroup[] = [
+    {
+      options: [
+        { value: "uz", label: t("checkoutCountryUz"), icon: emptyIcon },
+        { value: "kz", label: t("checkoutCountryKz"), icon: emptyIcon },
+        { value: "kg", label: t("checkoutCountryKg"), icon: emptyIcon },
+      ],
+    },
+  ]
 
   return (
     <section className="overflow-hidden rounded-3xl border border-[#EAECF0] bg-white shadow-[0px_12px_100px_0px_rgba(0,0,0,0.04)]">
       <header className="border-b border-[#EAECF0] px-4 py-5 md:px-6">
         <h2 className="text-[20px] leading-5 font-bold text-[#0C111D]">
-          Платежная информация
+          {t("checkoutPaymentTitle")}
         </h2>
       </header>
       <div className="p-4 md:p-6">
@@ -87,7 +88,7 @@ export function FlightsCheckoutPaymentInformationSection() {
               +
             </span>
             <span className="mt-1 text-[12px] leading-[18px] font-normal text-[#101828]">
-              Добавить карту
+              {t("checkoutPaymentAddCard")}
             </span>
           </button>
         </div>
@@ -95,14 +96,14 @@ export function FlightsCheckoutPaymentInformationSection() {
         <div className="mt-3 h-[80px] w-full max-w-[856px] rounded-[12px] border border-[#EAECF0] p-3">
           <div className="flex items-center justify-between">
             <span className="text-[12px] leading-[18px] font-normal text-[#98A2B3]">
-              Комбинированная оплата
+              {t("checkoutPaymentCombined")}
             </span>
-            <Switch defaultChecked aria-label="Комбинированная оплата" />
+            <Switch defaultChecked aria-label={t("checkoutPaymentCombined")} />
           </div>
 
           <div className="mt-1 flex items-center gap-3">
             <span className="whitespace-nowrap text-[16px] leading-6 font-normal text-[#1D2939]">
-              Использовать с баланса
+              {t("checkoutPaymentUseBalance")}
             </span>
             <InputField
               defaultValue="18 000 000"
@@ -117,7 +118,7 @@ export function FlightsCheckoutPaymentInformationSection() {
 
         <div className="mt-3">
           <MaskedInputField
-            label="Номер карты"
+            label={t("checkoutPaymentCardNumberLabel")}
             mask="9999 9999 9999 9999"
             maskPlaceholder={null}
             placeholder="1234 1234 1234 1234"
@@ -127,7 +128,7 @@ export function FlightsCheckoutPaymentInformationSection() {
 
         <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2">
           <MaskedInputField
-            label="Срок"
+            label={t("checkoutPaymentExpiryLabel")}
             mask="99 / 99"
             maskPlaceholder={null}
             placeholder="MM / YY"
@@ -144,10 +145,10 @@ export function FlightsCheckoutPaymentInformationSection() {
 
         <div className="mt-3">
           <SearchableCommandPopover
-            label="Страна"
-            emptyLabel="Страна"
-            searchPlaceholder="Найти страну"
-            emptySearchLabel="Ничего не найдено"
+            label={t("checkoutPaymentCountryLabel")}
+            emptyLabel={t("checkoutPaymentCountryEmptyLabel")}
+            searchPlaceholder={t("checkoutPaymentCountrySearchPlaceholder")}
+            emptySearchLabel={t("checkoutPaymentCountryEmptySearchLabel")}
             groups={countryGroups}
             value={country}
             onValueChange={setCountry}

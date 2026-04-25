@@ -1,4 +1,4 @@
-export const OTP_LENGTH = 5
+export const OTP_LENGTH = 4
 
 export type OtpStatus = "default" | "error" | "success"
 

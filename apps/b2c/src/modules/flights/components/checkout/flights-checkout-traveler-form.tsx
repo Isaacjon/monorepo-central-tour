@@ -1,5 +1,6 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import { useState } from "react"
 import {
   Checkbox,
@@ -11,36 +12,44 @@ import {
 
 const emptyIcon = <span className="size-5" aria-hidden />
 
-const nationalityGroups: SearchableCommandGroup[] = [
-  {
-    options: [
-      { value: "uz", label: "Узбекистан", icon: emptyIcon },
-      { value: "ru", label: "Россия", icon: emptyIcon },
-      { value: "us", label: "США", icon: emptyIcon },
-    ],
-  },
-]
-
-const genderGroups: SearchableCommandGroup[] = [
-  {
-    options: [
-      { value: "male", label: "Мужской", icon: emptyIcon },
-      { value: "female", label: "Женский", icon: emptyIcon },
-    ],
-  },
-]
-
 export function FlightsCheckoutTravelerForm() {
+  const t = useTranslations("flights")
   const [nationality, setNationality] = useState<string | null>(null)
   const [gender, setGender] = useState<string | null>(null)
   const [withoutLastName, setWithoutLastName] = useState(false)
+  const nationalityGroups: SearchableCommandGroup[] = [
+    {
+      options: [
+        { value: "uz", label: t("checkoutNationalityUz"), icon: emptyIcon },
+        { value: "ru", label: t("checkoutNationalityRu"), icon: emptyIcon },
+        { value: "us", label: t("checkoutNationalityUs"), icon: emptyIcon },
+      ],
+    },
+  ]
+  const genderGroups: SearchableCommandGroup[] = [
+    {
+      options: [
+        { value: "male", label: t("checkoutGenderMale"), icon: emptyIcon },
+        { value: "female", label: t("checkoutGenderFemale"), icon: emptyIcon },
+      ],
+    },
+  ]
 
   return (
     <div className="p-4 md:p-6">
       <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
-        <StackedInputField label="Имя" placeholder="Введите имя" />
-        <StackedInputField label="Фамилия" placeholder="Фамилия" />
-        <StackedInputField label="Дата рождения" placeholder="дд.мм.гггг" />
+        <StackedInputField
+          label={t("checkoutTravelerFirstNameLabel")}
+          placeholder={t("checkoutTravelerFirstNamePlaceholder")}
+        />
+        <StackedInputField
+          label={t("checkoutTravelerLastNameLabel")}
+          placeholder={t("checkoutTravelerLastNamePlaceholder")}
+        />
+        <StackedInputField
+          label={t("checkoutTravelerBirthDateLabel")}
+          placeholder={t("checkoutTravelerBirthDatePlaceholder")}
+        />
       </div>
 
       <label
@@ -55,26 +64,29 @@ export function FlightsCheckoutTravelerForm() {
           }}
         />
         <span className="text-[16px] leading-6 font-medium text-[#98A2B3]">
-          У этого пассажира нет фамилии
+          {t("checkoutTravelerWithoutLastName")}
         </span>
       </label>
 
       <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-3">
         <SearchableCommandPopover
-          label="Национальность"
-          emptyLabel="Национальность"
-          searchPlaceholder="Найти страну"
-          emptySearchLabel="Ничего не найдено"
+          label={t("checkoutTravelerNationalityLabel")}
+          emptyLabel={t("checkoutTravelerNationalityEmptyLabel")}
+          searchPlaceholder={t("checkoutTravelerNationalitySearchPlaceholder")}
+          emptySearchLabel={t("checkoutTravelerEmptySearchLabel")}
           groups={nationalityGroups}
           value={nationality}
           onValueChange={setNationality}
         />
-        <PassportInputField label="Паспорт" placeholder="Номер паспорта" />
+        <PassportInputField
+          label={t("checkoutTravelerPassportLabel")}
+          placeholder={t("checkoutTravelerPassportPlaceholder")}
+        />
         <SearchableCommandPopover
-          label="Пол"
-          emptyLabel="Пол"
-          searchPlaceholder="Найти пол"
-          emptySearchLabel="Ничего не найдено"
+          label={t("checkoutTravelerGenderLabel")}
+          emptyLabel={t("checkoutTravelerGenderEmptyLabel")}
+          searchPlaceholder={t("checkoutTravelerGenderSearchPlaceholder")}
+          emptySearchLabel={t("checkoutTravelerEmptySearchLabel")}
           groups={genderGroups}
           value={gender}
           onValueChange={setGender}
@@ -83,10 +95,13 @@ export function FlightsCheckoutTravelerForm() {
 
       <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-3">
         <StackedInputField
-          label="Срок действия документа"
-          placeholder="дд.мм.гггг"
+          label={t("checkoutTravelerDocumentExpiryLabel")}
+          placeholder={t("checkoutTravelerDocumentExpiryPlaceholder")}
         />
-        <StackedInputField label="Кем выдан" placeholder="Кем выдан" />
+        <StackedInputField
+          label={t("checkoutTravelerIssuedByLabel")}
+          placeholder={t("checkoutTravelerIssuedByPlaceholder")}
+        />
       </div>
     </div>
   )
