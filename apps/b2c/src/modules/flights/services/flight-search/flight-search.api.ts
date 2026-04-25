@@ -3,17 +3,17 @@ import { isAxiosError } from "axios"
 import apiClient from "@/shared/api/api-client"
 import { HttpError } from "@/shared/lib/http-error"
 
-import {
-  buildFlightsSearchInvokeParams,
-  emptyFlightOffersSearchResultBody,
-  type FlightsSearchInvokeParams,
-} from "./flight-search-invoke-params"
 import type {
   FlightOffersSearchApiResponse,
   FlightOffersSearchResultBody,
 } from "../../types/flight-offers-search-api"
+import {
+  buildFlightsSearchInvokeParams,
+  emptyFlightOffersSearchResultBody,
+  type FlightsSearchInvokeParams,
+} from "../../utils/flight-search-invoke-params"
 
-export { FLIGHT_SEARCH_PAGE_LIMIT } from "./flight-search-invoke-params"
+export { FLIGHT_SEARCH_PAGE_LIMIT } from "../../utils/flight-search-invoke-params"
 
 function unwrapFlightOffersSearchEnvelope(
   response: FlightOffersSearchApiResponse

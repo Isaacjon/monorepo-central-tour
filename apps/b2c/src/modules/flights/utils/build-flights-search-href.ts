@@ -1,7 +1,7 @@
 import {
   flightCabinToParam,
-  syncFlightChildAgesLength,
   type FlightPassengersSelection,
+  syncFlightChildAgesLength,
 } from "../types/flight-passengers"
 
 type SearchLocation = {

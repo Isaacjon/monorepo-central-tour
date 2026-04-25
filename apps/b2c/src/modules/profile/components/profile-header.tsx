@@ -1,5 +1,5 @@
-import { AppHeader } from "@/shared/components/common/app-header"
 import type { ProfileHeaderCopy } from "@/modules/profile/types/profile-header-copy"
+import { AppHeader } from "@/shared/components/common/app-header"
 
 type ProfileHeaderProps = {
   copy: ProfileHeaderCopy

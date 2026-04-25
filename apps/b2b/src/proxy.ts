@@ -1,7 +1,7 @@
 import { routing } from "@central-tour/config/i18n/routing"
-import createMiddleware from "next-intl/middleware"
 import type { NextRequest } from "next/server"
 import { NextResponse } from "next/server"
+import createMiddleware from "next-intl/middleware"
 
 import { IS_B2B_AUTHENTICATED } from "@/modules/auth/constants/session-stub"
 
@@ -13,11 +13,14 @@ function isPublicAuthPath(pathnameWithoutLocale: string): boolean {
   return AUTH_PATH_PREFIXES.some(
     (prefix) =>
       pathnameWithoutLocale === prefix ||
-      pathnameWithoutLocale.startsWith(`${prefix}/`),
+      pathnameWithoutLocale.startsWith(`${prefix}/`)
   )
 }
 
-function getLocaleAndSubpath(pathname: string): { locale: string; withoutLocale: string } {
+function getLocaleAndSubpath(pathname: string): {
+  locale: string
+  withoutLocale: string
+} {
   const segments = pathname.split("/").filter(Boolean)
   const first = segments[0]
   const isKnownLocale = first
@@ -49,7 +52,9 @@ export default function proxy(request: NextRequest) {
     return intlResponse
   }
 
-  const { locale, withoutLocale } = getLocaleAndSubpath(request.nextUrl.pathname)
+  const { locale, withoutLocale } = getLocaleAndSubpath(
+    request.nextUrl.pathname
+  )
 
   if (isPublicAuthPath(withoutLocale)) {
     return intlResponse

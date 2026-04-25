@@ -98,14 +98,14 @@ const PhoneCountryInput = React.forwardRef<
     <div className="flex w-full flex-col gap-1.5">
       <label
         htmlFor={inputId}
-        className="font-[family-name:var(--font-inter-stack,Inter,ui-sans-serif,sans-serif)] text-sm leading-5 font-medium tracking-normal text-[color:var(--c-gray-700)]"
+        className="text-c-gray-700 font-(family-name:--font-inter-stack,Inter,ui-sans-serif,sans-serif) text-sm leading-5 font-medium tracking-normal"
       >
         {label}
       </label>
       <div
         className={cn(
           inputWrapperVariants({ variant: hasError ? "error" : "default" }),
-          "!gap-0 overflow-hidden !px-0"
+          "gap-0! overflow-hidden px-0!"
         )}
       >
         <DropdownMenu>
@@ -114,7 +114,7 @@ const PhoneCountryInput = React.forwardRef<
               type="button"
               className={cn(
                 "flex h-10 shrink-0 items-center gap-1.5 px-3 text-sm font-medium transition-colors outline-none",
-                "text-[color:var(--c-gray-900)] hover:bg-[#F9FAFB]",
+                "text-c-gray-900 hover:bg-[#F9FAFB]",
                 hasError
                   ? "border-r border-[#DB003A]/35"
                   : "border-r border-[#D0D5DD]"
@@ -124,7 +124,7 @@ const PhoneCountryInput = React.forwardRef<
                 {country.flag}
               </span>
               <span>{country.code}</span>
-              <ChevronDown className="h-3.5 w-3.5 text-[color:var(--c-gray-500)]" />
+              <ChevronDown className="text-c-gray-500 h-3.5 w-3.5" />
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent
@@ -169,9 +169,8 @@ const PhoneCountryInput = React.forwardRef<
             })}
           </DropdownMenuContent>
         </DropdownMenu>
-
         <div className="flex min-h-0 min-w-0 flex-1 items-center gap-2 px-3">
-          <span className="shrink-0 text-sm font-medium text-[color:var(--c-gray-900)] select-none">
+          <span className="text-c-gray-900 shrink-0 text-sm font-medium select-none">
             {country.dialCode}
           </span>
           <InputMask
@@ -186,8 +185,8 @@ const PhoneCountryInput = React.forwardRef<
             autoComplete={autoComplete}
             className={cn(
               "h-10 min-w-0 flex-1 border-0 bg-transparent p-0 shadow-none outline-none",
-              "font-[family-name:var(--font-inter-stack,Inter,ui-sans-serif,sans-serif)] text-base leading-6 font-normal tracking-normal",
-              "text-[color:var(--c-gray-900)] placeholder:text-[color:var(--c-gray-500)]"
+              "font-(family-name:--font-inter-stack,Inter,ui-sans-serif,sans-serif) text-base leading-6 font-normal tracking-normal",
+              "text-c-gray-900 placeholder:text-c-gray-500"
             )}
           />
         </div>

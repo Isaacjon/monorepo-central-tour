@@ -39,10 +39,10 @@ export const DatepickerTrigger = React.forwardRef<
         ref={ref}
         type="button"
         disabled={disabled}
-        aria-invalid={ariaInvalid}
+        data-invalid={ariaInvalid ? "true" : undefined}
         className={cn(
           "flex h-10 w-full items-center rounded-lg border bg-white px-3 py-2 transition-all duration-200 ease-in-out",
-          "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-error-400 cursor-pointer shadow-none",
+          "data-[invalid=true]:ring-destructive/20 dark:data-[invalid=true]:ring-destructive/40 data-[invalid=true]:border-error-400 cursor-pointer shadow-none",
           isOpen ? "border-blue-400" : "border-gray-300",
           className,
           selected ? "text-gray-900" : "text-gray-500",

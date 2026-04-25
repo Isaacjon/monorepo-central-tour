@@ -1,5 +1,5 @@
 import { FlightsCheckoutShell } from "./flights-checkout-shell"
-import { FlightsCheckoutContent } from "../components/flights-checkout-content"
+import { FlightsCheckoutContent } from "../components/checkout/flights-checkout-content"
 import { getCheckoutResultHref } from "../utils/get-checkout-result-href"
 
 export async function FlightsCheckoutPage({

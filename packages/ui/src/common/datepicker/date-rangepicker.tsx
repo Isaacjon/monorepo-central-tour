@@ -1,24 +1,19 @@
 "use client"
 
-import { format } from "date-fns"
 import type { Locale } from "date-fns"
 import { ru } from "date-fns/locale"
 
 import * as React from "react"
-import { type DateRange, type Matcher, type Modifiers } from "react-day-picker"
+import { type DateRange, type Matcher } from "react-day-picker"
 
 import { DateRangePickerTrigger } from "./date-range-picker-trigger"
-import {
-  BaseCalendar,
-  BaseCalendarFooter,
-  getRangeRestrictedDisabledDates,
-} from "../../components/ui/base-calendar"
+import { useDateRangePickerState } from "./use-date-range-picker-state"
+import { BaseCalendar, BaseCalendarFooter } from "../../components/ui/base-calendar"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "../../components/ui/popover"
-import { cn } from "../../lib/utils"
 
 export type DateRangePickerProps = Omit<
   React.ComponentProps<typeof BaseCalendar>,
@@ -67,141 +62,35 @@ function DateRangePicker({
   commitFromWithoutTo = false,
   ...props
 }: DateRangePickerProps) {
-  const [isOpen, setIsOpen] = React.useState(false)
-  const [tempRange, setTempRange] = React.useState<DateRange | undefined>(
-    undefined
-  )
-
   const activeFromPlaceholder = fromPlaceholder ?? placeholder
   const activeToPlaceholder = toPlaceholder ?? placeholder
-
-  const { fromDisplayValue, toDisplayValue, hasFromValue, hasToValue } =
-    React.useMemo(() => {
-      const valueToShow = tempRange ?? selected
-      const fromDateValue = valueToShow?.from
-      const toDateValue = valueToShow?.to
-
-      return {
-        fromDisplayValue: fromDateValue
-          ? format(fromDateValue, "d MMM yyyy.", { locale })
-          : activeFromPlaceholder,
-        toDisplayValue: toDateValue
-          ? format(toDateValue, "d MMM yyyy.", { locale })
-          : activeToPlaceholder,
-        hasFromValue: Boolean(fromDateValue),
-        hasToValue: Boolean(toDateValue),
-      }
-    }, [
-      tempRange,
-      selected,
-      locale,
-      activeFromPlaceholder,
-      activeToPlaceholder,
-    ])
-
-  const defaultMonth = React.useMemo(() => {
-    const valueToShow = tempRange ?? selected
-    return valueToShow?.from || undefined
-  }, [tempRange, selected])
-
-  const handleOpenChange = (open: boolean) => {
-    if (!open) {
-      setTempRange(undefined)
-    }
-    setIsOpen(open)
-  }
-
-  const handleReset = () => {
-    setTempRange(undefined)
-    onSelect?.(null)
-    setIsOpen(false)
-  }
-
-  const handleApply = (
-    _e?: React.MouseEvent | React.KeyboardEvent,
-    valueToSet?: DateRange
-  ) => {
-    onSelect?.(valueToSet || tempRange)
-    setTempRange(undefined)
-    setIsOpen(false)
-  }
-
-  const handleFromDateSelect = (triggerDate: Date) => {
-    const valueToSet = { from: triggerDate, to: undefined }
-    if (commitFromWithoutTo) {
-      onSelect?.(valueToSet)
-      setTempRange(undefined)
-      setIsOpen(false)
-      return
-    }
-    setTempRange(valueToSet)
-  }
-
-  const handleToDateSelect = (triggerDate: Date) => {
-    // choosing to date - set to date
-    if (!tempRange?.from) return
-    const fromDate = tempRange.from < triggerDate ? tempRange.from : triggerDate
-    const toDate = tempRange.from > triggerDate ? tempRange.from : triggerDate
-    const valueToSet = { from: fromDate, to: toDate }
-    if (!showFooter) {
-      handleApply(undefined, valueToSet)
-    } else {
-      setTempRange(valueToSet)
-    }
-  }
-
-  const handleNewSelection = (triggerDate: Date) => {
-    // Both dates already selected - start new selection
-    const valueToSet = { from: triggerDate, to: undefined }
-    setTempRange(valueToSet)
-  }
-
-  const handleSelect = (
-    _selected: DateRange | undefined,
-    triggerDate: Date,
-    _modifiers: Modifiers,
-    _e: React.MouseEvent | React.KeyboardEvent
-  ): void => {
-    if (!tempRange?.from) {
-      handleFromDateSelect(triggerDate)
-    } else if (tempRange?.to) {
-      handleNewSelection(triggerDate)
-    } else {
-      handleToDateSelect(triggerDate)
-    }
-  }
-
-  const handleClear = (e: React.MouseEvent) => {
-    e.stopPropagation()
-    e.preventDefault()
-    handleReset()
-  }
-
-  const canClearValue = React.useMemo(() => {
-    if (!isOpen || !clearable) return false
-    return Boolean(selected?.from || selected?.to)
-  }, [clearable, isOpen, selected?.from, selected?.to])
-
-  const combinedDisabledDates = React.useMemo(() => {
-    const rangeRestriction = getRangeRestrictedDisabledDates(
-      tempRange,
-      maxRangeDays
-    )
-
-    if (!rangeRestriction) {
-      return disabledDates
-    }
-
-    if (!disabledDates) {
-      return rangeRestriction
-    }
-
-    if (Array.isArray(disabledDates)) {
-      return [...disabledDates, rangeRestriction] as Matcher[]
-    }
-
-    return [disabledDates, rangeRestriction] as Matcher[]
-  }, [disabledDates, tempRange, maxRangeDays])
+  const {
+    isOpen,
+    tempRange,
+    defaultMonth,
+    fromDisplayValue,
+    toDisplayValue,
+    hasFromValue,
+    hasToValue,
+    canClearValue,
+    combinedDisabledDates,
+    handleOpenChange,
+    handleSelect,
+    handleClear,
+    handleReset,
+    handleApply,
+  } = useDateRangePickerState({
+    selected,
+    onSelect,
+    clearable,
+    disabledDates,
+    maxRangeDays,
+    showFooter,
+    commitFromWithoutTo,
+    locale,
+    fromPlaceholder: activeFromPlaceholder,
+    toPlaceholder: activeToPlaceholder,
+  })
 
   return (
     <Popover open={isOpen} onOpenChange={handleOpenChange}>

@@ -1,6 +1,6 @@
+import { ChevronDown, ChevronUp } from "lucide-react"
 import * as React from "react"
 
-import { ChevronDown, ChevronUp } from "lucide-react"
 
 interface CaptionLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
   children?: React.ReactNode

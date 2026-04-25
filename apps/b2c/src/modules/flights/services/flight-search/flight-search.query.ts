@@ -1,12 +1,11 @@
 import { useInfiniteQuery } from "@tanstack/react-query"
 
-import type { FlightOffersSearchResultBody } from "../../types/flight-offers-search-api"
-import { flightsSearchQueryKey } from "../../utils/parse-flights-filter-from-query"
-
 import {
-  FLIGHT_SEARCH_PAGE_LIMIT,
   fetchFlightSearchPage,
+  FLIGHT_SEARCH_PAGE_LIMIT,
 } from "./flight-search.api"
+import type { FlightOffersSearchResultBody } from "../../types/flight-offers-search-api"
+import { flightsSearchQueryKey } from "../../utils/flights-search-query-key"
 
 export const flightSearchResultsKeys = {
   all: ["flightSearchResults"] as const,

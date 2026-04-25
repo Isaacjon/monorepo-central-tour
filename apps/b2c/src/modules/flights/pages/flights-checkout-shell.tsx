@@ -1,5 +1,5 @@
-import type { ReactNode } from "react"
 import { getTranslations } from "next-intl/server"
+import type { ReactNode } from "react"
 
 import { AppHeader } from "@/shared/components/common/app-header"
 import { B2cSiteFooter } from "@/shared/components/common/b2c-site-footer"

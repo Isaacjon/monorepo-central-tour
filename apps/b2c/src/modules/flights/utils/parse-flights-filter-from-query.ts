@@ -1,10 +1,10 @@
 import { decodeGuestRooms } from "../../hotels/utils/guest-rooms-url"
-import type { TripType } from "../components/flights-filter.config"
+import type { TripType } from "../components/filters/flights-filter.config"
 import {
+  type FlightPassengersSelection,
   normalizeFlightPassengersSelection,
   parseFlightCabinParam,
   syncFlightChildAgesLength,
-  type FlightPassengersSelection,
 } from "../types/flight-passengers"
 
 export type ParsedFlightsFilterQuery = {
@@ -187,18 +187,3 @@ export function parseFlightsFilterFromQuery(
   }
 }
 
-/**
- * Stable key so the filter client subtree remounts when the meaningful query string changes.
- */
-export function flightsSearchQueryKey(
-  query: Readonly<Record<string, string | string[] | undefined>>
-): string {
-  const entries = Object.entries(query)
-    .filter(([, v]) => v !== undefined && v !== "")
-    .map(([k, v]) => {
-      const s = Array.isArray(v) ? v[0] : v
-      return [k, s ?? ""] as const
-    })
-    .sort(([a], [b]) => a.localeCompare(b))
-  return entries.map(([k, v]) => `${k}=${v}`).join("&")
-}

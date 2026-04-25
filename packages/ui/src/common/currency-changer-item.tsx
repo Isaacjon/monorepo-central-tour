@@ -1,8 +1,8 @@
 "use client"
 
+import type { CurrencyOption } from "./currency-types"
 import { cn } from "../lib/utils"
 
-import type { CurrencyOption } from "./currency-types"
 
 const inter =
   "font-[family-name:var(--font-inter-stack,Inter,ui-sans-serif,sans-serif)]"

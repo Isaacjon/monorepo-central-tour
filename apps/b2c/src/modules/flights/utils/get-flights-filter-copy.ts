@@ -1,4 +1,4 @@
-import type { FlightsFilterCopy } from "../components/flights-filter.config"
+import type { FlightsFilterCopy } from "../components/filters/flights-filter.config"
 
 /** Pass `t` from `getTranslations("flights")` (server) or `useTranslations("flights")` (client). */
 export function getFlightsFilterCopy(

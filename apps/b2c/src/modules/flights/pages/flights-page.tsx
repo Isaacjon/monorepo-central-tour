@@ -16,10 +16,10 @@ import {
   type ServiceTabItem,
 } from "ui"
 
-import { FlightsAboutNumbersSection } from "../components/flights-about-numbers-section"
-import { FlightsFilter } from "../components/flights-filter"
-import { PopularAirTicketsSection } from "../components/popular-air-tickets-section"
-import { RecentlySearchedFlightsSection } from "../components/recently-searched-flights-section"
+import { FlightsFilter } from "../components/filters/flights-filter"
+import { PopularAirTicketsSection } from "../components/search/popular-air-tickets-section"
+import { RecentlySearchedFlightsSection } from "../components/search/recently-searched-flights-section"
+import { FlightsAboutNumbersSection } from "../components/shared/flights-about-numbers-section"
 import type { RecentFlightSearchItem } from "../types/recent-flight-search"
 import {
   getFlightsFilterCopy,

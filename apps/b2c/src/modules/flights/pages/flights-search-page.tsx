@@ -2,16 +2,14 @@ import { getTranslations } from "next-intl/server"
 
 import { AppHeader } from "@/shared/components/common/app-header"
 import { B2cSiteFooter } from "@/shared/components/common/b2c-site-footer"
-import { FlightsFilter } from "../components/flights-filter"
-import { FlightsSearchResultsSection } from "../components/flights-search-results-section"
+import { FlightsFilter } from "../components/filters/flights-filter"
+import { FlightsSearchResultsSection } from "../components/search/flights-search-results-section"
+import { flightsSearchQueryKey } from "../utils/flights-search-query-key"
 import {
   getFlightsFilterCopy,
   getFlightsSearchRouteHref,
 } from "../utils/get-flights-filter-copy"
-import {
-  flightsSearchQueryKey,
-  parseFlightsFilterFromQuery,
-} from "../utils/parse-flights-filter-from-query"
+import { parseFlightsFilterFromQuery } from "../utils/parse-flights-filter-from-query"
 
 export async function FlightsSearchPage({
   lang,

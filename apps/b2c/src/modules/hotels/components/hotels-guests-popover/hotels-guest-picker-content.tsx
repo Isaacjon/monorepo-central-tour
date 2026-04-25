@@ -2,6 +2,7 @@
 
 import { X } from "lucide-react"
 import { useTranslations } from "next-intl"
+import { GuestPickerStepper } from "@/shared/components/guest-picker-stepper"
 import { ChevronDownIcon, cn } from "ui"
 
 import {
@@ -10,7 +11,6 @@ import {
   MAX_PER_ROOM,
   MAX_ROOMS,
 } from "./hotel-room-guests"
-import { GuestPickerStepper } from "@/shared/components/guest-picker-stepper"
 
 type HotelsGuestPickerContentProps = {
   draftRooms: HotelRoomGuests[]
