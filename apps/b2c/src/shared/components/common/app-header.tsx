@@ -1,7 +1,10 @@
+"use client"
+
 import { Link } from "@central-tour/config/i18n/navigation"
 import Image from "next/image"
 import { Suspense } from "react"
 
+import { useAuthStore } from "@/shared/stores/auth-store"
 import type { AppHeaderCopy } from "@/shared/types/app-header-copy"
 import { HeaderMiniBlock, HeartIcon, NotificationsDropdown, UserIcon } from "ui"
 
@@ -26,6 +29,13 @@ type AppHeaderProps = {
 const LOGO_SRC = "/images/logo.svg"
 
 export function AppHeader({ copy, lang, activeNav }: AppHeaderProps) {
+  const session = useAuthStore((state) => state.session)
+  const authHref = session ? "/profile" : "/login"
+  const authLabel =
+    session?.userPhone ??
+    (session?.contactMethod === "phone" ? session.contactValue : null) ??
+    copy.authLabel
+
   const navItems: { label: string; id: AppHeaderActiveNav; href: string }[] = [
     { label: copy.navFlights, id: "flights", href: "/flights" },
     { label: copy.navHotels, id: "hotels", href: "/" },
@@ -101,8 +111,8 @@ export function AppHeader({ copy, lang, activeNav }: AppHeaderProps) {
             />
           </Suspense>
 
-          <button
-            type="button"
+          <Link
+            href={authHref}
             className="inline-flex h-10 items-center gap-1.5 rounded-lg px-2 py-2 text-sm leading-5 font-normal text-[#667085]"
           >
             <UserIcon
@@ -111,8 +121,8 @@ export function AppHeader({ copy, lang, activeNav }: AppHeaderProps) {
               aria-hidden
               className="shrink-0 [&_path]:fill-[#292D32]"
             />
-            <span>{copy.authLabel}</span>
-          </button>
+            <span className="max-w-[160px] truncate">{authLabel}</span>
+          </Link>
         </div>
       </div>
 

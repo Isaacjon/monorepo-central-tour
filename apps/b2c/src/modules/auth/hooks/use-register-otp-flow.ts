@@ -7,8 +7,12 @@ import {
   useSendOtpMutation,
 } from "@/modules/auth/services/auth/auth.query"
 import type { RegisterFormCopy } from "@/modules/auth/types/register-form-copy"
-import { buildPhoneForApi, getErrorMessage } from "@/modules/auth/utils/auth-flow-utils"
+import {
+  buildPhoneForApi,
+  getErrorMessage,
+} from "@/modules/auth/utils/auth-flow-utils"
 import { HttpError } from "@/shared/lib/http-error"
+import { saveAuthSession } from "@/shared/stores/auth-store"
 import { OTP_LENGTH, showToast } from "ui"
 
 import { useOtpResendInterval } from "./use-otp-resend-interval"
@@ -32,7 +36,9 @@ export function useRegisterOtpFlow(copy: RegisterFormCopy) {
   const [otpInvalid, setOtpInvalid] = useState(false)
   const [resendSeconds, setResendSeconds] = useState(0)
   const [resendToken, setResendToken] = useState(0)
-  const [credentials, setCredentials] = useState<RegisterCredentials | null>(null)
+  const [credentials, setCredentials] = useState<RegisterCredentials | null>(
+    null
+  )
   const sendOtpMutation = useSendOtpMutation()
   const registerMutation = useRegisterClientMutation()
 
@@ -100,7 +106,7 @@ export function useRegisterOtpFlow(copy: RegisterFormCopy) {
     }
 
     try {
-      await registerMutation.mutateAsync({
+      const tokens = await registerMutation.mutateAsync({
         firstName: credentials.firstName,
         lastName: credentials.lastName,
         middleName: credentials.middleName,
@@ -108,12 +114,29 @@ export function useRegisterOtpFlow(copy: RegisterFormCopy) {
         contactValue: credentials.contactValue,
         otp,
       })
+      saveAuthSession({
+        ...tokens,
+        contactMethod: credentials.contactMethod,
+        contactValue: credentials.contactValue,
+        userPhone:
+          credentials.contactMethod === "phone"
+            ? credentials.contactValue
+            : null,
+        userEmail:
+          credentials.contactMethod === "email"
+            ? credentials.contactValue
+            : null,
+        userName:
+          `${credentials.firstName} ${credentials.lastName}`.trim() || null,
+      })
       showToast({ title: "Регистрация завершена", type: "success" })
       router.push("/")
     } catch (error) {
       if (error instanceof HttpError) {
         const otpExpired = error.message.includes("otp code has expired")
-        const invalidOtpCode = error.message.includes("invalid or expired otp code")
+        const invalidOtpCode = error.message.includes(
+          "invalid or expired otp code"
+        )
         if (otpExpired) {
           showToast({ title: "OTP код истек", type: "error" })
         } else if (invalidOtpCode) {

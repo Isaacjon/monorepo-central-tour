@@ -8,7 +8,11 @@ import {
   useSendOtpMutation,
 } from "@/modules/auth/services/auth/auth.query"
 import type { LoginFormCopy } from "@/modules/auth/types/login-form-copy"
-import { buildPhoneForApi, getErrorMessage } from "@/modules/auth/utils/auth-flow-utils"
+import {
+  buildPhoneForApi,
+  getErrorMessage,
+} from "@/modules/auth/utils/auth-flow-utils"
+import { saveAuthSession } from "@/shared/stores/auth-store"
 import { OTP_LENGTH, showToast } from "ui"
 
 const OTP_RESEND_AFTER_S = 120
@@ -77,10 +81,24 @@ export function useLoginOtpFlow(copy: LoginFormCopy) {
     }
 
     try {
-      await loginMutation.mutateAsync({
+      const tokens = await loginMutation.mutateAsync({
         contactMethod: credentials.contactMethod,
         contactValue: credentials.contactValue,
         otp,
+      })
+      saveAuthSession({
+        ...tokens,
+        contactMethod: credentials.contactMethod,
+        contactValue: credentials.contactValue,
+        userPhone:
+          credentials.contactMethod === "phone"
+            ? credentials.contactValue
+            : null,
+        userEmail:
+          credentials.contactMethod === "email"
+            ? credentials.contactValue
+            : null,
+        userName: null,
       })
       showToast({ title: copy.welcomeBackToast, type: "success" })
       router.push("/")
