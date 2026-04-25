@@ -12,7 +12,23 @@ import {
 
 const emptyIcon = <span className="size-5" aria-hidden />
 
-export function FlightsCheckoutTravelerForm() {
+type FlightsCheckoutTravelerFormProps = {
+  firstName: string
+  lastName: string
+  fatherName: string
+  onFirstNameChange: (value: string) => void
+  onLastNameChange: (value: string) => void
+  onFatherNameChange: (value: string) => void
+}
+
+export function FlightsCheckoutTravelerForm({
+  firstName,
+  lastName,
+  fatherName,
+  onFirstNameChange,
+  onLastNameChange,
+  onFatherNameChange,
+}: FlightsCheckoutTravelerFormProps) {
   const t = useTranslations("flights")
   const [nationality, setNationality] = useState<string | null>(null)
   const [gender, setGender] = useState<string | null>(null)
@@ -41,14 +57,20 @@ export function FlightsCheckoutTravelerForm() {
         <StackedInputField
           label={t("checkoutTravelerFirstNameLabel")}
           placeholder={t("checkoutTravelerFirstNamePlaceholder")}
+          value={firstName}
+          onChange={(event) => onFirstNameChange(event.target.value)}
         />
         <StackedInputField
           label={t("checkoutTravelerLastNameLabel")}
           placeholder={t("checkoutTravelerLastNamePlaceholder")}
+          value={lastName}
+          onChange={(event) => onLastNameChange(event.target.value)}
         />
         <StackedInputField
-          label={t("checkoutTravelerBirthDateLabel")}
-          placeholder={t("checkoutTravelerBirthDatePlaceholder")}
+          label={t("checkoutTravelerMiddleNameLabel")}
+          placeholder={t("checkoutTravelerMiddleNamePlaceholder")}
+          value={fatherName}
+          onChange={(event) => onFatherNameChange(event.target.value)}
         />
       </div>
 
@@ -94,6 +116,10 @@ export function FlightsCheckoutTravelerForm() {
       </div>
 
       <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-3">
+        <StackedInputField
+          label={t("checkoutTravelerBirthDateLabel")}
+          placeholder={t("checkoutTravelerBirthDatePlaceholder")}
+        />
         <StackedInputField
           label={t("checkoutTravelerDocumentExpiryLabel")}
           placeholder={t("checkoutTravelerDocumentExpiryPlaceholder")}

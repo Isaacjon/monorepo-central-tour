@@ -77,7 +77,17 @@
     "otpBack": "Назад",
     "otpResendIn": "Отправить код заново через __TIME__",
     "otpResend": "Отправить код заново",
-    "welcomeBackToast": "С возвращением!"
+    "welcomeBackToast": "С возвращением!",
+    "otpAlreadySentToast": "OTP уже отправлен. Пожалуйста, подождите 2 минуты",
+    "sendOtpFailedToast": "Не удалось отправить OTP",
+    "otpInvalidOrLoginFailedToast": "Неверный OTP или ошибка входа",
+    "registerCompletedToast": "Регистрация завершена",
+    "otpExpiredToast": "OTP код истек",
+    "otpInvalidToast": "Неверный OTP код",
+    "userAlreadyExistsToast": "Пользователь с этим телефоном уже существует",
+    "invalidPhoneNumberToast": "Неверный формат телефона",
+    "checkoutNameRequiredToast": "Введите имя и фамилию пассажира",
+    "otpInvalidOrAuthFailedToast": "Неверный OTP или ошибка авторизации"
   },
   "home": {
     "badge": "Central Tour B2C",
@@ -291,6 +301,8 @@
     "checkoutTravelerFirstNamePlaceholder": "Введите имя",
     "checkoutTravelerLastNameLabel": "Фамилия",
     "checkoutTravelerLastNamePlaceholder": "Фамилия",
+    "checkoutTravelerMiddleNameLabel": "Отчество",
+    "checkoutTravelerMiddleNamePlaceholder": "Введите отчество",
     "checkoutTravelerBirthDateLabel": "Дата рождения",
     "checkoutTravelerBirthDatePlaceholder": "дд.мм.гггг",
     "checkoutTravelerWithoutLastName": "У этого пассажира нет фамилии",

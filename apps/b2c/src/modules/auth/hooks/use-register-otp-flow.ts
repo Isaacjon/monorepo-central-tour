@@ -7,10 +7,8 @@ import {
   useSendOtpMutation,
 } from "@/modules/auth/services/auth/auth.query"
 import type { RegisterFormCopy } from "@/modules/auth/types/register-form-copy"
-import {
-  buildPhoneForApi,
-  getErrorMessage,
-} from "@/modules/auth/utils/auth-flow-utils"
+import { buildPhoneForApi, hasErrorMessage } from "@/modules/auth/utils/auth-flow-utils"
+import { showRegisterSendOtpError } from "@/modules/auth/utils/show-register-send-otp-error"
 import { HttpError } from "@/shared/lib/http-error"
 import { saveAuthSession } from "@/shared/stores/auth-store"
 import { OTP_LENGTH, showToast } from "ui"
@@ -70,27 +68,12 @@ export function useRegisterOtpFlow(copy: RegisterFormCopy) {
       setResendSeconds(OTP_RESEND_AFTER_S)
       setStep("otp")
     } catch (error) {
-      if (error instanceof Error) {
-        const invalidPhoneNumber = error.message.includes(
-          "invalid phone number format"
-        )
-        const alreadyExists = error.message.includes(
-          "user with this phone already exists"
-        )
-        if (alreadyExists) {
-          showToast({
-            title: "Пользователь с этим телефоном уже существует",
-            type: "error",
-          })
-        } else if (invalidPhoneNumber) {
-          showToast({
-            title: "Неверный формат телефона",
-            type: "error",
-          })
-        } else {
-          showToast({ title: "Не удалось отправить OTP", type: "error" })
-        }
-      }
+      showRegisterSendOtpError(error, {
+        userAlreadyExists: copy.userAlreadyExistsToast,
+        invalidPhoneNumber: copy.invalidPhoneNumberToast,
+        otpAlreadySent: copy.otpAlreadySentToast,
+        sendOtpFailed: copy.sendOtpFailedToast,
+      })
     }
   }
 
@@ -129,18 +112,16 @@ export function useRegisterOtpFlow(copy: RegisterFormCopy) {
         userName:
           `${credentials.firstName} ${credentials.lastName}`.trim() || null,
       })
-      showToast({ title: "Регистрация завершена", type: "success" })
+      showToast({ title: copy.registerCompletedToast, type: "success" })
       router.push("/")
     } catch (error) {
       if (error instanceof HttpError) {
-        const otpExpired = error.message.includes("otp code has expired")
-        const invalidOtpCode = error.message.includes(
-          "invalid or expired otp code"
-        )
+        const otpExpired = hasErrorMessage(error, "otp code has expired")
+        const invalidOtpCode = hasErrorMessage(error, "invalid or expired otp code")
         if (otpExpired) {
-          showToast({ title: "OTP код истек", type: "error" })
+          showToast({ title: copy.otpExpiredToast, type: "error" })
         } else if (invalidOtpCode) {
-          showToast({ title: "Неверный OTP код", type: "error" })
+          showToast({ title: copy.otpInvalidToast, type: "error" })
         }
       }
       setOtpInvalid(true)
@@ -164,10 +145,11 @@ export function useRegisterOtpFlow(copy: RegisterFormCopy) {
       setResendSeconds(OTP_RESEND_AFTER_S)
       setResendToken((t) => t + 1)
     } catch (error) {
-      showToast({
-        title: "Не удалось отправить OTP",
-        description: getErrorMessage(error),
-        type: "error",
+      showRegisterSendOtpError(error, {
+        userAlreadyExists: copy.userAlreadyExistsToast,
+        invalidPhoneNumber: copy.invalidPhoneNumberToast,
+        otpAlreadySent: copy.otpAlreadySentToast,
+        sendOtpFailed: copy.sendOtpFailedToast,
       })
     }
   }

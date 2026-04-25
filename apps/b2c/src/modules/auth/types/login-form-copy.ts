@@ -26,4 +26,7 @@ export type LoginFormCopy = {
   otpResendIn: string
   otpResend: string
   welcomeBackToast: string
+  otpAlreadySentToast: string
+  sendOtpFailedToast: string
+  otpInvalidOrLoginFailedToast: string
 }

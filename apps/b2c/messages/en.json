@@ -77,7 +77,17 @@
     "otpBack": "Back",
     "otpResendIn": "Resend code in __TIME__",
     "otpResend": "Resend code",
-    "welcomeBackToast": "Welcome back!"
+    "welcomeBackToast": "Welcome back!",
+    "otpAlreadySentToast": "OTP already sent. Please wait 2 minutes.",
+    "sendOtpFailedToast": "Failed to send OTP",
+    "otpInvalidOrLoginFailedToast": "Invalid OTP or login failed",
+    "registerCompletedToast": "Registration completed",
+    "otpExpiredToast": "OTP code has expired",
+    "otpInvalidToast": "Invalid OTP code",
+    "userAlreadyExistsToast": "A user with this phone already exists",
+    "invalidPhoneNumberToast": "Invalid phone number format",
+    "checkoutNameRequiredToast": "Enter passenger first and last name",
+    "otpInvalidOrAuthFailedToast": "Invalid OTP or authorization failed"
   },
   "home": {
     "badge": "Central Tour B2C",
@@ -291,6 +301,8 @@
     "checkoutTravelerFirstNamePlaceholder": "Enter first name",
     "checkoutTravelerLastNameLabel": "Last name",
     "checkoutTravelerLastNamePlaceholder": "Last name",
+    "checkoutTravelerMiddleNameLabel": "Father name",
+    "checkoutTravelerMiddleNamePlaceholder": "Enter father name",
     "checkoutTravelerBirthDateLabel": "Date of birth",
     "checkoutTravelerBirthDatePlaceholder": "dd.mm.yyyy",
     "checkoutTravelerWithoutLastName": "This passenger has no last name",

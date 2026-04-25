@@ -77,7 +77,17 @@
     "otpBack": "Orqaga",
     "otpResendIn": "Kodni qayta yuborish: __TIME__",
     "otpResend": "Kodni qayta yuborish",
-    "welcomeBackToast": "Xush kelibsiz!"
+    "welcomeBackToast": "Xush kelibsiz!",
+    "otpAlreadySentToast": "OTP allaqachon yuborilgan. Iltimos, 2 daqiqa kuting.",
+    "sendOtpFailedToast": "OTP yuborilmadi",
+    "otpInvalidOrLoginFailedToast": "OTP noto'g'ri yoki kirishda xatolik",
+    "registerCompletedToast": "Ro'yxatdan o'tish yakunlandi",
+    "otpExpiredToast": "OTP kodi muddati tugagan",
+    "otpInvalidToast": "Noto'g'ri OTP kodi",
+    "userAlreadyExistsToast": "Bu telefon raqami bilan foydalanuvchi allaqachon mavjud",
+    "invalidPhoneNumberToast": "Telefon raqam formati noto'g'ri",
+    "checkoutNameRequiredToast": "Yo'lovchining ism va familiyasini kiriting",
+    "otpInvalidOrAuthFailedToast": "OTP noto'g'ri yoki avtorizatsiyada xatolik"
   },
   "home": {
     "badge": "Central Tour B2C",
@@ -291,6 +301,8 @@
     "checkoutTravelerFirstNamePlaceholder": "Ismni kiriting",
     "checkoutTravelerLastNameLabel": "Familiya",
     "checkoutTravelerLastNamePlaceholder": "Familiya",
+    "checkoutTravelerMiddleNameLabel": "Otasining ismi",
+    "checkoutTravelerMiddleNamePlaceholder": "Otasining ismini kiriting",
     "checkoutTravelerBirthDateLabel": "Tug'ilgan sana",
     "checkoutTravelerBirthDatePlaceholder": "kk.oo.yyyy",
     "checkoutTravelerWithoutLastName": "Bu yo'lovchida familiya yo'q",

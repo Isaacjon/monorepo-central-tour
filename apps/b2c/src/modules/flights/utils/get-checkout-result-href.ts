@@ -10,12 +10,12 @@ function parseCheckoutPaymentStatus(
 }
 
 export function getCheckoutResultHref({
-  lang,
+  lang: _lang,
   paymentStatus,
 }: {
   lang: string
   paymentStatus: string | string[] | undefined
 }) {
   const status = parseCheckoutPaymentStatus(paymentStatus)
-  return `/${lang}/flights/checkout/${status}`
+  return `/flights/checkout/${status}`
 }

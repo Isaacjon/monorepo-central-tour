@@ -47,6 +47,13 @@ function buildRegisterFormCopy(
     otpBack: t("otpBack"),
     otpResendIn: t("otpResendIn"),
     otpResend: t("otpResend"),
+    registerCompletedToast: t("registerCompletedToast"),
+    otpExpiredToast: t("otpExpiredToast"),
+    otpInvalidToast: t("otpInvalidToast"),
+    userAlreadyExistsToast: t("userAlreadyExistsToast"),
+    invalidPhoneNumberToast: t("invalidPhoneNumberToast"),
+    otpAlreadySentToast: t("otpAlreadySentToast"),
+    sendOtpFailedToast: t("sendOtpFailedToast"),
   }
 }
 

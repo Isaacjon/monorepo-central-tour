@@ -1,6 +1,9 @@
 "use client"
 
+import { useRouter } from "@central-tour/config/i18n/navigation"
+
 import type { ProfileSidebarCopy } from "@/modules/profile/types/profile-data-copy"
+import { clearAuthSession } from "@/shared/stores/auth-store"
 import {
   HeartIcon,
   LogoutIcon,
@@ -20,6 +23,13 @@ export function ProfileNavSidebar({
   copy,
   activeSection = "customerData",
 }: ProfileNavSidebarProps) {
+  const router = useRouter()
+
+  function handleLogout() {
+    clearAuthSession()
+    router.push("/login")
+  }
+
   const items = [
     {
       id: "customerData",
@@ -46,6 +56,7 @@ export function ProfileNavSidebar({
       items={items}
       logoutLabel={copy.logout}
       logoutIcon={<LogoutIcon className="size-5" />}
+      onLogout={handleLogout}
     />
   )
 }

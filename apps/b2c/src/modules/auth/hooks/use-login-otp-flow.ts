@@ -11,11 +11,13 @@ import type { LoginFormCopy } from "@/modules/auth/types/login-form-copy"
 import {
   buildPhoneForApi,
   getErrorMessage,
+  hasErrorMessage,
 } from "@/modules/auth/utils/auth-flow-utils"
 import { saveAuthSession } from "@/shared/stores/auth-store"
 import { OTP_LENGTH, showToast } from "ui"
 
 const OTP_RESEND_AFTER_S = 120
+const OTP_ALREADY_SENT_ERROR = "otp already sent please wait"
 
 type LoginCredentials = {
   contactMethod: "phone" | "email"
@@ -39,6 +41,21 @@ export function useLoginOtpFlow(copy: LoginFormCopy) {
 
   useOtpResendInterval(step, resendToken, setResendSeconds)
 
+  function showSendOtpError(error: unknown) {
+    if (hasErrorMessage(error, OTP_ALREADY_SENT_ERROR)) {
+      showToast({
+        title: copy.otpAlreadySentToast,
+        type: "error",
+      })
+      return
+    }
+    showToast({
+      title: copy.sendOtpFailedToast,
+      description: getErrorMessage(error),
+      type: "error",
+    })
+  }
+
   async function submitCredentials(values: LoginFormValues) {
     const nextCredentials: LoginCredentials = {
       contactMethod: values.loginTab,
@@ -61,11 +78,7 @@ export function useLoginOtpFlow(copy: LoginFormCopy) {
       setResendSeconds(OTP_RESEND_AFTER_S)
       setStep("otp")
     } catch (error) {
-      showToast({
-        title: "Не удалось отправить OTP",
-        description: getErrorMessage(error),
-        type: "error",
-      })
+      showSendOtpError(error)
     }
   }
 
@@ -105,7 +118,7 @@ export function useLoginOtpFlow(copy: LoginFormCopy) {
     } catch (error) {
       setOtpInvalid(true)
       showToast({
-        title: "Неверный OTP или ошибка входа",
+        title: copy.otpInvalidOrLoginFailedToast,
         description: getErrorMessage(error),
         type: "error",
       })
@@ -129,11 +142,7 @@ export function useLoginOtpFlow(copy: LoginFormCopy) {
       setResendSeconds(OTP_RESEND_AFTER_S)
       setResendToken((t) => t + 1)
     } catch (error) {
-      showToast({
-        title: "Не удалось отправить OTP",
-        description: getErrorMessage(error),
-        type: "error",
-      })
+      showSendOtpError(error)
     }
   }
 

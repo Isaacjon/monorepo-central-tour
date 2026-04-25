@@ -42,6 +42,9 @@ function buildLoginFormCopy(
     otpResendIn: t("otpResendIn"),
     otpResend: t("otpResend"),
     welcomeBackToast: t("welcomeBackToast"),
+    otpAlreadySentToast: t("otpAlreadySentToast"),
+    sendOtpFailedToast: t("sendOtpFailedToast"),
+    otpInvalidOrLoginFailedToast: t("otpInvalidOrLoginFailedToast"),
   }
 }
 

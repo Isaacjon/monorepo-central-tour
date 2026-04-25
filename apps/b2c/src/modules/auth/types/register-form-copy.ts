@@ -31,4 +31,11 @@ export type RegisterFormCopy = {
   otpBack: string
   otpResendIn: string
   otpResend: string
+  registerCompletedToast: string
+  otpExpiredToast: string
+  otpInvalidToast: string
+  userAlreadyExistsToast: string
+  invalidPhoneNumberToast: string
+  otpAlreadySentToast: string
+  sendOtpFailedToast: string
 }
