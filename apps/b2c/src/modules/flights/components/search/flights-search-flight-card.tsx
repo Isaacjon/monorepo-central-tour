@@ -1,5 +1,7 @@
 "use client"
 
+import Link from "next/link"
+import { useParams } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { cn, PrimaryButton } from "ui"
@@ -31,6 +33,8 @@ export function FlightsSearchFlightCard({
   metaCurrency,
 }: FlightsSearchFlightCardProps) {
   const t = useTranslations("flights")
+  const params = useParams<{ lang?: string }>()
+  const lang = params?.lang ?? "en"
   const [detailsOpen, setDetailsOpen] = useState(false)
   const [favorite, setFavorite] = useState(false)
   const [faresDialogOpen, setFaresDialogOpen] = useState(false)
@@ -107,11 +111,12 @@ export function FlightsSearchFlightCard({
             {t("searchFlightSelectFares")}
           </button>
           <PrimaryButton
-            className="min-h-0 cursor-pointer rounded-xl px-4 py-2.5 text-base leading-[22px] font-medium"
-            size="sm"
-            type="button"
+            asChild
+            className="min-w-[190px] rounded-xl px-8 py-3 text-lg leading-6 font-medium"
           >
-            {t("priceFromPrefix")} {priceLabel}
+            <Link href={`/${lang}/flights/checkout`}>
+              {t("priceFromPrefix")} {priceLabel}
+            </Link>
           </PrimaryButton>
         </div>
       </div>

@@ -4,10 +4,11 @@ import type { FlightMiniRuleWeightApi } from "../../types/flight-offers-search-a
 export type FareFeature = {
   label: string
   included: boolean
-  icon: "luggage" | "checked" | "refund" | "exchange"
+  icon: "carry_on" | "checked_bag" | "refund" | "exchange"
 }
 
 export type FareCard = {
+  id: string
   title: string
   price: string
   features: FareFeature[]

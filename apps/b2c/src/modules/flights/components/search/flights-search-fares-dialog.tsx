@@ -42,14 +42,10 @@ export function FlightsSearchFaresDialog({
   const params = useParams<{ lang?: string }>()
   const lang = params?.lang ?? "en"
   const firstDirection = offer.directions[0]
+
   const firstSegment = firstDirection?.segments[0]
-  const secondSegment = firstDirection?.segments[1]
   const lastSegment =
     firstDirection?.segments[firstDirection.segments.length - 1] ?? firstSegment
-  const connectionSegment =
-    firstDirection?.segments.length && firstDirection.segments.length > 1
-      ? firstDirection.segments[0]
-      : undefined
 
   const title = useMemo(() => {
     if (!firstSegment) return { from: "Рейс", to: "—" }
@@ -68,6 +64,7 @@ export function FlightsSearchFaresDialog({
   const fareCards = useMemo<FareCard[]>(() => {
     const currency = offer.price.currency || metaCurrency
     const directionRule = firstDirection?.miniRules
+
     const carryOnWeight = formatMiniRuleWeight(
       directionRule?.carry_on_baggage.weight ?? null
     )
@@ -76,15 +73,20 @@ export function FlightsSearchFaresDialog({
     )
     const hasCarryOn = Boolean(directionRule?.carry_on_baggage.is_available)
     const hasChecked = Boolean(directionRule?.baggage.is_available)
-    const refundable =
-      directionRule?.refund.before_departure.is_available ??
-      offer.rules.isRefundable
-    const exchangeable =
-      directionRule?.exchange.before_departure.is_available ??
-      offer.rules.isChangeable
+    const refundRule = directionRule?.refund.before_departure
+    const exchangeRule = directionRule?.exchange.before_departure
+    const refundable = refundRule?.is_available ?? offer.rules.isRefundable
+    const exchangeable = exchangeRule?.is_available ?? offer.rules.isChangeable
+
+    const exchangeLabel = !exchangeable
+      ? "Обмен недоступен"
+      : exchangeRule?.is_free === false
+        ? "Обмен со сбором"
+        : "Обмен"
 
     return [
       {
+        id: offer.offerId,
         title: getFareTitleFromOffer(offer),
         price: formatOfferPrice(offer.price.amount, currency),
         selected: true,
@@ -94,15 +96,15 @@ export function FlightsSearchFaresDialog({
               ? `Ручная кладь до ${carryOnWeight}`
               : "Ручная кладь",
             included: hasCarryOn,
-            icon: "luggage",
+            icon: "carry_on",
           },
           {
-            label: checkedWeight ? `Багаж до ${checkedWeight}` : "Багаж",
+            label: checkedWeight ? `Багаж ${checkedWeight}` : "Багаж",
             included: hasChecked,
-            icon: "checked",
+            icon: "checked_bag",
           },
-          { label: "Возврат", included: refundable, icon: "refund" },
-          { label: "Обмен", included: exchangeable, icon: "exchange" },
+          { label: "Без возврата", included: refundable, icon: "refund" },
+          { label: exchangeLabel, included: exchangeable, icon: "exchange" },
         ],
       },
     ]
@@ -150,19 +152,16 @@ export function FlightsSearchFaresDialog({
           </div>
 
           <FlightsSearchFaresDialogItinerary
-            firstSegment={firstSegment}
-            secondSegment={secondSegment}
-            lastSegment={lastSegment}
-            connectionSegment={connectionSegment}
+            segments={firstDirection?.segments ?? []}
           />
 
           <FlightsSearchFaresDialogFareCards fareCards={fareCards} />
         </div>
 
-        <footer className="absolute right-0 bottom-0 left-0 flex items-center justify-between gap-3 border-t border-[#EAECF0] bg-white px-6 py-4">
-          <p className="text-2xl leading-8 font-medium text-[#1D2939]">
-            от{" "}
-            <span className="text-[38px] leading-8 font-bold">
+        <footer className="absolute right-0 bottom-0 left-0 flex items-center justify-end gap-3 bg-[#F2F4F7] p-4">
+          <p className="flex items-center gap-[6px] font-(family-name:--font-inter-stack,Inter,ui-sans-serif,sans-serif) text-2xl">
+            <span className="leading-8 font-normal text-[#98A2B3]">от</span>
+            <span className="leading-none font-bold text-[#0C111D]">
               {formatOfferPrice(
                 offer.price.amount,
                 offer.price.currency || metaCurrency

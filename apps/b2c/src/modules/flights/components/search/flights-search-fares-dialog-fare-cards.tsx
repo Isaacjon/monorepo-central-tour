@@ -1,34 +1,40 @@
 "use client"
 
-import {
-  BriefcaseBusinessIcon,
-  CheckIcon,
-  RefreshCwIcon,
-  XIcon,
-} from "lucide-react"
-import { cn, PrimaryButton } from "ui"
+import { RefreshCwIcon, XIcon } from "lucide-react"
+import { BaggageIcon, CarryOnBagIcon, cn, PrimaryButton } from "ui"
 
 import type { FareCard, FareFeature } from "./flights-search-fares-dialog.utils"
 
+const successActive = "text-[#079455]"
+
 function FareFeatureRow({ feature }: { feature: FareFeature }) {
-  const positive = feature.included
+  const active = feature.included
+  const tone = active ? successActive : "text-[#98A2B3]"
+
+  const icon = (() => {
+    const iconClass = cn("size-5 shrink-0", tone)
+    switch (feature.icon) {
+      case "checked_bag":
+        return <BaggageIcon className={iconClass} aria-hidden />
+      case "carry_on":
+        return <CarryOnBagIcon className={iconClass} aria-hidden />
+      case "exchange":
+        return active ? (
+          <RefreshCwIcon className={iconClass} aria-hidden />
+        ) : (
+          <XIcon className={iconClass} aria-hidden />
+        )
+      case "refund":
+        return <XIcon className={iconClass} aria-hidden />
+      default:
+        return null
+    }
+  })()
+
   return (
-    <li
-      className={cn(
-        "flex items-center gap-2",
-        positive ? "text-[#079455]" : "text-[#98A2B3]"
-      )}
-    >
-      {feature.icon === "luggage" || feature.icon === "checked" ? (
-        <BriefcaseBusinessIcon className="size-[18px] shrink-0" aria-hidden />
-      ) : feature.icon === "exchange" ? (
-        <RefreshCwIcon className="size-[18px] shrink-0" aria-hidden />
-      ) : positive ? (
-        <CheckIcon className="size-[18px] shrink-0" aria-hidden />
-      ) : (
-        <XIcon className="size-[18px] shrink-0" aria-hidden />
-      )}
-      <span className="text-base leading-[22px] font-normal">{feature.label}</span>
+    <li className={cn("flex items-center gap-3", tone)}>
+      {icon}
+      <span className="text-sm leading-4 font-medium">{feature.label}</span>
     </li>
   )
 }
@@ -37,22 +43,34 @@ function FareCardItem({ fare }: { fare: FareCard }) {
   return (
     <article
       className={cn(
-        "min-w-[270px] flex-1 rounded-2xl border bg-[#F8FAFC] p-4",
+        "flex w-[270px] shrink-0 flex-col gap-4 rounded-xl bg-white p-4",
         fare.selected
-          ? "border-primary bg-white shadow-[0_0_0_1px_rgba(65,90,248,0.2)]"
-          : "border-[#EAECF0]"
+          ? "border-primary border shadow-[0_0_0_1px_rgba(65,90,248,0.2)]"
+          : "border border-[#EAECF0]"
       )}
     >
-      <p className="text-2xl leading-6 font-medium text-[#111126]">{fare.title}</p>
-      <p className="mt-2 text-[38px] leading-[38px] font-bold text-[#111126]">
-        {fare.price}
-      </p>
-      <ul className="mt-3 space-y-2">
-        {fare.features.map((feature) => (
-          <FareFeatureRow key={`${fare.title}-${feature.label}`} feature={feature} />
-        ))}
-      </ul>
-      <PrimaryButton className="mt-4 w-full rounded-xl py-3 text-lg leading-6 font-medium">
+      <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2">
+          <p className="font-(family-name:--font-inter-stack,Inter,ui-sans-serif,sans-serif) text-[15px] leading-[22px] font-normal text-[#111126]">
+            {fare.title}
+          </p>
+          <p className="font-(family-name:--font-inter-stack,Inter,ui-sans-serif,sans-serif) text-[22px] leading-8 font-bold text-[#111126]">
+            {fare.price}
+          </p>
+        </div>
+        <ul className="flex flex-col gap-0.5">
+          {fare.features.map((feature) => (
+            <FareFeatureRow
+              key={`${fare.id}-${feature.icon}-${feature.label}`}
+              feature={feature}
+            />
+          ))}
+        </ul>
+      </div>
+      <PrimaryButton
+        fullWidth
+        className="h-10 rounded-[10px] px-2 py-2 font-(family-name:--font-inter-stack,Inter,ui-sans-serif,sans-serif) text-base leading-6 font-medium"
+      >
         Выбрать
       </PrimaryButton>
     </article>
@@ -70,7 +88,7 @@ export function FlightsSearchFaresDialogFareCards({
     <section className="mt-8 overflow-x-auto pb-1">
       <div className="flex min-w-[320px] gap-4">
         {fareCards.map((fare) => (
-          <FareCardItem key={`${fare.title}-${fare.price}`} fare={fare} />
+          <FareCardItem key={fare.id} fare={fare} />
         ))}
       </div>
     </section>

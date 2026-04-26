@@ -47,6 +47,8 @@
   --c-gray-900: #101828;
   --c-gray-950: #0c111d;
   --c-error-100: #fee4e2;
+  /* Error/500 — product destructive emphasis (tooltips, inline warnings). */
+  --c-error-500: #f04438;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -117,6 +119,7 @@
   --color-c-gray-900: var(--c-gray-900);
   --color-c-gray-950: var(--c-gray-950);
   --color-c-error-100: var(--c-error-100);
+  --color-c-error-500: var(--c-error-500);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

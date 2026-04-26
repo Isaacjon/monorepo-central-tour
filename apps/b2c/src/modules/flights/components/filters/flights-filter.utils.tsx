@@ -44,15 +44,18 @@ export function upgradeLocationFromAirports(
   if (!options.length) {
     return current
   }
+  // Prefer the in-memory selection when it appears in loaded options so changing
+  // origin/destination in the filter is not overwritten by the URL id (still
+  // the previous airport until the user runs search).
+  if (current) {
+    const currentHit = options.find((o) => sameAirportId(o.id, current.id))
+    if (currentHit) {
+      return currentHit
+    }
+  }
   const idT = urlId?.trim() ?? ""
   if (idT) {
     const hit = options.find((o) => sameAirportId(o.id, idT))
-    if (hit) {
-      return hit
-    }
-  }
-  if (current) {
-    const hit = options.find((o) => sameAirportId(o.id, current.id))
     if (hit) {
       return hit
     }
