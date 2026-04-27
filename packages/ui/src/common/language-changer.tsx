@@ -1,12 +1,14 @@
 "use client"
 
 import * as React from "react"
-
 import { LanguageFlagSlot } from "./language-flag-slot"
 import CheckedIcon from "../assets/icons/checked.svg"
 import ChevronDownIcon from "../assets/icons/chevron-down.svg"
+import EnFlagEmojiIcon from "../assets/icons/en-flag-emoji.svg"
 import EnFlagIcon from "../assets/icons/en-flag.svg"
+import RuFlagEmojiIcon from "../assets/icons/ru-flag-emoji.svg"
 import RuFlagIcon from "../assets/icons/ru-flag.svg"
+import UzFlagEmojiIcon from "../assets/icons/uz-flag-emoji.svg"
 import UzFlagIcon from "../assets/icons/uz-flag.svg"
 
 import {
@@ -26,9 +28,9 @@ export type LanguageOption = {
 
 /** Shared locale rows for `LanguageChanger` (b2c + b2b). Values must match app routing locales. */
 export const languageChangerOptions: LanguageOption[] = [
-  { value: "uz", label: "O'zbek", flag: "🇺🇿" },
-  { value: "ru", label: "Русский", flag: "🇷🇺" },
-  { value: "en", label: "English", flag: "🇺🇸" },
+  { value: "uz", label: "O'zbek", FlagIcon: UzFlagEmojiIcon },
+  { value: "ru", label: "Русский", FlagIcon: RuFlagEmojiIcon },
+  { value: "en", label: "English", FlagIcon: EnFlagEmojiIcon },
 ]
 
 /** Profile header locale rows with SVG flags from UI assets. */

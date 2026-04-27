@@ -3,8 +3,10 @@
 import InputMask from "@mona-health/react-input-mask"
 import { Check, ChevronDown } from "lucide-react"
 import * as React from "react"
-
 import { inputWrapperVariants } from "./input-field"
+import EnFlagEmojiIcon from "../assets/icons/en-flag-emoji.svg"
+import RuFlagEmojiIcon from "../assets/icons/ru-flag-emoji.svg"
+import UzFlagEmojiIcon from "../assets/icons/uz-flag-emoji.svg"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,7 +17,7 @@ import { cn } from "../lib/utils"
 
 export type PhoneCountryOption = {
   code: string
-  flag: string
+  FlagIcon: React.ComponentType<React.SVGProps<SVGSVGElement>>
   dialCode: string
   mask: string
   placeholder: string
@@ -24,21 +26,21 @@ export type PhoneCountryOption = {
 const DEFAULT_PHONE_COUNTRIES: PhoneCountryOption[] = [
   {
     code: "UZ",
-    flag: "🇺🇿",
+    FlagIcon: UzFlagEmojiIcon,
     dialCode: "+998",
     mask: "(99) 999-99-99",
     placeholder: "(90) 123-45-67",
   },
   {
     code: "RU",
-    flag: "🇷🇺",
+    FlagIcon: RuFlagEmojiIcon,
     dialCode: "+7",
     mask: "(999) 999-99-99",
     placeholder: "(912) 345-67-89",
   },
   {
     code: "US",
-    flag: "🇺🇸",
+    FlagIcon: EnFlagEmojiIcon,
     dialCode: "+1",
     mask: "(999) 999-9999",
     placeholder: "(555) 123-4567",
@@ -120,9 +122,10 @@ const PhoneCountryInput = React.forwardRef<
                   : "border-r border-[#D0D5DD]"
               )}
             >
-              <span aria-hidden className="text-base leading-none">
-                {country.flag}
-              </span>
+              <country.FlagIcon
+                aria-hidden
+                className="h-4 w-5 shrink-0 overflow-hidden rounded-[2px]"
+              />
               <span>{country.code}</span>
               <ChevronDown className="text-c-gray-500 h-3.5 w-3.5" />
             </button>
@@ -145,9 +148,10 @@ const PhoneCountryInput = React.forwardRef<
                     } as React.ChangeEvent<HTMLInputElement>)
                   }}
                 >
-                  <span aria-hidden className="text-base leading-none">
-                    {c.flag}
-                  </span>
+                  <c.FlagIcon
+                    aria-hidden
+                    className="h-4 w-5 shrink-0 overflow-hidden rounded-[2px]"
+                  />
                   <span
                     className={
                       selected

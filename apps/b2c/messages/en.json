@@ -33,11 +33,6 @@
       "ru": "Русский",
       "en": "English"
     },
-    "localeFlags": {
-      "uz": "🇺🇿",
-      "ru": "🇷🇺",
-      "en": "🇺🇸"
-    },
     "hero": {
       "prev": "Previous slide",
       "next": "Next slide",
