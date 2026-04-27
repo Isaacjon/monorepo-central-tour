@@ -35,6 +35,7 @@ export type AppFooterProps = {
   /** Where the logo links (e.g. `/${lang}`) */
   logoHref: string
   logoAlt?: string
+  logoWidth?: number
   navItems: AppFooterNavItem[]
   /** Second row, left: visible label and href */
   privacyLabel: string
@@ -55,6 +56,7 @@ export function AppFooter({
   logoSrc,
   logoHref,
   logoAlt = "",
+  logoWidth = 180,
   navItems,
   privacyLabel,
   privacyHref,
@@ -66,7 +68,7 @@ export function AppFooter({
   return (
     <footer
       className={cn(
-        "font-[family-name:var(--font-inter-stack,Inter,ui-sans-serif,sans-serif)] text-white",
+        "font-(family-name:--font-inter-stack,Inter,ui-sans-serif,sans-serif) text-white",
         className
       )}
     >
@@ -82,8 +84,10 @@ export function AppFooter({
                   <Image
                     src={logoSrc}
                     alt={logoAlt}
-                    width={180}
-                    height={48}
+                    width={logoWidth}
+                    height={36}
+                    priority
+                    unoptimized
                     className="h-9 w-auto object-contain object-left brightness-0 invert"
                   />
                 </Link>

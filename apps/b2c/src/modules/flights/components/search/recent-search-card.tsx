@@ -24,7 +24,7 @@ export function RecentSearchCard({
   return (
     <article
       className={cn(
-        "box-border flex min-h-[100px] w-full shrink-0 flex-col rounded-[20px] border border-[#EAECF0] bg-white p-3",
+        "box-border flex min-h-[100px] w-full shrink-0 flex-col rounded-[20px] border border-[#EAECF0] bg-white p-3 hover:bg-white/50",
         className
       )}
     >
@@ -49,9 +49,9 @@ export function RecentSearchCard({
         </Link>
       </div>
 
-      <div className="flex min-h-0 min-w-0 flex-1 flex-col">
+      <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-2">
         <div className="min-w-0">
-          <p className="flex flex-wrap items-center text-xl leading-none font-bold text-gray-950">
+          <p className="flex flex-wrap items-center text-xl leading-1.5 font-bold text-gray-950">
             <span className="shrink-0">{item.fromCity}</span>
             <span
               className="text-primary inline-flex shrink-0 items-center"

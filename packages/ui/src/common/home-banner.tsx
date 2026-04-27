@@ -51,7 +51,7 @@ export function HomeBanner({
 
         {/* Layer 2: content — flows naturally, can exceed banner height */}
         <div className="relative z-10 flex flex-col items-center pb-1">
-          <h1 className="mt-[132px] mb-24 text-center font-['Druk_Text_Wide_Cyr',sans-serif] text-[40px] leading-[48px] font-medium tracking-[0.04em] text-white">
+          <h1 className="font-druk mt-[132px] mb-24 text-center text-[40px] leading-[48px] font-medium tracking-[0.04em] text-white">
             {title}
           </h1>
 

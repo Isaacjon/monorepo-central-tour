@@ -26,7 +26,7 @@ type AppHeaderProps = {
   activeNav?: AppHeaderActiveNav
 }
 
-const LOGO_SRC = "/images/logo.svg"
+const LOGO_SRC = "/icons/logo.svg"
 
 export function AppHeader({ copy, lang, activeNav }: AppHeaderProps) {
   const session = useAuthStore((state) => state.session)
@@ -61,7 +61,7 @@ export function AppHeader({ copy, lang, activeNav }: AppHeaderProps) {
           <Image
             src={LOGO_SRC}
             alt="Central Tour"
-            width={137}
+            width={85}
             height={36}
             priority
             unoptimized

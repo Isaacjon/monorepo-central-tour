@@ -8,6 +8,7 @@ import { cn } from "ui"
 import { FlightsSearchFlightCard } from "./flights-search-flight-card"
 import { FlightsSearchPriceGraph } from "./flights-search-price-graph"
 import type { FlightOffersSearchResultBody } from "../../types/flight-offers-search-api"
+import { groupFlightOffersByItinerary } from "../../utils/group-flight-offers"
 
 const dayTabValues = [4, 5, 6, 7, 8, 9, 10] as const
 
@@ -32,6 +33,7 @@ export function FlightsSearchMainColumn({
   const [up, setUp] = useState(false)
 
   const metaCurrency = searchResult.meta.currency
+  const groupedOffers = groupFlightOffersByItinerary(searchResult.offers)
 
   return (
     <div className="flex min-w-0 flex-1 flex-col gap-4">
@@ -98,10 +100,11 @@ export function FlightsSearchMainColumn({
       </div>
 
       <div className="flex flex-col gap-3">
-        {searchResult.offers.map((offer, index) => (
+        {groupedOffers.map((group) => (
           <FlightsSearchFlightCard
-            key={`${offer.offerId}-${index}`}
-            offer={offer}
+            key={group.itineraryKey}
+            offer={group.primaryOffer}
+            fareOffers={group.fares}
             metaCurrency={metaCurrency}
           />
         ))}

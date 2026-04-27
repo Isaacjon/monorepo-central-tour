@@ -1,6 +1,7 @@
 import QueryProvider from "@central-tour/config/providers/query-provider"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import localFont from "next/font/local"
 import { notFound } from "next/navigation"
 import { NextIntlClientProvider } from "next-intl"
 import { getMessages, setRequestLocale } from "next-intl/server"
@@ -14,6 +15,12 @@ import "../globals.css"
 const inter = Inter({
   variable: "--font-inter-stack",
   subsets: ["latin"],
+})
+
+const druk = localFont({
+  src: "../../../../../packages/ui/src/assets/font/druktextwidecyr-medium.otf",
+  variable: "--font-druk-stack",
+  display: "swap",
 })
 
 export const metadata: Metadata = {
@@ -45,7 +52,7 @@ export default async function LocaleLayout({
     <html
       lang={lang}
       suppressHydrationWarning
-      className={`${inter.variable} h-full antialiased`}
+      className={`${inter.variable} ${druk.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
         <QueryProvider>

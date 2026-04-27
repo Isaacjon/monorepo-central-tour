@@ -19,7 +19,7 @@ export function FlightsFilterTripTypeControls({
     <div className="flex items-center gap-4">
       <button
         type="button"
-        className="inline-flex items-center gap-2 text-base leading-4 font-normal text-[#101828]"
+        className="inline-flex h-12 items-center gap-2 text-base leading-4 font-normal text-[#101828]"
       >
         <BezierCurveIcon
           width={24}
@@ -32,7 +32,7 @@ export function FlightsFilterTripTypeControls({
       {tripTypeOptions.map((option) => (
         <label
           key={option.id}
-          className="inline-flex cursor-pointer items-center gap-2 text-base leading-4 font-normal text-[#101828]"
+          className="inline-flex h-12 cursor-pointer items-center gap-2 text-base leading-4 font-normal text-[#101828]"
         >
           <span
             className="relative flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors"

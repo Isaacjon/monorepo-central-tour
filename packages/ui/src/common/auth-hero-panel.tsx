@@ -1,6 +1,6 @@
 "use client"
 
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { ArrowLeft } from "lucide-react"
 import Image, { type StaticImageData } from "next/image"
 import { useCallback, useState } from "react"
 
@@ -87,7 +87,7 @@ export function AuthHeroPanel({
               aria-label={prevLabel}
               className="flex size-14 items-center justify-center rounded-full border border-white/50 bg-white/10 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
             >
-              <ChevronLeft className="h-5 w-5" aria-hidden />
+              <ArrowLeft className="h-6 w-6" aria-hidden />
             </button>
             <button
               type="button"
@@ -95,7 +95,7 @@ export function AuthHeroPanel({
               aria-label={nextLabel}
               className="flex size-14 items-center justify-center rounded-full border border-white/50 bg-white/10 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
             >
-              <ChevronRight className="h-5 w-5" aria-hidden />
+              <ArrowLeft className="h-6 w-6 rotate-180" aria-hidden />
             </button>
           </div>
         </div>

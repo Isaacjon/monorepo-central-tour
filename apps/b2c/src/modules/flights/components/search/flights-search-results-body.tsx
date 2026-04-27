@@ -8,6 +8,7 @@ import { FlightsSearchMainColumn } from "./flights-search-main-column"
 import { FlightsSearchSidebar } from "./flights-search-sidebar"
 import type { FlightOffersSearchResultBody } from "../../types/flight-offers-search-api"
 import { getFlightsSearchAirportCodes } from "../../utils/get-flights-search-airport-codes"
+import { groupFlightOffersByItinerary } from "../../utils/group-flight-offers"
 
 type FlightsSearchResultsBodyProps = {
   searchResult: FlightOffersSearchResultBody
@@ -30,7 +31,7 @@ export function FlightsSearchResultsBody({
     [searchParams]
   )
 
-  const totalCount = searchResult.meta.totalOffers
+  const totalCount = groupFlightOffersByItinerary(searchResult.offers).length
 
   return (
     <>

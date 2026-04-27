@@ -27,7 +27,7 @@ export function RecentlySearchedFlightsSection({
     >
       <h2
         id="recent-flights-searches-heading"
-        className="mb-6 font-['Druk_Text_Wide_Cyr',sans-serif] text-[36px] leading-[48px] font-medium tracking-[0] text-[#171717]"
+        className="font-druk mb-6 text-[36px] leading-[48px] font-medium tracking-[0] text-[#171717]"
       >
         {copy.sectionTitle}
       </h2>

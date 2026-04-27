@@ -1,4 +1,4 @@
-import { HomePage } from "@/modules/home/pages/home-page"
+import { redirect } from "next/navigation"
 
 export default async function LocalizedHomePage({
   params,
@@ -7,5 +7,5 @@ export default async function LocalizedHomePage({
 }) {
   const { lang } = await params
 
-  return <HomePage lang={lang} />
+  redirect(`/${lang}/flights`)
 }

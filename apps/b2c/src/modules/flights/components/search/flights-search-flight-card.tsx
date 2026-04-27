@@ -25,11 +25,13 @@ function isRoundTripNonStopOffer(offer: FlightOfferApi): boolean {
 
 type FlightsSearchFlightCardProps = {
   offer: FlightOfferApi
+  fareOffers: readonly FlightOfferApi[]
   metaCurrency: string
 }
 
 export function FlightsSearchFlightCard({
   offer,
+  fareOffers,
   metaCurrency,
 }: FlightsSearchFlightCardProps) {
   const t = useTranslations("flights")
@@ -125,6 +127,7 @@ export function FlightsSearchFlightCard({
         open={faresDialogOpen}
         onOpenChange={setFaresDialogOpen}
         offer={offer}
+        fareOffers={fareOffers}
         metaCurrency={metaCurrency}
       />
     </article>

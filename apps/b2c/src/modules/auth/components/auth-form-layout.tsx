@@ -5,7 +5,7 @@ import type { ReactNode } from "react"
 
 import { HomeLanguageChanger } from "@/modules/home/components/home-language-changer"
 
-const LOGO_SRC = "/images/logo.svg"
+const LOGO_SRC = "/icons/logo.svg"
 
 type AuthFormLayoutProps = {
   lang: string
@@ -27,11 +27,11 @@ export function AuthFormLayout({
           <Image
             src={LOGO_SRC}
             alt={logoWordmark}
-            width={137}
             height={36}
+            width={85}
             priority
             unoptimized
-            className="h-9 w-auto max-w-[200px] object-contain object-left"
+            className="h-9 w-auto object-contain object-left"
           />
         </div>
         <HomeLanguageChanger lang={lang} />

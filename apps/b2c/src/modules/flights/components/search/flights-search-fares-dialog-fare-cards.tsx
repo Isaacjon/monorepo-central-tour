@@ -39,7 +39,13 @@ function FareFeatureRow({ feature }: { feature: FareFeature }) {
   )
 }
 
-function FareCardItem({ fare }: { fare: FareCard }) {
+function FareCardItem({
+  fare,
+  onSelect,
+}: {
+  fare: FareCard
+  onSelect: (id: string) => void
+}) {
   return (
     <article
       className={cn(
@@ -69,6 +75,8 @@ function FareCardItem({ fare }: { fare: FareCard }) {
       </div>
       <PrimaryButton
         fullWidth
+        type="button"
+        onClick={() => onSelect(fare.id)}
         className="h-10 rounded-[10px] px-2 py-2 font-(family-name:--font-inter-stack,Inter,ui-sans-serif,sans-serif) text-base leading-6 font-medium"
       >
         Выбрать
@@ -79,16 +87,18 @@ function FareCardItem({ fare }: { fare: FareCard }) {
 
 type FlightsSearchFaresDialogFareCardsProps = {
   fareCards: FareCard[]
+  onSelectFare: (fareId: string) => void
 }
 
 export function FlightsSearchFaresDialogFareCards({
   fareCards,
+  onSelectFare,
 }: FlightsSearchFaresDialogFareCardsProps) {
   return (
-    <section className="mt-8 overflow-x-auto pb-1">
-      <div className="flex min-w-[320px] gap-4">
+    <section className="mt-8 pb-1">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-[minmax(270px,1fr)_minmax(270px,1fr)_minmax(270px,1fr)]">
         {fareCards.map((fare) => (
-          <FareCardItem key={fare.id} fare={fare} />
+          <FareCardItem key={fare.id} fare={fare} onSelect={onSelectFare} />
         ))}
       </div>
     </section>

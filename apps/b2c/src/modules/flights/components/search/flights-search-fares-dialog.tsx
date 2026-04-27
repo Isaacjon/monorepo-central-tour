@@ -1,9 +1,8 @@
 "use client"
-
 import { XIcon } from "lucide-react"
 import Link from "next/link"
 import { useParams } from "next/navigation"
-import { useMemo } from "react"
+import { useMemo, useState } from "react"
 import {
   ArrowRightIcon,
   Dialog,
@@ -12,7 +11,6 @@ import {
   DialogTitle,
   PrimaryButton,
 } from "ui"
-
 import { FlightsSearchFaresDialogFareCards } from "./flights-search-fares-dialog-fare-cards"
 import { FlightsSearchFaresDialogItinerary } from "./flights-search-fares-dialog-itinerary"
 import {
@@ -25,28 +23,34 @@ import {
   formatOfferPrice,
   formatRouteDurationMinutes,
 } from "../../utils/flight-offer-ui-format"
-
 type FlightsSearchFaresDialogProps = {
   open: boolean
   onOpenChange: (open: boolean) => void
   offer: FlightOfferApi
+  fareOffers: readonly FlightOfferApi[]
   metaCurrency: string
 }
-
 export function FlightsSearchFaresDialog({
   open,
   onOpenChange,
   offer,
+  fareOffers,
   metaCurrency,
 }: FlightsSearchFaresDialogProps) {
   const params = useParams<{ lang?: string }>()
   const lang = params?.lang ?? "en"
+  const [selectedFareIdOverride, setSelectedFareIdOverride] = useState<
+    string | null
+  >(null)
   const firstDirection = offer.directions[0]
-
+  const defaultSelectedFareId =
+    fareOffers.find((item) => item.offerId === offer.offerId)?.offerId ??
+    fareOffers[0]?.offerId ??
+    offer.offerId
+  const selectedFareId = selectedFareIdOverride ?? defaultSelectedFareId
   const firstSegment = firstDirection?.segments[0]
   const lastSegment =
     firstDirection?.segments[firstDirection.segments.length - 1] ?? firstSegment
-
   const title = useMemo(() => {
     if (!firstSegment) return { from: "Рейс", to: "—" }
     const from =
@@ -55,41 +59,38 @@ export function FlightsSearchFaresDialog({
       lastSegment?.arrival.cityName || lastSegment?.arrival.airportCode || "—"
     return { from, to }
   }, [firstSegment, lastSegment])
-
   const dateLabel = firstSegment?.departure.date ?? "12 марта 2023 г"
   const routeDuration = firstSegment
     ? formatRouteDurationMinutes(firstSegment.routeDurationMinutes)
     : "10ч 55м"
-
   const fareCards = useMemo<FareCard[]>(() => {
-    const currency = offer.price.currency || metaCurrency
-    const directionRule = firstDirection?.miniRules
-
-    const carryOnWeight = formatMiniRuleWeight(
-      directionRule?.carry_on_baggage.weight ?? null
-    )
-    const checkedWeight = formatMiniRuleWeight(
-      directionRule?.baggage.weight ?? null
-    )
-    const hasCarryOn = Boolean(directionRule?.carry_on_baggage.is_available)
-    const hasChecked = Boolean(directionRule?.baggage.is_available)
-    const refundRule = directionRule?.refund.before_departure
-    const exchangeRule = directionRule?.exchange.before_departure
-    const refundable = refundRule?.is_available ?? offer.rules.isRefundable
-    const exchangeable = exchangeRule?.is_available ?? offer.rules.isChangeable
-
-    const exchangeLabel = !exchangeable
-      ? "Обмен недоступен"
-      : exchangeRule?.is_free === false
-        ? "Обмен со сбором"
-        : "Обмен"
-
-    return [
-      {
-        id: offer.offerId,
-        title: getFareTitleFromOffer(offer),
-        price: formatOfferPrice(offer.price.amount, currency),
-        selected: true,
+    return fareOffers.map((fareOffer) => {
+      const currency = fareOffer.price.currency || metaCurrency
+      const directionRule = fareOffer.directions[0]?.miniRules
+      const carryOnWeight = formatMiniRuleWeight(
+        directionRule?.carry_on_baggage.weight ?? null
+      )
+      const checkedWeight = formatMiniRuleWeight(
+        directionRule?.baggage.weight ?? null
+      )
+      const hasCarryOn = Boolean(directionRule?.carry_on_baggage.is_available)
+      const hasChecked = Boolean(directionRule?.baggage.is_available)
+      const refundRule = directionRule?.refund.before_departure
+      const exchangeRule = directionRule?.exchange.before_departure
+      const refundable =
+        refundRule?.is_available ?? fareOffer.rules.isRefundable
+      const exchangeable =
+        exchangeRule?.is_available ?? fareOffer.rules.isChangeable
+      const exchangeLabel = !exchangeable
+        ? "Обмен недоступен"
+        : exchangeRule?.is_free === false
+          ? "Обмен со сбором"
+          : "Обмен"
+      return {
+        id: fareOffer.offerId,
+        title: getFareTitleFromOffer(fareOffer),
+        price: formatOfferPrice(fareOffer.price.amount, currency),
+        selected: fareOffer.offerId === selectedFareId,
         features: [
           {
             label: carryOnWeight
@@ -106,15 +107,26 @@ export function FlightsSearchFaresDialog({
           { label: "Без возврата", included: refundable, icon: "refund" },
           { label: exchangeLabel, included: exchangeable, icon: "exchange" },
         ],
-      },
-    ]
-  }, [firstDirection, metaCurrency, offer])
-
+      }
+    })
+  }, [fareOffers, metaCurrency, selectedFareId])
+  const selectedFareOffer =
+    fareOffers.find((item) => item.offerId === selectedFareId) ??
+    fareOffers[0] ??
+    offer
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog
+      open={open}
+      onOpenChange={(nextOpen) => {
+        onOpenChange(nextOpen)
+        if (!nextOpen) {
+          setSelectedFareIdOverride(null)
+        }
+      }}
+    >
       <DialogContent
         showCloseButton={false}
-        className="flex h-[min(669px,calc(100vh-3rem))] w-[min(856px,calc(100%-2rem))] max-w-none flex-col gap-0 overflow-hidden rounded-3xl border-none p-0 shadow-[0_25px_55px_rgba(16,24,40,0.2)] sm:max-w-[min(856px,calc(100%-2rem))]"
+        className="flex h-[min(669px,calc(100vh-3rem))] w-[min(883px,calc(100%-2rem))] max-w-none flex-col gap-0 overflow-hidden rounded-3xl border-none p-0 shadow-[0_25px_55px_rgba(16,24,40,0.2)] sm:max-w-[min(883px,calc(100%-2rem))]"
       >
         <div className="min-h-0 flex-1 overflow-y-auto bg-white p-6 pb-28">
           <div className="flex items-start justify-between gap-3">
@@ -150,21 +162,21 @@ export function FlightsSearchFaresDialog({
               </button>
             </DialogClose>
           </div>
-
           <FlightsSearchFaresDialogItinerary
             segments={firstDirection?.segments ?? []}
           />
-
-          <FlightsSearchFaresDialogFareCards fareCards={fareCards} />
+          <FlightsSearchFaresDialogFareCards
+            fareCards={fareCards}
+            onSelectFare={setSelectedFareIdOverride}
+          />
         </div>
-
         <footer className="absolute right-0 bottom-0 left-0 flex items-center justify-end gap-3 bg-[#F2F4F7] p-4">
           <p className="flex items-center gap-[6px] font-(family-name:--font-inter-stack,Inter,ui-sans-serif,sans-serif) text-2xl">
             <span className="leading-8 font-normal text-[#98A2B3]">от</span>
             <span className="leading-none font-bold text-[#0C111D]">
               {formatOfferPrice(
-                offer.price.amount,
-                offer.price.currency || metaCurrency
+                selectedFareOffer.price.amount,
+                selectedFareOffer.price.currency || metaCurrency
               )}
             </span>
           </p>

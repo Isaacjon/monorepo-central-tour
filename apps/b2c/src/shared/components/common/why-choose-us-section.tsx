@@ -35,12 +35,12 @@ export async function WhyChooseUsSection({
 
   return (
     <section
-      className={cn("ct-container mt-12", className)}
+      className={cn("ct-container pt-[100]", className)}
       aria-labelledby={headingId}
     >
       <h2
         id={headingId}
-        className="font-['Druk_Text_Wide_Cyr',sans-serif] text-[48px] leading-[72px] font-medium tracking-[0] text-[#171717]"
+        className="font-druk text-[48px] leading-[72px] font-medium tracking-[0] text-[#171717]"
       >
         {t("title")}
       </h2>

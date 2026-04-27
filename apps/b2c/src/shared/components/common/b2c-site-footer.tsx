@@ -13,9 +13,10 @@ export async function B2cSiteFooter({ lang }: B2cSiteFooterProps) {
 
   return (
     <AppFooter
-      logoSrc="/images/logo.svg"
+      logoSrc="/icons/logo.svg"
       logoHref={base}
       logoAlt={t("logoAlt")}
+      logoWidth={85}
       navItems={[
         { label: t("navHome"), href: base },
         { label: t("navFlights"), href: `${base}/flights` },

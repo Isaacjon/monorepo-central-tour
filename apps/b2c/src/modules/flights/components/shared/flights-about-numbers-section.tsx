@@ -63,7 +63,7 @@ export function FlightsAboutNumbersSection({
         <div className="min-w-0 flex-1">
           <h2
             id="flights-about-numbers-heading"
-            className="font-['Druk_Text_Wide_Cyr',sans-serif] text-[48px] leading-[72px] font-medium tracking-[0] text-[#171717]"
+            className="font-druk text-[48px] leading-[72px] font-medium tracking-[0] text-[#171717]"
           >
             {copy.title}
           </h2>

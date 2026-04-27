@@ -14,6 +14,8 @@
     "registerCta": "Registration",
     "forgotCta": "Forgot password",
     "welcomeBackToast": "Welcome back!",
+    "registerCompletedToast": "Registration completed",
+    "sendOtpFailedToast": "Failed to send OTP",
     "loginErrorToast": "Failed to sign in. Please try again.",
     "otpTitle": "Account verification",
     "otpSubtitle": "We sent an OTP code to __DESTINATION__",
