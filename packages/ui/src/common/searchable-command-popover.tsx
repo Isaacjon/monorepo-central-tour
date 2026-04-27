@@ -138,7 +138,7 @@ export function SearchableCommandPopover({
             className="h-12 text-base leading-6 text-[#101828] placeholder:text-[#98A2B3]"
           />
           <CommandList className="max-h-[min(320px,50vh)]">
-            <CommandEmpty className="py-4 text-base leading-6 text-[#667085]">
+            <CommandEmpty className="ml-3 py-4 text-base leading-6 text-[#667085]">
               {emptySearchLabel}
             </CommandEmpty>
             {nonEmptyGroups.map((group, gi) => (
