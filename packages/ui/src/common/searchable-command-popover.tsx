@@ -130,7 +130,13 @@ export function SearchableCommandPopover({
           contentClassName
         )}
       >
-        <Command key={cmdKey} className="rounded-lg border-none shadow-none">
+        <Command
+          key={cmdKey}
+          // Options are already filtered remotely; keep cmdk from hiding results
+          // when input script differs from option labels (e.g. Cyrillic vs Latin).
+          shouldFilter={false}
+          className="rounded-lg border-none shadow-none"
+        >
           <CommandInput
             placeholder={searchPlaceholder}
             value={effectiveSearchValue}
