@@ -19,10 +19,7 @@ import {
   getFareTitleFromOffer,
 } from "./flights-search-fares-dialog.utils"
 import type { FlightOfferApi } from "../../types/flight-offers-search-api"
-import {
-  formatOfferPrice,
-  formatRouteDurationMinutes,
-} from "../../utils/flight-offer-ui-format"
+import { formatOfferPrice } from "../../utils/flight-offer-ui-format"
 type FlightsSearchFaresDialogProps = {
   open: boolean
   onOpenChange: (open: boolean) => void
@@ -39,9 +36,7 @@ export function FlightsSearchFaresDialog({
 }: FlightsSearchFaresDialogProps) {
   const params = useParams<{ lang?: string }>()
   const lang = params?.lang ?? "en"
-  const [selectedFareIdOverride, setSelectedFareIdOverride] = useState<
-    string | null
-  >(null)
+  const [selectedFareIdOverride, setSelectedFareIdOverride] = useState<string | null>(null)
   const firstDirection = offer.directions[0]
   const defaultSelectedFareId =
     fareOffers.find((item) => item.offerId === offer.offerId)?.offerId ??
@@ -59,10 +54,6 @@ export function FlightsSearchFaresDialog({
       lastSegment?.arrival.cityName || lastSegment?.arrival.airportCode || "—"
     return { from, to }
   }, [firstSegment, lastSegment])
-  const dateLabel = firstSegment?.departure.date ?? "12 марта 2023 г"
-  const routeDuration = firstSegment
-    ? formatRouteDurationMinutes(firstSegment.routeDurationMinutes)
-    : "10ч 55м"
   const fareCards = useMemo<FareCard[]>(() => {
     return fareOffers.map((fareOffer) => {
       const currency = fareOffer.price.currency || metaCurrency
@@ -143,14 +134,6 @@ export function FlightsSearchFaresDialog({
                   <span>{title.to}</span>
                 </span>
               </DialogTitle>
-              <div className="mt-3 flex flex-wrap items-center gap-3 text-[15px] leading-6 text-[#344054]">
-                <span className="rounded-lg bg-[#415AF8] px-3 py-1 text-sm leading-5 font-medium text-white">
-                  Билет
-                </span>
-                <span>{dateLabel}</span>
-                <span aria-hidden>•</span>
-                <span>Продолжительность: {routeDuration}</span>
-              </div>
             </div>
             <DialogClose asChild>
               <button
@@ -163,7 +146,7 @@ export function FlightsSearchFaresDialog({
             </DialogClose>
           </div>
           <FlightsSearchFaresDialogItinerary
-            segments={firstDirection?.segments ?? []}
+            directions={selectedFareOffer.directions}
           />
           <FlightsSearchFaresDialogFareCards
             fareCards={fareCards}
