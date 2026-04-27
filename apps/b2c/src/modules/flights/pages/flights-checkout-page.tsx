@@ -16,6 +16,15 @@ function buildFlightsCheckoutContentCopy(
     emailLabel: t("checkoutContactEmailLabel"),
     emailPlaceholder: t("checkoutContactEmailPlaceholder"),
     additionalServicesTitle: t("checkoutAdditionalServicesTitle"),
+    baggageAllowanceTitle: t("checkoutBaggageAllowanceTitle"),
+    baggagePersonalItemLabel: t("checkoutBaggagePersonalItemLabel"),
+    baggageCarryOnLabel: t("checkoutBaggageCarryOnLabel"),
+    baggageCheckedLabel: t("checkoutBaggageCheckedLabel"),
+    baggageDimensions: t("checkoutBaggageDimensions"),
+    baggageOutboundLabel: t("checkoutBaggageOutboundLabel"),
+    baggageInboundLabel: t("checkoutBaggageInboundLabel"),
+    baggageIncluded: t("checkoutBaggageIncluded"),
+    baggageSelectOption: t("checkoutBaggageSelectOption"),
     completeBooking: t("checkoutCompleteBooking"),
   }
 }

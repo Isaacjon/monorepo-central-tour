@@ -13,6 +13,7 @@ import { FlightsAirlineLogo } from "../shared/flights-airline-logo"
 
 type FlightsSearchFaresDialogItineraryProps = {
   directions: readonly FlightOfferDirectionApi[]
+  showDirectionMetaRow?: boolean
 }
 
 const segmentInter =
@@ -106,6 +107,7 @@ function DirectionMetaRow({ segment }: { segment: FlightOfferSegmentApi }) {
 
 export function FlightsSearchFaresDialogItinerary({
   directions,
+  showDirectionMetaRow = true,
 }: FlightsSearchFaresDialogItineraryProps) {
   if (directions.length === 0) {
     return null
@@ -122,7 +124,9 @@ export function FlightsSearchFaresDialogItinerary({
 
           return (
             <div key={`${direction.directionIndex}-${directionIndex}`}>
-              <DirectionMetaRow segment={segments[0]} />
+              {showDirectionMetaRow ? (
+                <DirectionMetaRow segment={segments[0]} />
+              ) : null}
               {segments.map((segment, segmentIndex) => (
                 <Fragment
                   key={`${segment.segmentIndex}-${segment.flightNumber}-${segmentIndex}`}

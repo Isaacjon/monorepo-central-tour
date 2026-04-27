@@ -11,6 +11,7 @@ import {
 } from "ui"
 
 import { FlightsCheckoutAdditionalServicesField } from "./flights-checkout-additional-services-field"
+import { FlightsCheckoutBaggageAllowanceSection } from "./flights-checkout-baggage-allowance-section"
 import { FlightsCheckoutFlightCard } from "./flights-checkout-flight-card"
 import { FlightsCheckoutOtpDialog } from "./flights-checkout-otp-dialog"
 import { FlightsCheckoutPaymentInformationSection } from "./flights-checkout-payment-information-section"
@@ -121,6 +122,8 @@ export function FlightsCheckoutContent({
                 <FlightsCheckoutAdditionalServicesField />
               </div>
             </section>
+
+            <FlightsCheckoutBaggageAllowanceSection copy={copy} />
 
             <FlightsCheckoutPaymentInformationSection />
 

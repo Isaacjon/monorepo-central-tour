@@ -3,10 +3,10 @@
 import { ChevronDownIcon, ChevronUpIcon, PencilLineIcon } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
-import { ArrowRightIcon } from "ui"
+import { ArrowSwapIcon } from "ui"
 
 import { checkoutDirection } from "./flights-checkout-flight-card.mock"
-import { FlightsSearchFlightDetails } from "../search/flights-search-flight-details"
+import { FlightsSearchFaresDialogItinerary } from "../search/flights-search-fares-dialog-itinerary"
 import { FlightsAirlineLogo } from "../shared/flights-airline-logo"
 
 type FlightsCheckoutFlightCardProps = {
@@ -35,24 +35,20 @@ export function FlightsCheckoutFlightCard({
 
       <article className="mt-7 rounded-2xl border border-[#EAECF0] p-6">
         <div className="flex items-start gap-4">
-          <FlightsAirlineLogo
-            flightNumber={
-              checkoutDirection.segments[0]?.flightNumber ?? "HY423"
-            }
-            airlineIataCode={
-              checkoutDirection.segments[0]?.marketingCarrier.code ?? "HY"
-            }
-          />
-
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+              <FlightsAirlineLogo
+                flightNumber={
+                  checkoutDirection.segments[0]?.flightNumber ?? "HY423"
+                }
+                airlineIataCode={
+                  checkoutDirection.segments[0]?.marketingCarrier.code ?? "HY"
+                }
+              />
               <p className="text-[20px] leading-5 font-bold text-[#0C111D]">
                 Нью-Йорк
               </p>
-              <ArrowRightIcon
-                className="size-4 -rotate-90 text-[#344054]"
-                aria-hidden
-              />
+              <ArrowSwapIcon className="text-primary size-4" aria-hidden />
               <p className="text-[20px] leading-5 font-bold text-[#0C111D]">
                 Майами
               </p>
@@ -66,7 +62,10 @@ export function FlightsCheckoutFlightCard({
 
             {detailsOpen ? (
               <div className="mt-5">
-                <FlightsSearchFlightDetails direction={checkoutDirection} />
+                <FlightsSearchFaresDialogItinerary
+                  directions={[checkoutDirection]}
+                  showDirectionMetaRow={false}
+                />
               </div>
             ) : null}
           </div>
