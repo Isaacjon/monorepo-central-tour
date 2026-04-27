@@ -8,12 +8,26 @@ import { HomeLanguageChanger } from "@/modules/home/components/home-language-cha
 
 type AuthFormLayoutProps = {
   upper: ReactNode
-  lower: ReactNode
+  /** Omit when the screen pins actions/copy outside this layout (e.g. register success). */
+  lower?: ReactNode
+  /** Inner content max width in px (default matches narrow auth forms). */
+  contentMaxWidth?: 416 | 532
 }
 const LOGO_SRC = "/icons/logo.svg"
 
-export function AuthFormLayout({ upper, lower }: AuthFormLayoutProps) {
+export function AuthFormLayout({
+  upper,
+  lower,
+  contentMaxWidth = 416,
+}: AuthFormLayoutProps) {
   const lang = useLocale()
+  const innerMaxClass =
+    contentMaxWidth === 532 ? "max-w-[532px]" : "max-w-[416px]"
+  const innerLayoutClass =
+    lower != null
+      ? `m-auto flex w-full ${innerMaxClass} flex-col gap-8 lg:min-h-[454px] lg:justify-between lg:gap-7`
+      : `m-auto flex w-full ${innerMaxClass} flex-col gap-8`
+
   return (
     <div className="flex w-full flex-1 flex-col gap-6 p-4">
       <header className="flex w-full items-center justify-between gap-4">
@@ -33,9 +47,9 @@ export function AuthFormLayout({ upper, lower }: AuthFormLayoutProps) {
         </Suspense>
       </header>
 
-      <div className="m-auto flex w-full max-w-[416px] flex-col gap-8 lg:min-h-[454px] lg:justify-between lg:gap-0">
+      <div className={innerLayoutClass}>
         {upper}
-        {lower}
+        {lower ?? null}
       </div>
     </div>
   )

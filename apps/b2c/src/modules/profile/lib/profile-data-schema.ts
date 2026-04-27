@@ -37,13 +37,17 @@ export const profileDataSchema = z.object({
 
   passport: z
     .string()
-    .refine((v) => v === "" || passportPattern.test(v), { message: "invalid_passport" })
+    .refine((v) => v === "" || passportPattern.test(v), {
+      message: "invalid_passport",
+    })
     .optional()
     .or(z.literal("")),
 
   birthDate: z
     .string()
-    .refine((v) => v === "" || birthDatePattern.test(v), { message: "invalid_date" })
+    .refine((v) => v === "" || birthDatePattern.test(v), {
+      message: "invalid_date",
+    })
     .optional()
     .or(z.literal("")),
 })

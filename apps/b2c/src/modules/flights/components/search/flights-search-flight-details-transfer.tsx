@@ -19,7 +19,7 @@ export function FlightsSearchFlightDetailsTransfer({
       className="flex h-8 w-full min-w-0 items-center justify-between gap-2 rounded-[12px] bg-white px-3 py-1"
       role="status"
     >
-      <div className="text-[#111126] flex min-w-0 flex-1 items-center gap-2 text-[13px] leading-6">
+      <div className="flex min-w-0 flex-1 items-center gap-2 text-[13px] leading-6 text-[#111126]">
         <CarryingSuitcaseIcon
           className="size-5 shrink-0"
           width={20}
@@ -32,7 +32,9 @@ export function FlightsSearchFlightDetailsTransfer({
       </div>
       {layoverMinutes != null ? (
         <span className="shrink-0 text-[13px] leading-6 font-normal text-black">
-          {t("searchFlightDetailsTransferDuration", { minutes: layoverMinutes })}
+          {t("searchFlightDetailsTransferDuration", {
+            minutes: layoverMinutes,
+          })}
         </span>
       ) : null}
     </div>

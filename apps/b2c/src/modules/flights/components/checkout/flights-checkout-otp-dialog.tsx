@@ -64,7 +64,10 @@ export function FlightsCheckoutOtpDialog({
         <div className="mt-6 flex flex-col gap-3">
           {resendSeconds > 0 ? (
             <p className="text-center text-sm text-[#667085]">
-              {tAuth("otpResendIn").replace("__TIME__", formatMmSs(resendSeconds))}
+              {tAuth("otpResendIn").replace(
+                "__TIME__",
+                formatMmSs(resendSeconds)
+              )}
             </p>
           ) : (
             <button
@@ -78,7 +81,11 @@ export function FlightsCheckoutOtpDialog({
               {tAuth("otpResend")}
             </button>
           )}
-          <PrimaryButton onClick={onConfirm} disabled={isConfirmingOtp} fullWidth>
+          <PrimaryButton
+            onClick={onConfirm}
+            disabled={isConfirmingOtp}
+            fullWidth
+          >
             {tAuth("otpConfirm")}
           </PrimaryButton>
           <SecondaryGrayButton onClick={onClose} fullWidth>

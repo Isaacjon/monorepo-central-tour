@@ -2,7 +2,13 @@
 
 import { useTranslations } from "next-intl"
 import { useCallback, useEffect, useMemo, useState } from "react"
-import { ChevronDownIcon, cn, Popover, PopoverContent, PopoverTrigger } from "ui"
+import {
+  ChevronDownIcon,
+  cn,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "ui"
 
 import {
   cloneRooms,
@@ -124,7 +130,7 @@ export function HotelsGuestsPopover({
           type="button"
           className={cn(
             "flex min-h-[54px] max-w-[220px] min-w-0 shrink-0 flex-col justify-center rounded-xl border border-[#D0D5DD] bg-white px-3 py-2 text-left transition-colors",
-            "hover:border-[#98A2B3] focus-visible:ring-primary focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+            "focus-visible:ring-primary hover:border-[#98A2B3] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
             triggerClassName,
             className
           )}
@@ -150,7 +156,7 @@ export function HotelsGuestsPopover({
         align="start"
         side="bottom"
         sideOffset={8}
-        className="border-[#EAECF0] p-0 shadow-[0px_12px_16px_0px_rgba(16,24,40,0.08),0px_4px_6px_0px_rgba(16,24,40,0.03)] w-[min(100vw-24px,336px)]"
+        className="w-[min(100vw-24px,336px)] border-[#EAECF0] p-0 shadow-[0px_12px_16px_0px_rgba(16,24,40,0.08),0px_4px_6px_0px_rgba(16,24,40,0.03)]"
         onOpenAutoFocus={(e) => e.preventDefault()}
       >
         <HotelsGuestPickerContent

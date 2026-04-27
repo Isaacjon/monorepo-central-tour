@@ -15,7 +15,9 @@ export type FareCard = {
   selected?: boolean
 }
 
-export function formatMiniRuleWeight(weight: FlightMiniRuleWeightApi): string | null {
+export function formatMiniRuleWeight(
+  weight: FlightMiniRuleWeightApi
+): string | null {
   if (!weight || weight.value == null || weight.value <= 0) {
     return null
   }

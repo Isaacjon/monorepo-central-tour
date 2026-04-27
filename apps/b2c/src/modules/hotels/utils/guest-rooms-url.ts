@@ -18,7 +18,9 @@ function encodeRoom(r: HotelRoomGuests): string {
   if (r.children === 0) {
     return `${r.adults}-0`
   }
-  const ages = r.childAges.map((a) => (a === undefined ? "_" : String(a))).join(",")
+  const ages = r.childAges
+    .map((a) => (a === undefined ? "_" : String(a)))
+    .join(",")
   return `${r.adults}-${r.children}-${ages}`
 }
 

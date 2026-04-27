@@ -28,7 +28,11 @@ export function FlightsCheckoutSuccessView({
           Ваше бронирование подтверждено, и ваш регистрационный номер - CBH06310
         </p>
 
-        <PrimaryButton asChild size="xl" className="mt-8 min-w-[220px] rounded-xl px-6">
+        <PrimaryButton
+          asChild
+          size="xl"
+          className="mt-8 min-w-[220px] rounded-xl px-6"
+        >
           <Link href={detailsHref}>Продолжить</Link>
         </PrimaryButton>
       </section>

@@ -15,7 +15,11 @@ export async function FlightsCheckoutErrorPage({ lang }: { lang: string }) {
             Платеж не завершен. Пожалуйста, попробуйте еще раз.
           </p>
 
-          <PrimaryButton asChild size="xl" className="mt-8 min-w-[220px] rounded-xl px-6">
+          <PrimaryButton
+            asChild
+            size="xl"
+            className="mt-8 min-w-[220px] rounded-xl px-6"
+          >
             <Link href={`/${lang}/flights/checkout`}>Вернуться к оплате</Link>
           </PrimaryButton>
         </section>

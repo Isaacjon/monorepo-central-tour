@@ -32,7 +32,7 @@ export function GuestPickerStepper({
         className={cn(
           "flex items-center justify-center rounded-lg p-2 transition-colors",
           canDecrement
-            ? "bg-[#F9FAFB] hover:bg-[#F2F4F7] focus-visible:ring-primary focus-visible:ring-2"
+            ? "focus-visible:ring-primary bg-[#F9FAFB] hover:bg-[#F2F4F7] focus-visible:ring-2"
             : "cursor-not-allowed bg-[#F2F4F7] opacity-50"
         )}
       >
@@ -49,7 +49,7 @@ export function GuestPickerStepper({
         className={cn(
           "flex items-center justify-center rounded-lg p-2 transition-colors",
           canIncrement
-            ? "bg-[#F9FAFB] hover:bg-[#F2F4F7] focus-visible:ring-primary focus-visible:ring-2"
+            ? "focus-visible:ring-primary bg-[#F9FAFB] hover:bg-[#F2F4F7] focus-visible:ring-2"
             : "cursor-not-allowed bg-[#F2F4F7] opacity-50"
         )}
       >

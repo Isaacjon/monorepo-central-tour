@@ -10,14 +10,18 @@ const Slider = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>
 >(({ className, value, defaultValue, min = 0, max = 100, ...props }, ref) => {
   const derived = value ?? defaultValue
-  const _values = Array.isArray(derived) ? derived : derived != null ? [derived] : [min]
+  const _values = Array.isArray(derived)
+    ? derived
+    : derived != null
+      ? [derived]
+      : [min]
   return (
     <SliderPrimitive.Root
       ref={ref}
       data-slot="slider"
       className={cn(
-        "data-disabled:opacity-50 relative flex w-full touch-none select-none",
-        "data-[orientation=horizontal]:h-5 items-center data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-40 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col",
+        "relative flex w-full touch-none select-none data-disabled:opacity-50",
+        "items-center data-[orientation=horizontal]:h-5 data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-40 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col",
         className
       )}
       value={value}
@@ -39,7 +43,7 @@ const Slider = React.forwardRef<
         <SliderPrimitive.Thumb
           key={index}
           data-slot="slider-thumb"
-          className="block size-5 shrink-0 cursor-grab rounded-full border-[3px] border-primary bg-white shadow-[0_1px_2px_0_#1018280F,0_1px_3px_0_#1018281A] transition-shadow select-none after:absolute after:-inset-2 active:cursor-grabbing focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-1 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50"
+          className="border-primary focus-visible:ring-primary/30 block size-5 shrink-0 cursor-grab rounded-full border-[3px] bg-white shadow-[0_1px_2px_0_#1018280F,0_1px_3px_0_#1018281A] transition-shadow select-none after:absolute after:-inset-2 focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:outline-hidden active:cursor-grabbing disabled:pointer-events-none disabled:opacity-50"
         />
       ))}
     </SliderPrimitive.Root>

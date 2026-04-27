@@ -28,9 +28,11 @@ export function useFlightsPriceGraphScroll(todayDay: number) {
       `[data-price-graph-day="${todayDay}"]`
     ) as HTMLElement | null
     if (dayEl) {
-      const x =
-        dayEl.offsetLeft - root.clientWidth / 2 + dayEl.offsetWidth / 2
-      root.scrollLeft = Math.max(0, Math.min(x, root.scrollWidth - root.clientWidth))
+      const x = dayEl.offsetLeft - root.clientWidth / 2 + dayEl.offsetWidth / 2
+      root.scrollLeft = Math.max(
+        0,
+        Math.min(x, root.scrollWidth - root.clientWidth)
+      )
     }
     syncScrollEdges()
     const ro = new ResizeObserver(() => syncScrollEdges())

@@ -4,7 +4,9 @@ import { FlightsCheckoutSuccessView } from "../components/checkout/flights-check
 export async function FlightsCheckoutSuccessPage({ lang }: { lang: string }) {
   return (
     <FlightsCheckoutShell lang={lang}>
-      <FlightsCheckoutSuccessView detailsHref={`/${lang}/flights/checkout/details`} />
+      <FlightsCheckoutSuccessView
+        detailsHref={`/${lang}/flights/checkout/details`}
+      />
     </FlightsCheckoutShell>
   )
 }

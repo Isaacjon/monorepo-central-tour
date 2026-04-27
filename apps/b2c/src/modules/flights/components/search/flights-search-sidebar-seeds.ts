@@ -13,7 +13,12 @@ export const airlineSeed = [
   { key: "aa", count: 45 },
 ] as const
 
-export const classSeed = ["economy", "economy_premium", "business", "first"] as const
+export const classSeed = [
+  "economy",
+  "economy_premium",
+  "business",
+  "first",
+] as const
 export const mealSeed = ["all", "breakfast", "snack"] as const
 export const citySeed = ["dubai"] as const
 

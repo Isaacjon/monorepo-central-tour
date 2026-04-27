@@ -1,7 +1,6 @@
 import { ChevronDown, ChevronUp } from "lucide-react"
 import * as React from "react"
 
-
 interface CaptionLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
   children?: React.ReactNode
   enableYearMonthPicker?: boolean

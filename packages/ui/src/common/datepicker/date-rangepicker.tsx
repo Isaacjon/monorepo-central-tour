@@ -8,7 +8,10 @@ import { type DateRange, type Matcher } from "react-day-picker"
 
 import { DateRangePickerTrigger } from "./date-range-picker-trigger"
 import { useDateRangePickerState } from "./use-date-range-picker-state"
-import { BaseCalendar, BaseCalendarFooter } from "../../components/ui/base-calendar"
+import {
+  BaseCalendar,
+  BaseCalendarFooter,
+} from "../../components/ui/base-calendar"
 import {
   Popover,
   PopoverContent,

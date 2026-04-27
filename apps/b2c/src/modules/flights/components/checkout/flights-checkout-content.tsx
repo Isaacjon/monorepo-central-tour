@@ -3,7 +3,12 @@
 import { useRouter } from "@central-tour/config/i18n/navigation"
 import { useState } from "react"
 
-import { ChevronDownIcon, PhoneInputField, PrimaryButton, StackedInputField } from "ui"
+import {
+  ChevronDownIcon,
+  PhoneInputField,
+  PrimaryButton,
+  StackedInputField,
+} from "ui"
 
 import { FlightsCheckoutAdditionalServicesField } from "./flights-checkout-additional-services-field"
 import { FlightsCheckoutFlightCard } from "./flights-checkout-flight-card"

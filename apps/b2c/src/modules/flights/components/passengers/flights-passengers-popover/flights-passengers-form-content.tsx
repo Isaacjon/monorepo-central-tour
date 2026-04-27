@@ -10,7 +10,10 @@ import {
   FLIGHT_CHILD_AGE_OPTIONS,
   FLIGHT_MAX_PASSENGERS_PER_TYPE,
 } from "../../../types/flight-passengers"
-import { CABIN_MESSAGE_KEY, CABIN_OPTIONS } from "../flights-passengers-cabin-options"
+import {
+  CABIN_MESSAGE_KEY,
+  CABIN_OPTIONS,
+} from "../flights-passengers-cabin-options"
 
 type FlightsPassengersFormContentProps = {
   draftAdults: number
@@ -105,10 +108,7 @@ export function FlightsPassengersFormContent({
                           onChange={(e) => {
                             const v = e.target.value
                             if (v === "") return
-                            setDraftChildAge(
-                              childIndex,
-                              Number.parseInt(v, 10)
-                            )
+                            setDraftChildAge(childIndex, Number.parseInt(v, 10))
                           }}
                         >
                           <option value="" disabled>
@@ -152,9 +152,7 @@ export function FlightsPassengersFormContent({
         <div className="my-4 h-px shrink-0 bg-[#EAECF0]" role="separator" />
 
         <div className="flex flex-col gap-4">
-          <h3 className={sectionTitleClass}>
-            {t("serviceClassSectionTitle")}
-          </h3>
+          <h3 className={sectionTitleClass}>{t("serviceClassSectionTitle")}</h3>
           <RadioGroup
             value={draftCabin}
             onValueChange={(v) => setDraftCabin(v as FlightCabin)}
@@ -182,7 +180,7 @@ export function FlightsPassengersFormContent({
       <div className="border-t border-[#EAECF0] p-4">
         <button
           type="button"
-          className="bg-primary hover:opacity-95 min-h-10 w-full rounded-xl px-[18px] py-2.5 text-base font-medium text-white shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+          className="bg-primary min-h-10 w-full rounded-xl px-[18px] py-2.5 text-base font-medium text-white shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] transition-colors hover:opacity-95 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
           onClick={save}
         >
           {t("guestPickerSave")}

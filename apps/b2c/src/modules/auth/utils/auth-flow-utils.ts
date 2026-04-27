@@ -1,4 +1,7 @@
-export function buildPhoneForApi(value: string, countryDialPreview: string): string {
+export function buildPhoneForApi(
+  value: string,
+  countryDialPreview: string
+): string {
   const localDigits = value.replace(/\D/g, "")
   const countryDigits = countryDialPreview.replace(/\D/g, "")
   return `+${countryDigits}${localDigits}`

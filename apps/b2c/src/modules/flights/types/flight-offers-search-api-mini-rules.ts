@@ -16,12 +16,10 @@ export type FlightBaggageDimensionsApi = {
  * Weight on rules: sometimes omitted (`null`), sometimes an object with null fields,
  * sometimes concrete `unit` + `value`.
  */
-export type FlightMiniRuleWeightApi =
-  | null
-  | {
-      unit: string | null
-      value: number | null
-    }
+export type FlightMiniRuleWeightApi = null | {
+  unit: string | null
+  value: number | null
+}
 
 export type FlightMiniRuleBaggageItemApi = {
   comment: string

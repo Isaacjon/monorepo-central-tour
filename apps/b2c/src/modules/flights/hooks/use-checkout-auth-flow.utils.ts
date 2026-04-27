@@ -1,6 +1,9 @@
 "use client"
 
-import { getErrorMessage, hasErrorMessage } from "@/modules/auth/utils/auth-flow-utils"
+import {
+  getErrorMessage,
+  hasErrorMessage,
+} from "@/modules/auth/utils/auth-flow-utils"
 import { saveAuthSession } from "@/shared/stores/auth-store"
 import { showToast } from "ui"
 
@@ -128,7 +131,10 @@ export async function confirmCheckoutOtp({
           return
         }
         setOtpInvalid(true)
-        showToast({ title: tAuth("otpInvalidOrLoginFailedToast"), type: "error" })
+        showToast({
+          title: tAuth("otpInvalidOrLoginFailedToast"),
+          type: "error",
+        })
         return
       }
     }

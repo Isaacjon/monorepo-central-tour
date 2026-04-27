@@ -33,7 +33,9 @@ export function useDateRangePickerState({
   toPlaceholder,
 }: UseDateRangePickerStateParams) {
   const [isOpen, setIsOpen] = React.useState(false)
-  const [tempRange, setTempRange] = React.useState<DateRange | undefined>(undefined)
+  const [tempRange, setTempRange] = React.useState<DateRange | undefined>(
+    undefined
+  )
 
   const { fromDisplayValue, toDisplayValue, hasFromValue, hasToValue } =
     React.useMemo(() => {
@@ -97,7 +99,8 @@ export function useDateRangePickerState({
   const handleToDateSelect = React.useCallback(
     (triggerDate: Date) => {
       if (!tempRange?.from) return
-      const fromDate = tempRange.from < triggerDate ? tempRange.from : triggerDate
+      const fromDate =
+        tempRange.from < triggerDate ? tempRange.from : triggerDate
       const toDate = tempRange.from > triggerDate ? tempRange.from : triggerDate
       const valueToSet = { from: fromDate, to: toDate }
       if (!showFooter) {
@@ -142,7 +145,10 @@ export function useDateRangePickerState({
   }, [clearable, isOpen, selected?.from, selected?.to])
 
   const combinedDisabledDates = React.useMemo(() => {
-    const rangeRestriction = getRangeRestrictedDisabledDates(tempRange, maxRangeDays)
+    const rangeRestriction = getRangeRestrictedDisabledDates(
+      tempRange,
+      maxRangeDays
+    )
     if (!rangeRestriction) {
       return disabledDates
     }

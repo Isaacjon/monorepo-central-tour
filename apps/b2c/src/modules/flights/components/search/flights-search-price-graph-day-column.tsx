@@ -60,11 +60,7 @@ export function FlightsSearchPriceGraphDayColumn({
         : "left-1/2 -translate-x-1/2 items-center"
 
   const tooltipPointerClass =
-    tooltipAlign === "start"
-      ? "ml-4"
-      : tooltipAlign === "end"
-        ? "mr-4"
-        : ""
+    tooltipAlign === "start" ? "ml-4" : tooltipAlign === "end" ? "mr-4" : ""
 
   const tooltip = showBubble ? (
     <div
@@ -79,7 +75,7 @@ export function FlightsSearchPriceGraphDayColumn({
       </div>
       <div
         className={cn(
-          "h-0 w-0 border-x-[6px] border-t-[7px] border-x-transparent border-t-primary",
+          "border-t-primary h-0 w-0 border-x-[6px] border-t-[7px] border-x-transparent",
           tooltipPointerClass
         )}
       />

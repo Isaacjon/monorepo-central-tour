@@ -61,7 +61,11 @@ export function FlightsDualTimeRange({
           aria-label={t("searchSidebarTimeLatest")}
         />
       </div>
-      <div className="mx-auto w-full max-w-56 pt-0.5" role="group" aria-label={a11yLabel}>
+      <div
+        className="mx-auto w-full max-w-56 pt-0.5"
+        role="group"
+        aria-label={a11yLabel}
+      >
         <Slider
           className="w-full"
           min={MIN_MINUTES}

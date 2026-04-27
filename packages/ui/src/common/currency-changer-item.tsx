@@ -3,7 +3,6 @@
 import type { CurrencyOption } from "./currency-types"
 import { cn } from "../lib/utils"
 
-
 const inter =
   "font-[family-name:var(--font-inter-stack,Inter,ui-sans-serif,sans-serif)]"
 

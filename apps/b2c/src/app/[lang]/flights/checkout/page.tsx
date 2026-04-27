@@ -10,7 +10,5 @@ export default async function FlightsCheckoutRoutePage({
   const { lang } = await params
   const query = searchParams ? await searchParams : {}
 
-  return (
-    <FlightsCheckoutPage lang={lang} paymentStatus={query.paymentStatus} />
-  )
+  return <FlightsCheckoutPage lang={lang} paymentStatus={query.paymentStatus} />
 }

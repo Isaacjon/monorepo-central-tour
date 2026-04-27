@@ -55,7 +55,12 @@ const MaskedInputField = React.forwardRef<
     const generatedId = React.useId()
     const inputId = id ?? generatedId
 
-    const showClear = clearable && !disabled && value !== "" && value !== undefined && value !== null
+    const showClear =
+      clearable &&
+      !disabled &&
+      value !== "" &&
+      value !== undefined &&
+      value !== null
 
     const handleClear = () => {
       onChange?.({
@@ -109,7 +114,7 @@ const MaskedInputField = React.forwardRef<
                     type="button"
                     tabIndex={-1}
                     onClick={handleClear}
-                    className="shrink-0 text-c-gray-700 transition-colors hover:text-c-gray-900 focus:outline-none"
+                    className="text-c-gray-700 hover:text-c-gray-900 shrink-0 transition-colors focus:outline-none"
                     aria-label="Clear"
                   >
                     <X className="size-4" />

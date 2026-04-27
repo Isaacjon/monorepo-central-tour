@@ -165,7 +165,7 @@ export function HotelsGuestPickerContent({
             type="button"
             className={cn(
               "min-h-10 flex-1 rounded-xl border border-[#D0D5DD] bg-white px-3.5 py-2.5 text-base font-medium text-[#344054] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]",
-              "hover:bg-gray-50 focus-visible:ring-primary focus-visible:ring-2 focus-visible:outline-none",
+              "focus-visible:ring-primary hover:bg-gray-50 focus-visible:ring-2 focus-visible:outline-none",
               draftRooms.length >= MAX_ROOMS && "pointer-events-none opacity-40"
             )}
             onClick={addRoom}

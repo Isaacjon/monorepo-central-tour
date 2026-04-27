@@ -54,21 +54,21 @@ export function FlightsSearchFaresDialogItineraryTransferRow({
               <TooltipTrigger asChild>
                 <button
                   type="button"
-                  className="inline-flex max-w-full cursor-help items-center gap-1 rounded-sm border-0 bg-transparent p-0 text-left underline decoration-c-error-500 underline-offset-2 outline-none focus-visible:ring-2 focus-visible:ring-c-error-500/30"
+                  className="decoration-c-error-500 focus-visible:ring-c-error-500/30 inline-flex max-w-full cursor-help items-center gap-1 rounded-sm border-0 bg-transparent p-0 text-left underline underline-offset-2 outline-none focus-visible:ring-2"
                 >
                   <CircleAlert
-                    className="size-4 shrink-0 text-c-error-500"
+                    className="text-c-error-500 size-4 shrink-0"
                     aria-hidden
                   />
-                  <span className="text-[12px] leading-[18px] font-medium tracking-normal text-c-error-500">
+                  <span className="text-c-error-500 text-[12px] leading-[18px] font-medium tracking-normal">
                     Требуется получить и повторно зарегистрировать багаж
                   </span>
                 </button>
               </TooltipTrigger>
               <TooltipContent
-                side="top"
+                side="bottom"
                 align="start"
-                className="z-100 flex w-[333px] min-h-[104px] flex-col gap-3 rounded-xl border-0 bg-white px-4 py-3 font-(family-name:--font-inter-stack,Inter,ui-sans-serif,sans-serif) text-sm leading-5 font-medium tracking-normal text-black shadow-[0px_12px_100px_0px_rgba(0,0,0,0.04),0px_2px_8px_0px_rgba(0,0,0,0.08)]"
+                className="z-100 flex w-[333px] flex-col gap-3 rounded-xl border-0 bg-white px-4 py-3 font-(family-name:--font-inter-stack,Inter,ui-sans-serif,sans-serif) text-sm leading-5 font-medium tracking-normal text-black shadow-[0px_12px_100px_0px_rgba(0,0,0,0.04),0px_2px_8px_0px_rgba(0,0,0,0.08)]"
               >
                 {baggageRecheckTooltip}
               </TooltipContent>

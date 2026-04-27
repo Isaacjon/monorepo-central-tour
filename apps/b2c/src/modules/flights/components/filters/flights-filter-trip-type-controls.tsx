@@ -21,7 +21,12 @@ export function FlightsFilterTripTypeControls({
         type="button"
         className="inline-flex items-center gap-2 text-base leading-4 font-normal text-[#101828]"
       >
-        <BezierCurveIcon width={24} height={24} aria-hidden className="shrink-0" />
+        <BezierCurveIcon
+          width={24}
+          height={24}
+          aria-hidden
+          className="shrink-0"
+        />
         {complexRouteLabel}
       </button>
       {tripTypeOptions.map((option) => (
@@ -32,7 +37,8 @@ export function FlightsFilterTripTypeControls({
           <span
             className="relative flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors"
             style={{
-              borderColor: tripType === option.id ? "var(--color-primary)" : "#D0D5DD",
+              borderColor:
+                tripType === option.id ? "var(--color-primary)" : "#D0D5DD",
             }}
           >
             {tripType === option.id && (

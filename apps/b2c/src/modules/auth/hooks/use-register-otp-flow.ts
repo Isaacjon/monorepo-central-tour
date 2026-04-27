@@ -7,7 +7,10 @@ import {
   useSendOtpMutation,
 } from "@/modules/auth/services/auth/auth.query"
 import type { RegisterFormCopy } from "@/modules/auth/types/register-form-copy"
-import { buildPhoneForApi, hasErrorMessage } from "@/modules/auth/utils/auth-flow-utils"
+import {
+  buildPhoneForApi,
+  hasErrorMessage,
+} from "@/modules/auth/utils/auth-flow-utils"
 import { showRegisterSendOtpError } from "@/modules/auth/utils/show-register-send-otp-error"
 import { HttpError } from "@/shared/lib/http-error"
 import { saveAuthSession } from "@/shared/stores/auth-store"
@@ -117,7 +120,10 @@ export function useRegisterOtpFlow(copy: RegisterFormCopy) {
     } catch (error) {
       if (error instanceof HttpError) {
         const otpExpired = hasErrorMessage(error, "otp code has expired")
-        const invalidOtpCode = hasErrorMessage(error, "invalid or expired otp code")
+        const invalidOtpCode = hasErrorMessage(
+          error,
+          "invalid or expired otp code"
+        )
         if (otpExpired) {
           showToast({ title: copy.otpExpiredToast, type: "error" })
         } else if (invalidOtpCode) {

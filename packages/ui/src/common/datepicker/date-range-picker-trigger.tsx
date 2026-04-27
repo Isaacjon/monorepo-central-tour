@@ -56,7 +56,9 @@ export const DateRangePickerTrigger = React.forwardRef<
         {...props}
       >
         <div className="flex flex-1 flex-col justify-center px-3 py-2">
-          <span className="text-xs leading-none text-[#667085]">{fromLabel}</span>
+          <span className="text-xs leading-none text-[#667085]">
+            {fromLabel}
+          </span>
           <span
             className={cn(
               "mt-1 text-sm leading-none font-medium",

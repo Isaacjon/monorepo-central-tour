@@ -22,9 +22,7 @@ export type ParsedFlightsFilterQuery = {
   returnDateKey?: string
 }
 
-function firstParam(
-  value: string | string[] | undefined
-): string | undefined {
+function firstParam(value: string | string[] | undefined): string | undefined {
   if (value === undefined) {
     return undefined
   }
@@ -51,7 +49,9 @@ function parseYmdKey(raw: string | undefined): string | undefined {
 }
 
 /** Calendar range uses local midnight components from `YYYY-MM-DD`. */
-export function parseLocalDateFromYmd(ymd: string | undefined): Date | undefined {
+export function parseLocalDateFromYmd(
+  ymd: string | undefined
+): Date | undefined {
   const key = parseYmdKey(ymd)
   if (!key) {
     return undefined
@@ -186,4 +186,3 @@ export function parseFlightsFilterFromQuery(
     returnDateKey: parseYmdKey(firstParam(query.returnDate)),
   }
 }
-

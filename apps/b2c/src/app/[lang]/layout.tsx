@@ -6,7 +6,6 @@ import { NextIntlClientProvider } from "next-intl"
 import { getMessages, setRequestLocale } from "next-intl/server"
 import type { ReactNode } from "react"
 
-
 import { isLocale, locales } from "@/shared/lib/i18n/config"
 import { Toaster } from "ui"
 

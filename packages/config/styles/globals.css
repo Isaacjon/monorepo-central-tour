@@ -40,9 +40,12 @@
   --c-greyscale-800: #1b1b1b;
   /* Form text — Untitled UI gray scale (InputField, etc.) */
   --c-gray-100: #f2f4f7;
+  --c-gray-25: #fcfcfd;
+  --c-gray-200: #eaecf0;
   --c-gray-300: #d0d5dd;
   --c-gray-400: #98a2b3;
   --c-gray-500: #667085;
+  --c-gray-600: #475467;
   --c-gray-700: #344054;
   --c-gray-900: #101828;
   --c-gray-950: #0c111d;
@@ -112,9 +115,12 @@
   --color-c-greyscale-500: var(--c-greyscale-500);
   --color-c-greyscale-800: var(--c-greyscale-800);
   --color-c-gray-100: var(--c-gray-100);
+  --color-c-gray-25: var(--c-gray-25);
+  --color-c-gray-200: var(--c-gray-200);
   --color-c-gray-300: var(--c-gray-300);
   --color-c-gray-400: var(--c-gray-400);
   --color-c-gray-500: var(--c-gray-500);
+  --color-c-gray-600: var(--c-gray-600);
   --color-c-gray-700: var(--c-gray-700);
   --color-c-gray-900: var(--c-gray-900);
   --color-c-gray-950: var(--c-gray-950);

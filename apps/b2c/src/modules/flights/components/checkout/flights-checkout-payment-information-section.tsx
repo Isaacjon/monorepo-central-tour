@@ -102,7 +102,7 @@ export function FlightsCheckoutPaymentInformationSection() {
           </div>
 
           <div className="mt-1 flex items-center gap-3">
-            <span className="whitespace-nowrap text-[16px] leading-6 font-normal text-[#1D2939]">
+            <span className="text-[16px] leading-6 font-normal whitespace-nowrap text-[#1D2939]">
               {t("checkoutPaymentUseBalance")}
             </span>
             <InputField

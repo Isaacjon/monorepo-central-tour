@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server"
 import { Suspense } from "react"
 
+import { FileUploadShowcase } from "@/modules/home/components/file-upload-showcase"
 import { HomeLanguageChanger } from "@/modules/home/components/home-language-changer"
 import { InputShowcase } from "@/modules/home/components/input-showcase"
 import { OtpShowcase } from "@/modules/home/components/otp-showcase"
@@ -35,6 +36,7 @@ export async function HomePage({ lang }: { lang: string }) {
           errorDescription={t("toastErrorDescription")}
         />
         <InputShowcase />
+        <FileUploadShowcase />
         <Suspense
           fallback={
             <div className="border-c-greyscale-200 bg-c-surface h-10 w-[135px] shrink-0 animate-pulse rounded-lg border" />

@@ -3,11 +3,16 @@
 import { useTranslations } from "next-intl"
 import { useId } from "react"
 
-import { RadioGroup, RadioGroupItem } from "ui"
-
 import { FlightsSearchFilterCard } from "./flights-search-filter-card"
 import { FlightsSearchSidebarFavoritesBar } from "./flights-search-sidebar-favorites-bar"
-import { airlineSeed, citySeed, classSeed, mealSeed, ratingKeys, stopsSeed } from "./flights-search-sidebar-seeds"
+import { FlightsSearchSidebarRating } from "./flights-search-sidebar-rating"
+import {
+  airlineSeed,
+  citySeed,
+  classSeed,
+  mealSeed,
+  stopsSeed,
+} from "./flights-search-sidebar-seeds"
 import { useFlightsSearchSidebarState } from "../../hooks/use-flights-search-sidebar-state"
 import { FlightsDualTimeRange } from "../filters/flights-dual-time-range"
 import { FlightsFilterCheckboxRow } from "../filters/flights-filter-checkbox-row"
@@ -130,32 +135,13 @@ export function FlightsSearchSidebar({
         </div>
       </FlightsSearchFilterCard>
 
-      <FlightsSearchFilterCard>
-        <h3 className="text-base leading-6 font-medium text-[#0C111D]">
-          {t("searchSidebarReviewRating")}
-        </h3>
-        <RadioGroup
-          value={rating}
-          onValueChange={setRating}
-          className="mt-3 flex flex-col gap-2"
-          aria-label={t("searchSidebarReviewRating")}
-        >
-          {ratingKeys.map((k) => {
-            const id = `${baseId}-rating-${k}`
-            return (
-              <div key={k} className="flex items-center gap-2">
-                <RadioGroupItem value={k} id={id} />
-                <label
-                  htmlFor={id}
-                  className="cursor-pointer text-sm text-[#0C111D]"
-                >
-                  {t(`searchRating.${k}`)}
-                </label>
-              </div>
-            )
-          })}
-        </RadioGroup>
-      </FlightsSearchFilterCard>
+      <FlightsSearchSidebarRating
+        baseId={baseId}
+        title={t("searchSidebarReviewRating")}
+        rating={rating}
+        setRating={setRating}
+        translateRating={(k) => t(`searchRating.${k}`)}
+      />
 
       <FlightsSearchFilterCard>
         <h3 className="text-base leading-6 font-medium text-[#0C111D]">
