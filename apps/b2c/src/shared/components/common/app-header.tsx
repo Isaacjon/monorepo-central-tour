@@ -55,7 +55,7 @@ export function AppHeader({ copy, lang, activeNav }: AppHeaderProps) {
   ]
 
   return (
-    <header className="w-full border-b border-[#EAECF0] bg-white">
+    <header className="sticky top-0 z-50 w-full border-b border-[#EAECF0] bg-white">
       <div className="ct-container flex min-h-[74px] items-center justify-between gap-8 py-[10px]">
         <Link href="/" className="block">
           <Image
