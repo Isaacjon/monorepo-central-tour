@@ -15,5 +15,30 @@ export type FlightsCheckoutContentCopy = {
   baggageInboundLabel: string
   baggageIncluded: string
   baggageSelectOption: string
+  baggageProtectionTitle: string
+  baggageProtectionIntro: string
+  baggageProtectionCompensation: string
+  baggageProtectionOutro: string
+  baggageProtectionMore: string
+  baggageProtectionPriceAmount: string
+  baggageProtectionPriceSuffix: string
+  baggageProtectionCheckboxAria: string
+  promoCodeTitle: string
+  promoCodePlaceholder: string
+  priceSummaryTitle: string
+  priceSummaryTicketsLabel: string
+  priceSummaryTicketsValue: string
+  priceSummaryOutboundValue: string
+  priceSummaryInboundValue: string
+  priceSummaryBaggageHeading: string
+  priceSummaryAirlineNote: string
+  priceSummaryFree: string
+  priceSummaryGuaranteeLabel: string
+  priceSummaryGuaranteeValue: string
+  priceSummaryTotalLabel: string
+  priceSummaryTotalValue: string
+  bookingRulesTitle: string
+  bookingRulesFreeCancellationTitle: string
+  bookingRulesFreeCancellationBody: string
   completeBooking: string
 }

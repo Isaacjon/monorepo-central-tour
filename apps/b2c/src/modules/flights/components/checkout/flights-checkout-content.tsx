@@ -12,9 +12,13 @@ import {
 
 import { FlightsCheckoutAdditionalServicesField } from "./flights-checkout-additional-services-field"
 import { FlightsCheckoutBaggageAllowanceSection } from "./flights-checkout-baggage-allowance-section"
+import { FlightsCheckoutBaggageProtectionSection } from "./flights-checkout-baggage-protection-section"
+import { FlightsCheckoutBookingRulesCard } from "./flights-checkout-booking-rules-card"
 import { FlightsCheckoutFlightCard } from "./flights-checkout-flight-card"
 import { FlightsCheckoutOtpDialog } from "./flights-checkout-otp-dialog"
 import { FlightsCheckoutPaymentInformationSection } from "./flights-checkout-payment-information-section"
+import { FlightsCheckoutPriceSummaryCard } from "./flights-checkout-price-summary-card"
+import { FlightsCheckoutPromoCodeSection } from "./flights-checkout-promo-code-section"
 import { FlightsCheckoutTravelerForm } from "./flights-checkout-traveler-form"
 import { useCheckoutAuthFlow } from "../../hooks/use-checkout-auth-flow"
 import type { FlightsCheckoutContentCopy } from "../../types/flights-checkout-content-copy"
@@ -125,6 +129,10 @@ export function FlightsCheckoutContent({
 
             <FlightsCheckoutBaggageAllowanceSection copy={copy} />
 
+            <FlightsCheckoutBaggageProtectionSection copy={copy} />
+
+            <FlightsCheckoutPromoCodeSection copy={copy} />
+
             <FlightsCheckoutPaymentInformationSection />
 
             <PrimaryButton
@@ -145,7 +153,10 @@ export function FlightsCheckoutContent({
               {copy.completeBooking}
             </PrimaryButton>
           </div>
-          <div>{/* right side   */}</div>
+          <div className="hidden w-full shrink-0 flex-col gap-4 lg:flex lg:w-[360px]">
+            <FlightsCheckoutPriceSummaryCard copy={copy} />
+            <FlightsCheckoutBookingRulesCard copy={copy} />
+          </div>
         </div>
       </main>
 
